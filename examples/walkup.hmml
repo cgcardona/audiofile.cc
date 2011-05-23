@@ -1,0 +1,29 @@
+<hmml>
+<head>
+  <meta key="7">
+  <script>
+    function walkUp() {
+      for(i = 0; i <= 6; i++) {
+        $("#a1").play();
+        $("#a1").stepUpMaj(1);
+      }
+      walkDown();
+    }
+
+    function walkDown() {
+      for(j = 5; j >= 0; i--) {
+        $("#a1").play();
+        $("#a1").stepDownMaj(1);
+      }
+      walkUp();
+    }
+  </script>
+</head>
+<body>
+  <measure onload="walkUp();">
+    <triplet pitch="0" octave="4" id="a1" />
+    <triplet pitch="0" octave="5" id="a2" />
+    <triplet pitch="7" octave="4" id="a3" />
+  </measure>
+</body>
+</hmml>

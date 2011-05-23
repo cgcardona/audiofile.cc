@@ -1,0 +1,27 @@
+<hmml>
+<meta key="10">
+<measure id="0">
+  <quarter pitch="0" dotted />
+  <eigth pitch="2" />
+  <quarter pitch="4" />
+  <quarter pitch="0" />
+</measure>
+<measure id="1">
+  <quarter pitch="5"/>
+  <quarter pitch="9"/>
+  <quarter pitch="7"/>
+  <quarter pitch="4"/>
+</measure>
+<measure id="2">
+  <quarter pitch="0" dotted />
+  <eigth pitch="2" />
+  <quarter pitch="4" />
+  <quarter pitch="7" />
+</measure>
+<measure id="3">
+  <eigth pitch="5" />
+  <eigth pitch="4" />
+  <quarter pitch="2" />
+  <half pitch="0" />
+</measure>
+</hmml>
