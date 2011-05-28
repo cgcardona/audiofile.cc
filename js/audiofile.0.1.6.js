@@ -6,7 +6,7 @@
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Sat. May 28 
+* Date: Sat. May 28 2011 
 */
 (function( $ ){
       $.fn.stepUp = function(note, distance) {
