@@ -87,7 +87,8 @@
 })( jQuery );
 
 function getContext() {
-  var ctx = example.getContext("2d");
+  var canvas = document.getElementById("example");
+  var ctx = canvas.getContext("2d");
   return ctx;
 }
 
