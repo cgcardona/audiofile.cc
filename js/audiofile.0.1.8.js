@@ -12,18 +12,22 @@
       $.fn.audiofile = function(options) {
       
         // Options go here in the form of an object literal.
-        //var settings = {
-        //'width'         : '700'
-        //};
+        var settings = {
+        'tonic'         : '3',
+        'bpmeasure'     : '4',
+        'count'         : '4',
+        'creator'       : 'Unknown',
+        'title'         : 'Unknown'
+        };
 
         return this.each(function() { 
           if ( options ) { 
           $.extend( settings, options );
           }
+          //console.log(settings.tonic);
           // code goes here to maintain chainability.
-
           var canvasWidth = $(this).attr("width");
-          drawNotes();
+          drawNotes(settings.tonic, settings.bpmeasure, settings.count, settings.title, settings.creator);
           drawStaffLines(canvasWidth);
           
         });
@@ -382,16 +386,11 @@ function clefTip() {
   ctx.lineTo(30, 340);
 }
 
-function drawNotes() {
+function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
-  var theKey = $("div[data-tonic]").attr("data-tonic");
-  var bpmeasure = $("div[data-bpmeasure]").attr("data-bpmeasure");
-  var count = $("div[data-count]").attr("data-count");
-  var songtitle = $("div[data-songtitle]").attr("data-songtitle");
-  var creator = $("div[data-creator]").attr("data-creator");
   drawClefs();
   clefTip();
-  setTheKey(theKey);
+  setTheKey(tonic);
   setTheTimeSignature(bpmeasure, count, songtitle, creator);
   var xaxis = 230;
   $("div[data-measure]").each(function(index) {
@@ -404,9 +403,9 @@ function drawNotes() {
       var lstnt = $(this).attr("data-lastnote");
       if ($(this).hasClass("sharp")) {
         var isSharp = "true";
-        drawNote(pitch, noteLength, octave, xaxis, isSharp);
+        drawNote(tonic, pitch, noteLength, octave, xaxis, isSharp);
       } else {
-        drawNote(pitch, noteLength, octave, xaxis);
+        drawNote(tonic, pitch, noteLength, octave, xaxis);
       }
       // console.log("pitch: " + pitch);
       // console.log("length: " + noteLength); 
@@ -432,8 +431,7 @@ function drawNotes() {
   // Not using this. I just liked the selector and didn't want to toss it just yet :P
   // var firstNote = $("div[data-measure^='0'] div:nth-child(1)").attr("data-pitch");
 
-function drawNote(pitch, noteLength, octave, xaxis, sharp) {
-  var tonic = $("div[data-tonic]").attr("data-tonic");
+function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
   // If key is A
   if (tonic == 0) {
     // If octave is A3
