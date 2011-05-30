@@ -9,175 +9,173 @@
 * Date: Mon. May 30 2011 
 */
 (function( $ ){
-      $.fn.audiofile = function(options) {
-      
-        // Options go here in the form of an object literal.
-        var settings = {
-        'tonic'         : '3',
-        'bpmeasure'     : '4',
-        'count'         : '4',
-        'creator'       : 'Unknown',
-        'title'         : 'Unknown'
-        };
-
-        return this.each(function() { 
-          if ( options ) { 
-          $.extend( settings, options );
-          }
-          //console.log(settings.tonic);
-          // code goes here to maintain chainability.
-          var canvasWidth = $(this).attr("width");
-          drawNotes(settings.tonic, settings.bpmeasure, settings.count, settings.title, settings.creator);
-          drawStaffLines(canvasWidth);
-          
-        });
-
+  var methods = {
+    init : function( options ) {  
+      // Options go here in the form of an object literal.
+      var settings = {
+      'tonic'         : '3',
+      'bpmeasure'     : '4',
+      'count'         : '4',
+      'creator'       : 'Unknown',
+      'title'         : 'Unknown'
       };
-      $.fn.stepUp = function(note, distance) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           var afterPitch = parseInt(beforePitch) + parseInt(distance);
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepDown = function(note, distance) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           var afterPitch = parseInt(beforePitch) - parseInt(distance);
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepUpWhole = function(note) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
+      return this.each(function() { 
+        if ( options ) { 
+        $.extend( settings, options );
+        }
+        //console.log(settings.tonic);
+        // code goes here to maintain chainability.
+        var canvasWidth = $(this).attr("width");
+        drawNotes(settings.tonic, settings.bpmeasure, settings.count, settings.title, settings.creator);
+        drawStaffLines(canvasWidth);
+      });
+    },
+    stepUp : function(placeholder, note, distance) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         var afterPitch = parseInt(beforePitch) + parseInt(distance);
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepDown : function(placeholder, note, distance) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         var afterPitch = parseInt(beforePitch) - parseInt(distance);
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepUpWhole : function(placeholder, note) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         var afterPitch = parseInt(beforePitch) + 2;
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepDownWhole : function(placeholder, note) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         var afterPitch = parseInt(beforePitch) - 2;
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepUpHalf : function(placeholder, note) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         var afterPitch = parseInt(beforePitch) + 1;
+         $(note).attr('data-pitch', afterPitch)
+      });
+    },
+    stepDownHalf : function(placeholder, note) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         var afterPitch = parseInt(beforePitch) - 1;
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepUpMaj : function(placeholder, note, distance) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         if (distance == 0) {
+           var afterPitch = parseInt(beforePitch) + 0;
+         } else if (distance == 1) {
            var afterPitch = parseInt(beforePitch) + 2;
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepDownWhole = function(note) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
+         } else if (distance == 2) {
+           var afterPitch = parseInt(beforePitch) + 4;
+         } else if (distance == 3) {
+           var afterPitch = parseInt(beforePitch) + 5;
+         } else if (distance == 4) {
+           var afterPitch = parseInt(beforePitch) + 7;
+         } else if (distance == 5) {
+           var afterPitch = parseInt(beforePitch) + 9;
+         } else if (distance == 6) {
+           var afterPitch = parseInt(beforePitch) + 11;
+         } 
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepDownMaj : function(placeholder, note, distance) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         if (distance == 0) {
+           var afterPitch = parseInt(beforePitch) - 0;
+         } else if (distance == 1) {
            var afterPitch = parseInt(beforePitch) - 2;
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepUpHalf = function(note) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           var afterPitch = parseInt(beforePitch) + 1;
-           $(note).attr('data-pitch', afterPitch)
-        });
-      };
-
-      $.fn.stepDownHalf = function(note) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           var afterPitch = parseInt(beforePitch) - 1;
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepUpMaj = function(note, distance) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           if (distance == 0) {
-             var afterPitch = parseInt(beforePitch) + 0;
-           } else if (distance == 1) {
-             var afterPitch = parseInt(beforePitch) + 2;
-           } else if (distance == 2) {
-             var afterPitch = parseInt(beforePitch) + 4;
-           } else if (distance == 3) {
-             var afterPitch = parseInt(beforePitch) + 5;
-           } else if (distance == 4) {
-             var afterPitch = parseInt(beforePitch) + 7;
-           } else if (distance == 5) {
-             var afterPitch = parseInt(beforePitch) + 9;
-           } else if (distance == 6) {
-             var afterPitch = parseInt(beforePitch) + 11;
-           } 
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepDownMaj = function(note, distance) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           if (distance == 0) {
-             var afterPitch = parseInt(beforePitch) - 0;
-           } else if (distance == 1) {
-             var afterPitch = parseInt(beforePitch) - 2;
-           } else if (distance == 2) {
-             var afterPitch = parseInt(beforePitch) - 4;
-           } else if (distance == 3) {
-             var afterPitch = parseInt(beforePitch) - 5;
-           } else if (distance == 4) {
-             var afterPitch = parseInt(beforePitch) - 7;
-           } else if (distance == 5) {
-             var afterPitch = parseInt(beforePitch) - 9;
-           } else if (distance == 6) {
-             var afterPitch = parseInt(beforePitch) - 11;
-           } 
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepUpMin = function(note, distance) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           if (distance == 0) {
-             var afterPitch = parseInt(beforePitch) + 0;
-           } else if (distance == 1) {
-             var afterPitch = parseInt(beforePitch) + 2;
-           } else if (distance == 2) {
-             var afterPitch = parseInt(beforePitch) + 3;
-           } else if (distance == 3) {
-             var afterPitch = parseInt(beforePitch) + 5;
-           } else if (distance == 4) {
-             var afterPitch = parseInt(beforePitch) + 7;
-           } else if (distance == 5) {
-             var afterPitch = parseInt(beforePitch) + 8;
-           } else if (distance == 6) {
-             var afterPitch = parseInt(beforePitch) + 10;
-           } 
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
-
-      $.fn.stepDownMin = function(note, distance) {
-        return this.each(function() { 
-          // code goes here to maintain chainability.
-           var beforePitch = $(note).attr('data-pitch');
-           if (distance == 0) {
-             var afterPitch = parseInt(beforePitch) - 0;
-           } else if (distance == 1) {
-             var afterPitch = parseInt(beforePitch) - 2;
-           } else if (distance == 2) {
-             var afterPitch = parseInt(beforePitch) - 3;
-           } else if (distance == 3) {
-             var afterPitch = parseInt(beforePitch) - 5;
-           } else if (distance == 4) {
-             var afterPitch = parseInt(beforePitch) - 7;
-           } else if (distance == 5) {
-             var afterPitch = parseInt(beforePitch) - 8;
-           } else if (distance == 6) {
-             var afterPitch = parseInt(beforePitch) - 10;
-           } 
-           $(note).attr('data-pitch', afterPitch);
-        });
-      };
+         } else if (distance == 2) {
+           var afterPitch = parseInt(beforePitch) - 4;
+         } else if (distance == 3) {
+           var afterPitch = parseInt(beforePitch) - 5;
+         } else if (distance == 4) {
+           var afterPitch = parseInt(beforePitch) - 7;
+         } else if (distance == 5) {
+           var afterPitch = parseInt(beforePitch) - 9;
+         } else if (distance == 6) {
+           var afterPitch = parseInt(beforePitch) - 11;
+         } 
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepUpMin : function(placeholder, note, distance) {
+      return this.each(function() { 
+        // code goes here to maintain chainability.
+         var beforePitch = $(note).attr('data-pitch');
+         if (distance == 0) {
+           var afterPitch = parseInt(beforePitch) + 0;
+         } else if (distance == 1) {
+           var afterPitch = parseInt(beforePitch) + 2;
+         } else if (distance == 2) {
+           var afterPitch = parseInt(beforePitch) + 3;
+         } else if (distance == 3) {
+           var afterPitch = parseInt(beforePitch) + 5;
+         } else if (distance == 4) {
+           var afterPitch = parseInt(beforePitch) + 7;
+         } else if (distance == 5) {
+           var afterPitch = parseInt(beforePitch) + 8;
+         } else if (distance == 6) {
+           var afterPitch = parseInt(beforePitch) + 10;
+         } 
+         $(note).attr('data-pitch', afterPitch);
+      });
+    },
+    stepDownMin : function(placeholder, note, distance) {
+      return this.each(function() { 
+       // code goes here to maintain chainability.
+        var beforePitch = $(note).attr('data-pitch');
+        if (distance == 0) {
+          var afterPitch = parseInt(beforePitch) - 0;
+        } else if (distance == 1) {
+          var afterPitch = parseInt(beforePitch) - 2;
+        } else if (distance == 2) {
+          var afterPitch = parseInt(beforePitch) - 3;
+        } else if (distance == 3) {
+          var afterPitch = parseInt(beforePitch) - 5;
+        } else if (distance == 4) {
+          var afterPitch = parseInt(beforePitch) - 7;
+        } else if (distance == 5) {
+          var afterPitch = parseInt(beforePitch) - 8;
+        } else if (distance == 6) {
+          var afterPitch = parseInt(beforePitch) - 10;
+        } 
+        $(note).attr('data-pitch', afterPitch);
+      });
+    }
+  };
+  $.fn.audiofile = function(options, method) {
+    if ( methods[method] ) {
+    return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+    } else if ( typeof method === 'object' || ! method ) {
+    return methods.init.apply( this, arguments );
+    } else {
+    $.error( 'Method ' +  method + ' does not exist on jQuery.audiofile' );
+    }   
+  };
 })( jQuery );
 
 function getContext() {
