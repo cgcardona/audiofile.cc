@@ -498,970 +498,129 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   // var firstNote = $("div[data-measure^='0'] div:nth-child(1)").attr("data-pitch");
 
 function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
-  if (tonic == -7) {
-  // If key is C flat
-    if (octave == 3) {
-    // If octave is Cflat3
-      var zero = 310; // C flat 
-      var one = 310; // C natural
-      var oneNatural = "true";
-      var two = 300; // D flat
-      var three = 300; // D natural
-      var threeNatural = "true";
-      var four = 290; // E flat
-      var five = 290; // E natural
-      var fiveNatural = "true";
-      var fiveSharp = "false";
-      var six = 280; // F
-      var seven = 270; // G flat 
-      var eight = 270; // G natural
-      var eightNatural = "true";
-      var nine = 260; // A flat
-      var ten = 260; // A natural
-      var tenNatural = "true";
-      var eleven = 250; // B flat  
-    } else if (octave == 4) {
-    // If octave is Cflat4
-      var zero = 240; // C flat 
-      var one = 240; // C natural
-      var oneNatural = "true";
-      var two = 230; // D flat
-      var three = 230; // D natural
-      var threeNatural = "true";
-      var four = 220; // E flat
-      var five = 220; // E  natural
-      var fiveNatural = "true";
-      var six = 210; // F
-      var seven = 200; // G flat 
-      var eight = 200; // G natural
-      var eightNatural = "true";
-      var nine = 190; // A flat
-      var ten = 190; // A natural
-      var tenNatural = "true";
-      var eleven = 180; // B
-    } else if (octave == 5) {
-    // If octave is Cflat5
-      var zero = 170; // C flat
-      var one = 170; // C natural
-      var oneNatural = "true";
-      var two = 160; // D flat
-      var three = 160; // D natural
-      var threeNatural = "true";
-      var four = 150; // E flat
-      var five = 150; // E natural
-      var fiveNatural = "true";
-      var six = 140; // F
-      var seven = 130; // G flat
-      var eight = 130; // G natural
-      var eightNatural = "true";
-      var nine = 120; // A flat
-      var ten = 120; // A natural
-      var tenNatural = "true";
-      var eleven = 110; // B flat
+  // First level is tonic, second level is octave.
+  var scales = {
+    "0": {
+      "3": [310,310,300,300,290,280,280,270,270,260,260,250],
+      "4": [240,240,230,230,220,210,210,200,200,190,190,180],
+      "5": [170,170,160,160,150,140,140,130,130,120,120,110],
+      "sharps": [false,true,false,true,false,false,true,false,true,false,true,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
+    },
+    "1": {
+      "3": [270,270,260,260,250,240,240,230,230,220,210,210],
+      "4": [200,200,190,190,180,170,170,160,160,150,140,140],
+      "5": [130,130,120,120,110,100,100,90,90,80,70,70],
+      "sharps": [false,true,false,true,false,false,true,false,true,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,false,false,false,false,false,false,false,false,false,true,false]
+    },
+    "2": {
+      "3": [300,300,290,280,280,270,270,260,260,250,240,240],
+      "4": [230,230,220,210,210,200,200,190,190,180,170,170],
+      "5": [160,160,150,140,140,130,130,120,120,110,100,100],
+      "sharps": [false,true,false,false,false,false,true,false,true,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,false,false,true,false,false,false,false,false,false,true,false]
+    },
+    "3": {
+      "3": [260,260,250,240,240,230,230,220,210,210,200,200],
+      "4": [190,190,180,170,170,160,160,150,140,140,130,130],
+      "5": [120,120,110,100,100,90,90,80,70,70,60,60],
+      "sharps": [false,true,false,false,false,false,true,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,false,false,true,false,false,false,false,true,false,true,false]
+    },
+    "4": {
+      "3": [290,280,280,270,270,260,260,250,240,240,230,230],
+      "4": [220,210,210,200,200,190,190,180,170,170,160,160],
+      "5": [150,140,140,130,130,120,120,110,100,100,90,90],
+      "sharps": [false,false,false,false,false,false,true,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
+    },
+    "5": {
+      "3": [250,240,240,230,230,220,210,210,200,200,190,190],
+      "4": [180,170,170,160,160,150,140,140,130,130,120,120],
+      "5": [110,100,100,90,90,80,70,70,60,60,50,50],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    },
+    "6": {
+      "3": [280,270,270,260,260,250,240,240,230,230,220,210],
+      "4": [210,200,200,190,190,180,170,170,160,160,150,140],
+      "5": [140,130,130,120,120,110,100,100,90,90,80,70],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,false,true]
+    },
+    "7": {
+      "3": [310,300,300,290,280,280,270,270,260,260,250,240],
+      "4": [240,230,230,220,210,210,200,200,190,190,180,170],
+      "5": [170,160,160,150,140,140,130,130,120,120,110,100],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,true,false,false,true,false,true,false,true,false,false,true]
+    },
+    "-7": {
+      "3": [310,310,300,300,290,290,280,270,270,260,260,250],
+      "4": [240,240,230,230,220,220,210,200,200,190,190,180],
+      "5": [170,170,160,160,150,150,140,130,130,120,120,110],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
+    },
+    "-6": {
+      "3": [270,270,260,260,250,250,240,230,230,220,220,210],
+      "4": [200,200,190,190,180,180,170,160,160,150,150,140],
+      "5": [130,130,120,120,110,110,100,90,90,80,80,70],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
+    },
+    "-5": {
+      "3": [300,300,290,290,280,270,270,260,260,250,250,240],
+      "4": [230,230,220,220,210,200,200,190,190,180,180,170],
+      "5": [160,160,150,150,140,130,130,120,120,110,110,100],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    },
+    "-4": {
+      "3": [260,260,250,250,240,230,230,220,220,210,200,200],
+      "4": [190,190,180,180,170,160,160,150,150,140,130,130],
+      "5": [120,120,110,110,100,90,90,80,80,70,60,60],
+      "sharps": [false,false,false,false,false,false,false,false,false,false,true,false],
+      "flats": [false,false,false,false,false,false,false,false,false,false,true,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    },
+    "-3": {
+      "3": [290,290,280,270,270,260,260,250,250,240,230,230],
+      "4": [220,220,210,200,200,190,190,180,180,170,160,160],
+      "5": [150,150,140,130,130,120,120,110,110,100,90,90],
+      "sharps": [false,false,false,true,false,false,false,false,false,false,true,false],
+      "flats": [false,false,false,true,false,false,false,false,false,false,true,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    },
+    "-2": {
+      "3": [320,320,310,300,300,290,290,280,270,270,260,260],
+      "4": [250,250,240,230,230,220,220,210,200,200,190,190],
+      "5": [180,180,170,160,160,150,150,140,130,130,120,120],
+      "sharps": [false,false,false,true,false,false,false,false,true,false,true,false],
+      "flats": [false,false,false,true,false,false,false,false,true,false,true,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    },
+    "-1": {
+      "3": [280,270,270,260,260,250,250,240,230,230,220,220],
+      "4": [210,200,200,190,190,180,180,170,160,160,150,150],
+      "5": [140,130,130,120,120,110,110,100,90,90,80,80],
+      "sharps": [false,true,false,true,false,false,false,false,true,false,true,false],
+      "flats": [false,true,false,true,false,false,false,false,true,false,true,false],
+      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
     }
-  
-  } else if (tonic == -6) {
-  // If key is G flat
-    if (octave == 3) {
-    // If octave is Gflat3
-      var zero = 270; // G flat  
-      var one = 270; // G natural
-      var oneNatural = "true";
-      var two = 260; // A flat
-      var three = 260; // A natural
-      var threeNatural = "true";
-      var four = 250; // B flat
-      var five = 250; // B natural
-      var fiveNatural = "true";
-      var fiveSharp = "false";
-      var six = 240; // C
-      var seven = 230; // D flat 
-      var eight = 230; // D
-      var eightNatural = "true";
-      var nine = 220; // E flat
-      var ten = 220; // E
-      var tenNatural = "true";
-      var eleven = 210; // F 
-    } else if (octave == 4) {
-    // If octave is Gflat4
-      var zero = 200; // G flat 
-      var one = 200; // G natural
-      var oneNatural = "true";
-      var two = 190; // A flat
-      var three = 190; // A natural
-      var threeNatural = "true";
-      var four = 180; // B flat
-      var five = 180; // B natural
-      var fiveNatural = "true";
-      var six = 170; // C
-      var seven = 160; // D flat 
-      var eight = 160; // D natural
-      var eightNatural = "true";
-      var nine = 150; // E flat
-      var ten = 150; // E natural
-      var tenNatural = "true";
-      var eleven = 140; // F
-    } else if (octave == 5) {
-    // If octave is Gflat5
-      var zero = 130; // G flat 
-      var one = 130; // G natural
-      var oneNatural = "true";
-      var two = 120; // A flat
-      var three = 120; // A natural
-      var threeNatural = "true";
-      var four = 110; // B flat
-      var five = 110; // B natural
-      var fiveNatural = "true";
-      var six = 100; // C
-      var seven = 90; // D flat
-      var eight = 90; // D natural
-      var eightNatural = "true";
-      var nine = 80; // E flat
-      var ten = 80; // E natural
-      var tenNatural = "true";
-      var eleven = 70; // F
-    }
-  } else if (tonic == -5) {
-  // If key is D flat
-    if (octave == 3) {
-    // If octave is Dflat3
-      var zero = 300; // D flat 
-      var one = 300; // D natural
-      var oneNatural = "true";
-      var two = 290; // E flat
-      var three = 290; // E natural
-      var threeNatural = "true";
-      var four = 280; // F
-      var five = 270; // G flat
-      var six = 270; // G natural
-      var sixNatural = "true";
-      var seven = 260; // A flat
-      var eight = 260; // A natural
-      var eightNatural = "true";
-      var nine = 250; // B flat
-      var ten = 250; // B natural
-      var tenNatural = "true";
-      var eleven = 240; // C
-    } else if (octave == 4) {
-    // If octave is Dflat4
-      var zero = 230; // D flat 
-      var one = 230; // D natural
-      var oneNatural = "true";
-      var two = 220; // E flat
-      var three = 220; // E natural
-      var threeNatural = "true";
-      var four = 210; // F
-      var five = 200; // G flat
-      var six = 200; // G natural
-      var sixNatural = "true";
-      var seven = 190; // A flat
-      var eight = 190; // A natural
-      var eightNatural = "true";
-      var nine = 180; // B flat
-      var ten = 180; // B natural
-      var tenNatural = "true";
-      var eleven = 170; // C
-    } else if (octave == 5) {
-    // If octave is Dflat5
-      var zero = 160; // D flat 
-      var one = 160; // D natural
-      var oneNatural = "true";
-      var two = 150; // E flat
-      var three = 150; // E natural
-      var threeNatural = "true";
-      var four = 140; // F
-      var five = 130; // G flat
-      var six = 130; // G natural
-      var sixNatural = "true";
-      var seven = 120; // A flat
-      var eight = 120; // A natural
-      var eightNatural = "true";
-      var nine = 110; // B flat
-      var ten = 110; // B natural
-      var tenNatural = "true";
-      var eleven = 100; // C
-    }
-  } else if (tonic == -4) {
-  // If key is A flat
-    if (octave == 3) {
-    // If octave is Aflat3
-      var zero = 260; // A flat
-      var one = 260; // A natural
-      var oneNatural = "true";
-      var two = 250; // B flat
-      var three = 250; // B natural
-      var threeNatural = "true";
-      var four = 240; // C
-      var five = 230; // D flat
-      var six = 230; // D natural
-      var sixNatural = "true";
-      var seven = 220; // E flat
-      var eight = 220; // E natural
-      var eightNatural = "true";
-      var nine = 210; // F
-      var ten = 200; // G flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 200; // G
-    } else if (octave == 4) {
-    // If octave is Aflat4
-      var zero = 190; // A flat 
-      var one = 190; // A natural
-      var oneNatural = "true";
-      var two = 180; // B flat
-      var three = 180; // B natural
-      var threeNatural = "true";
-      var four = 170; // C
-      var five = 160; // D flat
-      var six = 160; // D
-      var sixNatural = "true";
-      var seven = 150; // E flat
-      var eight = 150; // E natural
-      var eightNatural = "true";
-      var nine = 140; // F
-      var ten = 130; // G flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 130; // G
-    } else if (octave == 5) {
-    // If octave is Aflat5
-      var zero = 120; // A flat 
-      var one = 120; // A natural
-      var oneNatural = "true";
-      var two = 110; // B flat
-      var three = 110; // B natural
-      var threeNatural = "true";
-      var four = 100; // C
-      var five = 90; // D flat
-      var six = 90; // D natural
-      var sixNatural = "true";
-      var seven = 80; // E flat
-      var eight = 80; // E natural
-      var eightNatural = "true";
-      var nine = 70; // F
-      var ten = 60; // G flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 60; // G 
-    }
-  } else if (tonic == -3) {
-  // If key is E flat
-    if (octave == 3) {
-    // If octave is Eflat3
-      var zero = 290; // E flat
-      var one = 290; // E natural
-      var oneNatural = "true";
-      var two = 280; // F
-      var three = 270; // G flat
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 270; // G
-      var five = 260; // A flat
-      var six = 260; // A natural
-      var sixNatural = "true";
-      var seven = 250; // B flat
-      var eight = 250; // B natural
-      var eightNatural = "true";
-      var nine = 240; // C
-      var ten = 230; // D flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 230; // D natural
-    } else if (octave == 4) {
-    // If octave is Eflat4
-      var zero = 220; // E flat  
-      var one = 220; // E natural
-      var oneNatural = "true";
-      var two = 210; // F 
-      var three = 200; // G flat
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 200; // G
-      var five = 190; // A flat
-      var six = 190; // A natural
-      var sixNatural = "true";
-      var seven = 180; // B flat
-      var eight = 180; // B natural
-      var eightNatural = "true";
-      var nine = 170; // C
-      var ten = 160; // D flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 160; // D
-    } else if (octave == 5) {
-    // If octave is Eflat5
-      var zero = 150; // E flat
-      var one = 150; // E natural
-      var oneNatural = "true";
-      var two = 140; // F
-      var three = 130; // G flat 
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 130; // G
-      var five = 120; // A flat
-      var six = 120; // A natural
-      var sixNatural = "true";
-      var seven = 110; // B flat
-      var eight = 110; // B natural
-      var eightNatural = "true";
-      var nine = 100; // C
-      var ten = 90; // D flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 90; // D
-    }
-  } else if (tonic == -2) {
-  // If key is B flat
-    if (octave == 3) {
-    // If octave is Bflat3
-      var zero = 320; // B flat 
-      var one = 320; // B natural
-      var oneNatural = "true";
-      var two = 310; // C
-      var three = 300; // D flat
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 300; // D
-      var five = 290; // E flat
-      var six = 290; // E natural
-      var sixNatural = "true";
-      var seven = 280; // F
-      var eight = 270; // G flat
-      var eightFlat = "true";
-      var eightNatural = "false";
-      var eightSharp = "false";
-      var nine = 270; // G
-      var ten = 260; // A flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 260; // A
-    } else if (octave == 4) {
-    // If octave is Bflat4
-      var zero = 250; // B flat
-      var one = 250; // B natural
-      var oneNatural = "true";
-      var two = 240; // C
-      var three = 230; // D flat
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 230; // D
-      var five = 220; // E flat
-      var six = 220; // E natural
-      var sixNatural = "true";
-      var seven = 210; // F
-      var eight = 200; // G flat
-      var eightFlat = "true";
-      var eightNatural = "false";
-      var eightSharp = "false";
-      var nine = 200; // G
-      var ten = 190; // A flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 190; // A
-    } else if (octave == 5) {
-    // If octave is Bflat5
-      var zero = 180; // B flat
-      var one = 180; // B natural
-      var oneNatural = "true";
-      var two = 170; // C
-      var three = 160; // D flat
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 160; // D
-      var five = 150; // E flat
-      var six = 150; // E natural
-      var sixNatural = "true";
-      var seven = 140; // F
-      var eight = 130; // G flat
-      var eightFlat = "true";
-      var eightNatural = "false";
-      var eightSharp = "false";
-      var nine = 130; // G
-      var ten = 120; // A flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 120; // A
-    }
-  } else if (tonic == -1) {
-  // If key is F
-    if (octave == 3) {
-    // If octave is F3
-      var zero = 280; // F
-      var one = 270; // G flat
-      var oneFlat = "true";
-      var oneNatural = "false";
-      var oneSharp = "false";
-      var two = 270; // G
-      var three = 260; // A flat 
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 260; // A
-      var five = 250; // B flat
-      var six = 250; // B
-      var sixNatural = "true";
-      var seven = 240; // C
-      var eight = 230; // D flat 
-      var eightFlat = "true";
-      var eightNatural = "false";
-      var eightSharp = "false";
-      var nine = 230; // D
-      var ten = 220; // E flat 
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 220; // E
-    } else if (octave == 4) {
-    // If octave is F4
-      var zero = 210; // F 
-      var one = 200; // G flat 
-      var oneFlat = "true";
-      var oneNatural = "false";
-      var oneSharp = "false";
-      var two = 200; // G
-      var three = 190; // A flat 
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 190; //  A
-      var five = 180; // B flat
-      var six = 180; // B natural
-      var sixNatural = "true";
-      var seven = 170; // C 
-      var eight = 160; // D flat
-      var eightFlat = "true";
-      var eightNatural = "false";
-      var eightSharp = "false";
-      var nine = 160; // D
-      var ten = 150; // E flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 150; // E
-    } else if (octave == 5) {
-    // If octave is F5
-      var zero = 140; // F 
-      var one = 130; // G flat
-      var oneFlat = "true";
-      var oneNatural = "false";
-      var oneSharp = "false";
-      var two = 130; // G
-      var three = 120; // A flat 
-      var threeFlat = "true";
-      var threeNatural = "false";
-      var threeSharp = "false";
-      var four = 120; // A
-      var five = 110; // B flat
-      var six = 110; // B natural
-      var sixNatural = "true";
-      var seven = 100; // C
-      var eight = 90; // D flat
-      var eightFlat = "true";
-      var eightNatural = "false";
-      var eightSharp = "false";
-      var nine = 90; // D
-      var ten = 80; // E flat
-      var tenFlat = "true";
-      var tenNatural = "false";
-      var tenSharp = "false";
-      var eleven = 80; // E
-    }
-  } else if (tonic == 0) {
-  // If key is C
-    if (octave == 3) {
-    // If octave is C3
-      var zero = 310; // C
-      var one = 310; // C sharp
-      var oneSharp = "true";
-      var two = 300; // D
-      var three = 300; // D sharp
-      var threeSharp = "true";
-      var four = 290; // E
-      var five = 280; // F
-      var six = 280; // F sharp
-      var sixSharp = "true";
-      var seven = 270; // G
-      var eight = 270; // G sharp
-      var eightSharp = "true";
-      var nine = 260; // A
-      var ten = 260; // A sharp
-      var tenSharp = "true";
-      var eleven = 250; // B
-    } else if (octave == 4) {
-    // If octave is C4
-      var zero = 240; // C
-      var one = 240; // C sharp
-      var oneSharp = "true";
-      var two = 230; // D
-      var three = 230; // D sharp
-      var threeSharp = "true";
-      var four = 220; // E
-      var five = 210; // F
-      var six = 210; // F sharp
-      var sixSharp = "true";
-      var seven = 200; // G
-      var eight = 200; // G sharp
-      var eightSharp = "true";
-      var nine = 190; // A
-      var ten = 190; // A sharp
-      var tenSharp = "true";
-      var eleven = 180; // B
-    } else if (octave == 5) {
-    // If octave is C5
-      var zero = 170; // C
-      var one = 170; // C sharp
-      var oneSharp = "true";
-      var two = 160; // D
-      var three = 160; // D sharp
-      var threeSharp = "true";
-      var four = 150; // E
-      var five = 140; // F
-      var six = 140; // F sharp
-      var sixSharp = "true";
-      var seven = 130; // G
-      var eight = 130; // G sharp
-      var eightSharp = "true";
-      var nine = 120; // A
-      var ten = 120; // A sharp
-      var tenSharp = "true";
-      var eleven = 110; // B
-    }
-  } else if (tonic == 1) {
-  // If key is G
-    if (octave == 3) {
-    // If octave is G3
-      var zero = 270; // G
-      var one = 270; // G sharp
-      var oneSharp = "true";
-      var two = 260; // A
-      var three = 260; // A sharp
-      var threeSharp = "true";
-      var four = 250; // B
-      var five = 240; // C
-      var six = 240; // C sharp
-      var sixSharp = "true";
-      var seven = 230; // D
-      var eight = 230; // D sharp
-      var eightSharp = "true";
-      var nine = 220; // E
-      var ten = 210; // F natural
-      var tenNatural = "true";
-      var eleven = 210; // F sharp
-    // If octave is G4
-    } else if (octave == 4) {
-      var zero = 200; // G
-      var one = 200; // G sharp
-      var oneSharp = "true";
-      var two = 190; // A
-      var three = 190; // A sharp
-      var threeSharp = "true";
-      var four = 180; // B
-      var five = 170; // C
-      var six = 170; // C sharp
-      var sixSharp = "true";
-      var seven = 160; // D
-      var eight = 160; // D sharp
-      var eightSharp = "true";
-      var nine = 150; // E
-      var ten = 140; // F natural
-      var tenNatural = "true";
-      var eleven = 140; // F sharp
-    // If octave is G5
-    } else if (octave == 5) {
-      var zero = 130; // G
-      var one = 130; // G sharp
-      var oneSharp = "true";
-      var two = 120; // A
-      var three = 120; // A sharp
-      var threeSharp = "true";
-      var four = 110; // B
-      var five = 100; // C 
-      var six = 100; // C sharp
-      var sixSharp = "true";
-      var seven = 90; // D
-      var eight = 90; // D sharp
-      var eightSharp = "true";
-      var nine = 80; // E
-      var ten = 70; // F natural
-      var tenNatural = "true";
-      var eleven = 70; // F sharp
-    }
-  } else if (tonic == 2) {
-  // If key is D
-    if (octave == 3) {
-    // If octave is D3
-      var zero = 300; // D
-      var one = 300; // D sharp
-      var oneSharp = "true";
-      var two = 290; // E
-      var three = 280; // F natural 
-      var threeNatural = "true";
-      var four = 280; // F sharp
-      var five = 270; // G 
-      var six = 270; // G sharp
-      var sixSharp = "true";
-      var seven = 260; // A
-      var eight = 260; // A sharp
-      var eightSharp = "true";
-      var nine = 250; // B
-      var ten = 240; // C natural
-      var tenNatural = "true";
-      var eleven = 240; // C sharp
-    } else if (octave == 4) {
-    // If octave is D4
-      var zero = 230; // D
-      var one = 230; // D sharp
-      var oneSharp = "true";
-      var two = 220; // E
-      var three = 210; // F natural
-      var threeNatural = "true";
-      var four = 210; // F sharp
-      var five = 200; // G
-      var six = 200; // G sharp
-      var sixSharp = "true";
-      var seven = 190; // A
-      var eight = 190; // A sharp
-      var eightSharp = "true";
-      var nine = 180; // B
-      var ten = 170; // C natural
-      var tenNatural = "true";
-      var eleven = 170; // C sharp
-    } else if (octave == 5) {
-    // If octave is D5
-      var zero = 160; // D
-      var one = 160;  // D sharp
-      var oneSharp = "true";
-      var two = 150; // E
-      var three = 140; // F natural
-      var threeNatural = "true";
-      var four = 140; // F sharp
-      var five = 130; // G
-      var six = 130; // G sharp
-      var sixSharp = "true";
-      var seven = 120; // A
-      var eight = 120; // A sharp
-      var eightSharp = "true";
-      var nine = 110; // B
-      var ten = 100; // C natural
-      var tenNatural = "true";
-      var eleven = 100; // C sharp
-     }
-   } else if (tonic == 3) {
-   //If key is A
-    if (octave == 3) {
-    // If octave is A3
-      var zero = 260; // A
-      var one = 260; // A sharp
-      var oneSharp = "true";
-      var two = 250; // B
-      var three = 240; // C natural
-      var threeNatural = "true";
-      var four = 240; // C sharp
-      var five = 230; // D
-      var six = 230; // D sharp
-      var sixSharp = "true";
-      var seven = 220; // E
-      var eight = 210; // F natural
-      var eightNatural = "true";
-      var nine = 210; // F sharp
-      var ten = 200; // G natural
-      var tenNatural = "true";
-      var eleven = 200; // G sharp
-    } else if (octave == 4) {
-    // If octave is A4
-      var zero = 190; // A
-      var one = 190; // A sharp
-      var oneSharp = "true";
-      var two = 180; // B
-      var three = 170; // C natural
-      var threeNatural = "true";
-      var four = 170; // C sharp
-      var five = 160; // D
-      var six = 160; // D sharp
-      var sixSharp = "true";
-      var seven = 150; // E
-      var eight = 140; // F natural
-      var eightNatural = "true";
-      var nine = 140; // F sharp
-      var ten = 130; // G natural
-      var tenNatural = "true";
-      var eleven = 130; // G sharp
-    } else if (octave == 5) {
-    // If octave is A5
-      var zero = 120; // A 
-      var one = 120; // A sharp
-      var oneSharp = "true";
-      var two = 110; // B
-      var three = 100; // C natural
-      var threeNatural = "true";
-      var four = 100; // C sharp
-      var five = 90; // D
-      var six = 90; // D sharp
-      var sixSharp = "true";
-      var seven = 80; // E
-      var eight = 70; // F natural
-      var eightNatural = "true";
-      var nine = 70; // F sharp
-      var ten = 60; // G natural
-      var tenNatural = "true";
-      var eleven = 60; // G sharp
-    }
-  } else if (tonic == 4) {
-  // If key is E
-    if (octave == 3) {
-    // If octave is E3
-      var zero = 290; // E
-      var one = 280; // F natural
-      var oneNatural = "true";
-      var two = 280; // F sharp
-      var three = 270; // G natural
-      var threeNatural = "true";
-      var four = 270; // G sharp
-      var five = 260; // A 
-      var six = 260; // A sharp
-      var sixSharp = "true";
-      var seven = 250; // B
-      var eight = 240; // C natural
-      var eightNatural = "true";
-      var nine = 240; // C sharp
-      var ten = 230; // D natural
-      var tenNatural = "true";
-      var eleven = 230; // D sharp
-    } else if (octave == 4) {
-    // If octave is E4
-      var zero = 220; // E
-      var one = 210; // F natural
-      var onenatural = "true";
-      var two = 210; // F sharp
-      var three = 200; // G natural
-      var threenatural = "true";
-      var four = 200; // G sharp
-      var five = 190; // A
-      var six = 190; // A sharp
-      var sixSharp = "true";
-      var seven = 180; // B
-      var eight = 170; // C natural
-      var eightnatural = "true";
-      var nine = 170; // C sharp
-      var ten = 160; // D natural
-      var tennatural = "true";
-      var eleven = 160; // D sharp
-    } else if (octave == 5) {
-    // If octave is E5
-      var zero = 150; // E
-      var one = 140; // F natural
-      var onenatural = "true";
-      var two = 140; // F sharp
-      var three = 130; // G natural
-      var threenatural = "true";
-      var four = 130; // G sharp
-      var five = 120; // A
-      var six = 120; // A sharp
-      var sixSharp = "true";
-      var seven = 110; // B
-      var eight = 100; // C natural
-      var eightnatural = "true";
-      var nine = 100; // C sharp
-      var ten = 90; // D natural
-      var tennatural = "true";
-      var eleven = 90; // D sharp
-     }
-   } else if (tonic == 5) {
-  // If key is B
-    if (octave == 3) {
-    // If octave is B3
-      var zero = 250; // B
-      var one = 240; // C natural 
-      var oneNatural = "true";
-      var two = 240; // C sharp 
-      var three = 230; // D natural
-      var threeNatural = "true";
-      var four = 230; // D sharp
-      var five = 220; // E
-      var six = 210; // F natural
-      var sixNatural = "true";
-      var seven = 210; // F sharp
-      var eight = 200; // G natural
-      var eightNatural = "true";
-      var nine = 200; // G sharp
-      var ten = 190; // A natural
-      var tenNatural = "true";
-      var eleven = 190; // A sharp
-    } else if (octave == 4) {
-    // If octave is B4
-      var zero = 180; // B
-      var one = 170; // C natural
-      var oneNatural = "true";
-      var two = 170; // C sharp
-      var three = 160; // D natural
-      var threeNatural = "true";
-      var four = 160; // D sharp
-      var five = 150; // E
-      var six = 140; // F Natural
-      var sixNatural = "true";
-      var seven = 140; // F sharp
-      var eight = 130; // G natural
-      var eightNatural = "true";
-      var nine = 130; // G sharp
-      var ten = 120; // A natural
-      var tenNatural = "true";
-      var eleven = 120; // A sharp
-    } else if (octave == 5) {
-    // If octave is B5
-      var zero = 110; // B
-      var one = 100; // C natural
-      var oneNatural = "true";
-      var two = 100; // C sharp
-      var three = 90; // D natural
-      var threeNatural = "true";
-      var four = 90; // D sharp
-      var five = 80; // E
-      var six = 70; // F natural
-      var sixNatural = "true";
-      var seven = 70; // F sharp
-      var eight = 60; // G natural
-      var eightNatural = "true";
-      var nine = 60; // G sharp
-      var ten = 50; // A natural
-      var tenNatural = "true";
-      var eleven = 50; // A sharp
-    }
-  } else if (tonic == 6) {
-  // If key is F#
-    if (octave == 3) {
-    // If octave is F#3
-      var zero = 280; // F sharp
-      var one = 270; // G natural
-      var oneNatural = "true";
-      var two = 270; // G sharp
-      var three = 260; // A natural
-      var threeNatural = "true";
-      var four = 260; // A sharp
-      var five = 250; // B
-      var six = 240; // C natural
-      var sixNatural = "true";
-      var seven = 240; // C sharp
-      var eight = 230; // D natural
-      var eightNatural = "true";
-      var nine = 230; // D sharp
-      var ten = 220; // E 
-      var eleven = 210; // F natural
-      var elevenNatural = "true";
-    } else if (octave == 4) {
-    // If octave is F#4
-      var zero = 210 //  F sharp;
-      var one = 200; // G natural
-      var oneNatural = "true";
-      var two = 200; // G sharp
-      var three = 190; // A natural
-      var threeNatural = "true";
-      var four = 190; // A sharp
-      var five = 180; // B
-      var six = 170; // C natural
-      var sixNatural = "true";
-      var seven = 170; // C sharp
-      var eight = 160; // D natural
-      var eightNatural = "true";
-      var nine = 160; // D sharp
-      var ten = 150; // E
-      var eleven = 140; // F natural
-      var elevenNatural = "true";
-    } else if (octave == 5) {
-    // If octave is F#5
-      var zero = 140; // F sharp
-      var one = 130; // G natural
-      var oneNatural = "true";
-      var two = 130; // G sharp
-      var three = 120; // A natural
-      var threeNatural = "true"; 
-      var four = 120; // A sharp
-      var five = 110; // B
-      var six = 100; // C natural
-      var sixNatural = "true";
-      var seven = 100; // C sharp
-      var eight = 90; // D natural
-      var eightNatural = "true";
-      var nine = 90; // D sharp
-      var ten = 80; // E
-      var eleven = 70; // F natural
-      var elevenNatural = "true";
-    }
-  } else if (tonic == 7) {
-  // If key is C#
-    if (octave == 3) {
-    // If octave is C#3
-      var zero = 310; // C sharp
-      var one = 300; // D natural
-      var oneNatural = "true";
-      var two = 300; // D sharp
-      var three = 290; // E sharp
-      var four = 280; // F natural
-      var fourNatural = "true";
-      var five = 280; // F sharp
-      var six = 270; // G natural
-      var sixNatural = "true";
-      var seven = 270; // G sharp
-      var eight = 260; // A natural
-      var eightNatural = "true";
-      var nine = 260; // A sharp
-      var ten = 250; // B sharp
-      var eleven = 240; // C natural
-      var elevenNatural = "true";
-    } else if (octave == 4) {
-    // If octave is C#4
-      var zero = 240;
-      var one = 230;
-      var oneNatural = "true";
-      var two = 230;
-      var three = 220;
-      var four = 210;
-      var fourNatural = "true";
-      var five = 210;
-      var six = 200;
-      var sixNatural = "true";
-      var seven = 200;
-      var eight = 190;
-      var eightNatural = "true";
-      var nine = 190; // A sharp
-      var ten = 180;
-      var eleven = 170;
-      var elevenNatural = "true";
-    } else if (octave == 5) {
-    // If octave is C#5
-      var zero = 170;
-      var one = 160;
-      var oneNatural = "true";
-      var two = 160;
-      var three = 150;
-      var four = 140;
-      var fourNatural = "true";
-      var five = 140;
-      var six = 130;
-      var sixNatural = "true";
-      var seven = 130;
-      var eight = 120;
-      var eightNatural = "true";
-      var nine = 120;
-      var ten = 110;
-      var eleven = 100;
-      var elevenNatural = "true";
-    }
-  }
+  };
 
   var ctx = getContext();
   if (pitch == 0) {
