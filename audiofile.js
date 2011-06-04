@@ -453,33 +453,33 @@ var scales = {
     "3":        [  260,  260,  250,  250,  240,  230,  230,  220,  220,  210,  200,  200],
     "4":        [  190,  190,  180,  180,  170,  160,  160,  150,  150,  140,  130,  130],
     "5":        [  120,  120,  110,  110,  100,   90,   90,   80,   80,   70,   60,   60],
-    "sharps":   [false,false,false,false,false,false,false,false,false,false, true,false],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false, false,false],
     "flats":    [false,false,false,false,false,false,false,false,false,false, true,false],
-    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
+    "naturals": [false, true,false, true,false,false, true,false, true,false, false,false]
   },
   "-3": {
     "3":        [  290,  290,  280,  270,  270,  260,  260,  250,  250,  240,  230,  230],
     "4":        [  220,  220,  210,  200,  200,  190,  190,  180,  180,  170,  160,  160],
     "5":        [  150,  150,  140,  130,  130,  120,  120,  110,  110,  100,   90,   90],
-    "sharps":   [false,false,false, true,false,false,false,false,false,false, true,false],
+    "sharps":   [false,false,false, false,false,false,false,false,false,false,false,false],
     "flats":    [false,false,false, true,false,false,false,false,false,false, true,false],
-    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
+    "naturals": [false, true,false, false,false,false, true,false, true,false, false,false]
   },
   "-2": {
     "3":        [  320,  320,  310,  300,  300,  290,  290,  280,  270,  270,  260,  260],
     "4":        [  250,  250,  240,  230,  230,  220,  220,  210,  200,  200,  190,  190],
     "5":        [  180,  180,  170,  160,  160,  150,  150,  140,  130,  130,  120,  120],
-    "sharps":   [false,false,false, true,false,false,false,false, true,false, true,false],
-    "flats":    [false,false,false, true,false,false,false,false, true,false, true,false],
-    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
+    "sharps":   [false,false,false, false,false,false,false,false, ,false, false,false],
+    "flats":    [false,false,false, true,false,false,false,false,true ,false,true ,false],
+    "naturals": [false,true,false,false,false,false,true,false,false,false,false,false]
   },
   "-1": {
     "3":        [  280,  270,  270,  260,  260,  250,  250,  240,  230,  230,  220,  220],
     "4":        [  210,  200,  200,  190,  190,  180,  180,  170,  160,  160,  150,  150],
     "5":        [  140,  130,  130,  120,  120,  110,  110,  100,   90,   90,   80,   80],
-    "sharps":   [false, true,false, true,false,false,false,false, true,false, true,false],
-    "flats":    [false, true,false, true,false,false,false,false, true,false, true,false],
-    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
+    "sharps":   [false, false,false, false,false,false,false,false, false,false, false,false],
+    "flats":    [false, true,false, true,false,true,false,false, true,false, true,false],
+    "naturals": [false, false,false, false,false,false, true,false, false,false, false,false]
   }
 };
 
