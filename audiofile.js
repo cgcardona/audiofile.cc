@@ -26,12 +26,12 @@
         //console.log(settings.tonic);
         // code goes here to maintain chainability.
         var canvasWidth = $(this).attr("width");
-        drawStaffLines(canvasWidth);
         drawClefs();
         clefTip();
         setTheKey(settings.tonic);
         setTheTimeSignature(settings.bpmeasure, settings.count, settings.title, settings.creator);
         drawNotes(settings.tonic, settings.bpmeasure, settings.count);
+        drawStaffLines(canvasWidth);
       });
     },
     stepUp : function(placeholder, note, distance) {
