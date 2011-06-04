@@ -1,3 +1,4 @@
+
 /*
 * audiofile.cc JavaScript Library v0.1.10
 * https://audiofile.cc/
@@ -117,25 +118,29 @@ function drawClefs() {
 // .lineTo()s of the previous function. TODO: Figure out why that is happening
 // and separate this out into two functions called bassClef() and trebleClef()
 // 3 circles for bass clef
+
   var ctx = getContext();
-  var centerXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var centerYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 140;
+  var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
+  var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+
+  var centerXAxis = x + 10;
+  var centerYAxis = y + 140;
   var radius = 5;
   ctx.beginPath();
   ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
 
-  var centerXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 50;
-  var centerYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 133;
+  var centerXAxis = x + 50;
+  var centerYAxis = y + 133;
   var radius = 3;
   ctx.beginPath();
   ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
 
-  var centerXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 50;
-  var centerYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 147;
+  var centerXAxis = x + 50;
+  var centerYAxis = y + 147;
   var radius = 3;
   ctx.beginPath();
   ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
@@ -144,8 +149,8 @@ function drawClefs() {
 
   // circle for treble clef
   var ctx = getContext();
-  var centerXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var centerYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
+  var centerXAxis = x + 20;
+  var centerYAxis = y + 100;
   var radius = 3;
   ctx.beginPath();
   ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
@@ -153,320 +158,323 @@ function drawClefs() {
   ctx.fill();
   
   // 2 curves for bass clef
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 140;
+  var tempXAxis = x + 10;
+  var tempYAxis = y + 140;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 15;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 25;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
+  var controlX = x + 15;
+  var controlY = y + 120;
+  var endX = x + 25;
+  var endY = y + 120;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 140;
+  var tempXAxis = x + 40;
+  var tempYAxis = y + 140;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 25;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
+  var controlX = x + 35;
+  var controlY = y + 120;
+  var endX = x + 25;
+  var endY = y + 120;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 180;
+  var tempXAxis = x + 10;
+  var tempYAxis = y + 180;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 45;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 160;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 140;
+  var controlX = x + 45;
+  var controlY = y + 160;
+  var endX = x + 40;
+  var endY = y + 140;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
   // 11 curves for bass clef
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 70;
+  var tempXAxis = x + 30;
+  var tempYAxis = y + 70;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 70;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
+  var controlX = x + 20;
+  var controlY = y + 70;
+  var endX = x + 20;
+  var endY = y + 60;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
+  var tempXAxis = x + 20;
+  var tempYAxis = y + 60;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
+  var controlX = x + 20;
+  var controlY = y + 40;
+  var endX = x + 30;
+  var endY = y + 40;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
+  var tempXAxis = x + 40;
+  var tempYAxis = y + 60;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
+  var controlX = x + 40;
+  var controlY = y + 40;
+  var endX = x + 30;
+  var endY = y + 40;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
+  var tempXAxis = x + 30;
+  var tempYAxis = y + 80;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
+  var controlX = x + 40;
+  var controlY = y + 80;
+  var endX = x + 40;
+  var endY = y + 60;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
+  var tempXAxis = x + 30;
+  var tempYAxis = y + 80;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
+  var controlX = x + 10;
+  var controlY = y + 80;
+  var endX = x + 10;
+  var endY = y + 60;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
+  var tempXAxis = x + 10;
+  var tempYAxis = y + 60;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 13;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 45;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
+  var controlX = x + 13;
+  var controlY = y + 45;
+  var endX = x + 20;
+  var endY = y + 40;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
+  var tempXAxis = x + 20;
+  var tempYAxis = y + 40;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 20;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 20;
+  var controlX = x + 35;
+  var controlY = y + 20;
+  var endX = x + 35;
+  var endY = y + 20;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 20;
+  var tempXAxis = x + 35;
+  var tempYAxis = y + 20;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE);
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var controlX = x + 40;
+  var controlY = y;
+  var endX = x + 35;
+  var endY = y;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 38;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var tempXAxis = x + 38;
+  var tempYAxis = y;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) - 15;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) - 20;
+  var controlX = x + 35;
+  var controlY = y - 15;
+  var endX = x + 30;
+  var endY = y - 20;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 18;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var tempXAxis = x + 18;
+  var tempYAxis = y;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 23;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) - 15;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) - 20;
+  var controlX = x + 23;
+  var controlY = y - 15;
+  var endX = x + 30;
+  var endY = y - 20;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 18;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var tempXAxis = x + 18;
+  var tempYAxis = y;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
+  var controlX = x + 40;
+  var controlY = y + 100;
+  var endX = x + 40;
+  var endY = y + 100;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 40;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
+  var tempXAxis = x + 40;
+  var tempYAxis = y + 100;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 35;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 110;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 110;
+  var controlX = x + 35;
+  var controlY = y + 110;
+  var endX = x + 30;
+  var endY = y + 110;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 20;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
+  var tempXAxis = x + 20;
+  var tempYAxis = y + 100;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 25;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 110;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) + 30;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 110;
+  var controlX = x + 25;
+  var controlY = y + 110;
+  var endX = x + 30;
+  var endY = y + 110;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
 }
 
 function clefTip() {
   var ctx = getContext();
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) - 30;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
+  var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
+  var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+
+  var tempXAxis = x - 30;
+  var tempYAxis = y + 100;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) - 5;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) - 20;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 30;
+  var controlX = x - 5;
+  var controlY = y + 60;
+  var endX = x - 20;
+  var endY = y + 30;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) - 20;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 30;
+  var tempXAxis = x - 20;
+  var tempYAxis = y + 30;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) - 35;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE);
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES);
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var controlX = x - 35;
+  var controlY = y;
+  var endX = x;
+  var endY = y;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) - 30;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 100;
+  var tempXAxis = x - 30;
+  var tempYAxis = y + 100;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) - 5;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 130;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES) - 20;
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 170;
+  var controlX = x - 5;
+  var controlY = y + 130;
+  var endX = x - 20;
+  var endY = y + 170;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) - 20;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 170;
+  var tempXAxis = x - 20;
+  var tempYAxis = y + 170;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(X_AXIS_START_OF_STAFF_LINES) - 35;
-  var controlY = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
-  var endX = parseInt(X_AXIS_START_OF_STAFF_LINES);
-  var endY = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
+  var controlX = x - 35;
+  var controlY = y + 200;
+  var endX = x;
+  var endY = y + 200;
   ctx.quadraticCurveTo(controlX, controlY, endX, endY);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES);
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var tempXAxis = x;
+  var tempYAxis = y;
   ctx.moveTo(tempXAxis, tempYAxis);
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES);
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
+  var tempXAxis = x;
+  var tempYAxis = y + 200;
   ctx.lineTo(tempXAxis, tempYAxis);
 }
 
 // First level is tonic, second level is octave.
 var scales = {
   "0": {
-    "3": [310,310,300,300,290,280,280,270,270,260,260,250],
-    "4": [240,240,230,230,220,210,210,200,200,190,190,180],
-    "5": [170,170,160,160,150,140,140,130,130,120,120,110],
-    "sharps": [false,true,false,true,false,false,true,false,true,false,true,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "3":        [  310,  310,  300,  300,  290,  280,  280,  270,  270,  260,  260,  250],
+    "4":        [  240,  240,  230,  230,  220,  210,  210,  200,  200,  190,  190,  180],
+    "5":        [  170,  170,  160,  160,  150,  140,  140,  130,  130,  120,  120,  110],
+    "sharps":   [false, true,false, true,false,false, true,false, true,false, true,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
     "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
   },
   "1": {
-    "3": [270,270,260,260,250,240,240,230,230,220,210,210],
-    "4": [200,200,190,190,180,170,170,160,160,150,140,140],
-    "5": [130,130,120,120,110,100,100,90,90,80,70,70],
-    "sharps": [false,true,false,true,false,false,true,false,true,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,false,false,false,false,false,false,false,false,false,true,false]
+    "3":        [  270,  270,  260,  260,  250,  240,  240,  230,  230,  220,  210,  210],
+    "4":        [  200,  200,  190,  190,  180,  170,  170,  160,  160,  150,  140,  140],
+    "5":        [  130,  130,  120,  120,  110,  100,  100,   90,   90,   80,   70,  70],
+    "sharps":   [false, true,false, true,false,false, true,false, true,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false,false,false,false,false,false,false,false, true,false]
   },
   "2": {
-    "3": [300,300,290,280,280,270,270,260,260,250,240,240],
-    "4": [230,230,220,210,210,200,200,190,190,180,170,170],
-    "5": [160,160,150,140,140,130,130,120,120,110,100,100],
-    "sharps": [false,true,false,false,false,false,true,false,true,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,false,false,true,false,false,false,false,false,false,true,false]
+    "3":        [  300,  300,  290,  280,  280,  270,  270,  260,  260,  250,  240,  240],
+    "4":        [  230,  230,  220,  210,  210,  200,  200,  190,  190,  180,  170,  170],
+    "5":        [  160,  160,  150,  140,  140,  130,  130,  120,  120,  110,  100,  100],
+    "sharps":   [false, true,false,false,false,false, true,false, true,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false, true,false,false,false,false,false,false, true,false]
   },
   "3": {
-    "3": [260,260,250,240,240,230,230,220,210,210,200,200],
-    "4": [190,190,180,170,170,160,160,150,140,140,130,130],
-    "5": [120,120,110,100,100,90,90,80,70,70,60,60],
-    "sharps": [false,true,false,false,false,false,true,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,false,false,true,false,false,false,false,true,false,true,false]
+    "3":        [  260,  260,  250,  240,  240,  230,  230,  220,  210,  210,  200,  200],
+    "4":        [  190,  190,  180,  170,  170,  160,  160,  150,  140,  140,  130,  130],
+    "5":        [  120,  120,  110,  100,  100,   90,   90,   80,   70,   70,   60,   60],
+    "sharps":   [false, true,false,false,false,false, true,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false, true,false,false,false,false, true,false, true,false]
   },
   "4": {
-    "3": [290,280,280,270,270,260,260,250,240,240,230,230],
-    "4": [220,210,210,200,200,190,190,180,170,170,160,160],
-    "5": [150,140,140,130,130,120,120,110,100,100,90,90],
-    "sharps": [false,false,false,false,false,false,true,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "3":        [  290,  280,  280,  270,  270,  260,  260,  250,  240,  240,  230,  230],
+    "4":        [  220,  210,  210,  200,  200,  190,  190,  180,  170,  170,  160,  160],
+    "5":        [  150,  140,  140,  130,  130,  120,  120,  110,  100,  100,   90,   90],
+    "sharps":   [false,false,false,false,false,false, true,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
     "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
   },
   "5": {
-    "3": [250,240,240,230,230,220,210,210,200,200,190,190],
-    "4": [180,170,170,160,160,150,140,140,130,130,120,120],
-    "5": [110,100,100,90,90,80,70,70,60,60,50,50],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    "3":        [  250,  240,  240,  230,  230,  220,  210,  210,  200,  200,  190,  190],
+    "4":        [  180,  170,  170,  160,  160,  150,  140,  140,  130,  130,  120,  120],
+    "5":        [  110,  100,  100,   90,   90,   80,   70,   70,   60,   60,   50,   50],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   },
   "6": {
-    "3": [280,270,270,260,260,250,240,240,230,230,220,210],
-    "4": [210,200,200,190,190,180,170,170,160,160,150,140],
-    "5": [140,130,130,120,120,110,100,100,90,90,80,70],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,false,true]
+    "3":        [  280,  270,  270,  260,  260,  250,  240,  240,  230,  230,  220,  210],
+    "4":        [  210,  200,  200,  190,  190,  180,  170,  170,  160,  160,  150,  140],
+    "5":        [  140,  130,  130,  120,  120,  110,  100,  100,   90,   90,   80,   70],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false,false, true]
   },
   "7": {
-    "3": [310,300,300,290,280,280,270,270,260,260,250,240],
-    "4": [240,230,230,220,210,210,200,200,190,190,180,170],
-    "5": [170,160,160,150,140,140,130,130,120,120,110,100],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,false,true,false,true,false,true,false,false,true]
+    "3":        [  310,  300,  300,  290,  280,  280,  270,  270,  260,  260,  250,  240],
+    "4":        [  240,  230,  230,  220,  210,  210,  200,  200,  190,  190,  180,  170],
+    "5":        [  170,  160,  160,  150,  140,  140,  130,  130,  120,  120,  110,  100],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false, true,false,false, true,false, true,false, true,false,false, true]
   },
   "-7": {
-    "3": [310,310,300,300,290,290,280,270,270,260,260,250],
-    "4": [240,240,230,230,220,220,210,200,200,190,190,180],
-    "5": [170,170,160,160,150,150,140,130,130,120,120,110],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
+    "3":        [  310,  310,  300,  300,  290,  290,  280,  270,  270,  260,  260,  250],
+    "4":        [  240,  240,  230,  230,  220,  220,  210,  200,  200,  190,  190,  180],
+    "5":        [  170,  170,  160,  160,  150,  150,  140,  130,  130,  120,  120,  110],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false, true,false, true,false, true,false,false, true,false, true,false]
   },
   "-6": {
-    "3": [270,270,260,260,250,250,240,230,230,220,220,210],
-    "4": [200,200,190,190,180,180,170,160,160,150,150,140],
-    "5": [130,130,120,120,110,110,100,90,90,80,80,70],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
+    "3":        [  270,  270,  260,  260,  250,  250,  240,  230,  230,  220,  220,  210],
+    "4":        [  200,  200,  190,  190,  180,  180,  170,  160,  160,  150,  150,  140],
+    "5":        [  130,  130,  120,  120,  110,  110,  100,   90,   90,   80,   80,   70],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false, true,false, true,false, true,false,false, true,false, true,false]
   },
   "-5": {
-    "3": [300,300,290,290,280,270,270,260,260,250,250,240],
-    "4": [230,230,220,220,210,200,200,190,190,180,180,170],
-    "5": [160,160,150,150,140,130,130,120,120,110,110,100],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    "3":        [  300,  300,  290,  290,  280,  270,  270,  260,  260,  250,  250,  240],
+    "4":        [  230,  230,  220,  220,  210,  200,  200,  190,  190,  180,  180,  170],
+    "5":        [  160,  160,  150,  150,  140,  130,  130,  120,  120,  110,  110,  100],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   },
   "-4": {
-    "3": [260,260,250,250,240,230,230,220,220,210,200,200],
-    "4": [190,190,180,180,170,160,160,150,150,140,130,130],
-    "5": [120,120,110,110,100,90,90,80,80,70,60,60],
-    "sharps": [false,false,false,false,false,false,false,false,false,false,true,false],
-    "flats": [false,false,false,false,false,false,false,false,false,false,true,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    "3":        [  260,  260,  250,  250,  240,  230,  230,  220,  220,  210,  200,  200],
+    "4":        [  190,  190,  180,  180,  170,  160,  160,  150,  150,  140,  130,  130],
+    "5":        [  120,  120,  110,  110,  100,   90,   90,   80,   80,   70,   60,   60],
+    "sharps":   [false,false,false,false,false,false,false,false,false,false, true,false],
+    "flats":    [false,false,false,false,false,false,false,false,false,false, true,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   },
   "-3": {
-    "3": [290,290,280,270,270,260,260,250,250,240,230,230],
-    "4": [220,220,210,200,200,190,190,180,180,170,160,160],
-    "5": [150,150,140,130,130,120,120,110,110,100,90,90],
-    "sharps": [false,false,false,true,false,false,false,false,false,false,true,false],
-    "flats": [false,false,false,true,false,false,false,false,false,false,true,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    "3":        [  290,  290,  280,  270,  270,  260,  260,  250,  250,  240,  230,  230],
+    "4":        [  220,  220,  210,  200,  200,  190,  190,  180,  180,  170,  160,  160],
+    "5":        [  150,  150,  140,  130,  130,  120,  120,  110,  110,  100,   90,   90],
+    "sharps":   [false,false,false, true,false,false,false,false,false,false, true,false],
+    "flats":    [false,false,false, true,false,false,false,false,false,false, true,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   },
   "-2": {
-    "3": [320,320,310,300,300,290,290,280,270,270,260,260],
-    "4": [250,250,240,230,230,220,220,210,200,200,190,190],
-    "5": [180,180,170,160,160,150,150,140,130,130,120,120],
-    "sharps": [false,false,false,true,false,false,false,false,true,false,true,false],
-    "flats": [false,false,false,true,false,false,false,false,true,false,true,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    "3":        [  320,  320,  310,  300,  300,  290,  290,  280,  270,  270,  260,  260],
+    "4":        [  250,  250,  240,  230,  230,  220,  220,  210,  200,  200,  190,  190],
+    "5":        [  180,  180,  170,  160,  160,  150,  150,  140,  130,  130,  120,  120],
+    "sharps":   [false,false,false, true,false,false,false,false, true,false, true,false],
+    "flats":    [false,false,false, true,false,false,false,false, true,false, true,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   },
   "-1": {
-    "3": [280,270,270,260,260,250,250,240,230,230,220,220],
-    "4": [210,200,200,190,190,180,180,170,160,160,150,150],
-    "5": [140,130,130,120,120,110,110,100,90,90,80,80],
-    "sharps": [false,true,false,true,false,false,false,false,true,false,true,false],
-    "flats": [false,true,false,true,false,false,false,false,true,false,true,false],
-    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+    "3":        [  280,  270,  270,  260,  260,  250,  250,  240,  230,  230,  220,  220],
+    "4":        [  210,  200,  200,  190,  190,  180,  180,  170,  160,  160,  150,  150],
+    "5":        [  140,  130,  130,  120,  120,  110,  110,  100,   90,   90,   80,   80],
+    "sharps":   [false, true,false, true,false,false,false,false, true,false, true,false],
+    "flats":    [false, true,false, true,false,false,false,false, true,false, true,false],
+    "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   }
 };
 
@@ -895,28 +903,31 @@ function setTheKey(theKey, xaxis, position) {
 function  setTheTimeSignature(bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
   ctx.font = "30pt Helvetica-Light";
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 150;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 35;
+  var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
+  var y = parseInt(POSITION_OF_E5_STAFF_LINE);
+
+  var tempXAxis = x + 150;
+  var tempYAxis = y + 35;
   ctx.fillText(bpmeasure, tempXAxis, tempYAxis);
   
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 150;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 155;
+  var tempXAxis = x + 150;
+  var tempYAxis = y + 155;
   ctx.fillText(bpmeasure, tempXAxis, tempYAxis);
   
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 150;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 75;
+  var tempXAxis = x + 150;
+  var tempYAxis = y + 75;
   ctx.fillText(count, tempXAxis, tempYAxis);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 150;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 195;
+  var tempXAxis = x + 150;
+  var tempYAxis = y + 195;
   ctx.fillText(count, tempXAxis, tempYAxis);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 225;
+  var tempXAxis = x + 10;
+  var tempYAxis = y + 225;
   ctx.font = "15pt Helvetica-Light";
   ctx.fillText("Title: " + songtitle, tempXAxis, tempYAxis);
 
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 245;
+  var tempXAxis = x + 10;
+  var tempYAxis = y + 245;
   ctx.fillText("By: " + creator, tempXAxis, tempYAxis);
 }
