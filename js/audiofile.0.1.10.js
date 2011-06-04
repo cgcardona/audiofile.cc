@@ -1,4 +1,3 @@
-
 /*
 * audiofile.cc JavaScript Library v0.1.10
 * https://audiofile.cc/
@@ -86,89 +85,33 @@
     stepUpMaj : function(placeholder, note, distance) {
       return this.each(function() { 
         // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         if (distance == 0) {
-           var afterPitch = parseInt(beforePitch);
-         } else if (distance == 1) {
-           var afterPitch = parseInt(beforePitch) + 2;
-         } else if (distance == 2) {
-           var afterPitch = parseInt(beforePitch) + 4;
-         } else if (distance == 3) {
-           var afterPitch = parseInt(beforePitch) + 5;
-         } else if (distance == 4) {
-           var afterPitch = parseInt(beforePitch) + 7;
-         } else if (distance == 5) {
-           var afterPitch = parseInt(beforePitch) + 9;
-         } else if (distance == 6) {
-           var afterPitch = parseInt(beforePitch) + 11;
-         } 
-         $(note).attr('data-pitch', afterPitch);
+        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
+        var distanceMods = [0,2,4,5,7,9,11];
+        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
       });
     },
     stepDownMaj : function(placeholder, note, distance) {
       return this.each(function() { 
         // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         if (distance == 0) {
-           var afterPitch = parseInt(beforePitch);
-         } else if (distance == 1) {
-           var afterPitch = parseInt(beforePitch) - 2;
-         } else if (distance == 2) {
-           var afterPitch = parseInt(beforePitch) - 4;
-         } else if (distance == 3) {
-           var afterPitch = parseInt(beforePitch) - 5;
-         } else if (distance == 4) {
-           var afterPitch = parseInt(beforePitch) - 7;
-         } else if (distance == 5) {
-           var afterPitch = parseInt(beforePitch) - 9;
-         } else if (distance == 6) {
-           var afterPitch = parseInt(beforePitch) - 11;
-         } 
-         $(note).attr('data-pitch', afterPitch);
+        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
+        var distanceMods = [0,-2,-4,-5,-7,-9,-11];
+        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
       });
     },
     stepUpMin : function(placeholder, note, distance) {
       return this.each(function() { 
         // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         if (distance == 0) {
-           var afterPitch = parseInt(beforePitch);
-         } else if (distance == 1) {
-           var afterPitch = parseInt(beforePitch) + 2;
-         } else if (distance == 2) {
-           var afterPitch = parseInt(beforePitch) + 3;
-         } else if (distance == 3) {
-           var afterPitch = parseInt(beforePitch) + 5;
-         } else if (distance == 4) {
-           var afterPitch = parseInt(beforePitch) + 7;
-         } else if (distance == 5) {
-           var afterPitch = parseInt(beforePitch) + 8;
-         } else if (distance == 6) {
-           var afterPitch = parseInt(beforePitch) + 10;
-         } 
-         $(note).attr('data-pitch', afterPitch);
+        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
+        var distanceMods = [0,2,3,5,7,8,10];
+        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
       });
     },
     stepDownMin : function(placeholder, note, distance) {
       return this.each(function() { 
        // code goes here to maintain chainability.
-        var beforePitch = $(note).attr('data-pitch');
-        if (distance == 0) {
-          var afterPitch = parseInt(beforePitch);
-        } else if (distance == 1) {
-          var afterPitch = parseInt(beforePitch) - 2;
-        } else if (distance == 2) {
-          var afterPitch = parseInt(beforePitch) - 3;
-        } else if (distance == 3) {
-          var afterPitch = parseInt(beforePitch) - 5;
-        } else if (distance == 4) {
-          var afterPitch = parseInt(beforePitch) - 7;
-        } else if (distance == 5) {
-          var afterPitch = parseInt(beforePitch) - 8;
-        } else if (distance == 6) {
-          var afterPitch = parseInt(beforePitch) - 10;
-        } 
-        $(note).attr('data-pitch', afterPitch);
+        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
+        var distanceMods = [0,-2,-3,-5,-7,-8,-10];
+        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
       });
     }
   };
