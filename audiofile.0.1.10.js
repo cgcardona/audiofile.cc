@@ -83,7 +83,9 @@
 
 // Start of "CONSTANTS"
 var POSITION_OF_E5_STAFF_LINE = 140;
-var POSITION_OF_G3_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
+var POSITION_OF_E4_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
+var POSITION_OF_A3_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
+var POSITION_OF_G2_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
 var INTERMEDIATE_LINE_DISTANCE = 20;
 var X_AXIS_START_OF_STAFF_LINES = 30;
 // End of "CONSTANTS"
@@ -105,10 +107,14 @@ function drawStaffLines(width) {
   var ctx = getContext();
   // console.log("lines");
   // draw staff lines
-  for (var y = POSITION_OF_E5_STAFF_LINE; y <= POSITION_OF_G3_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-    ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-    ctx.lineTo(width, y);
-  }
+    for (var y = POSITION_OF_E5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
   styleNStroke();
 }
 
@@ -527,7 +533,7 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
     ctx.lineTo(measureLine, tempYAxis);
     var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
     ctx.moveTo(measureLine, tempYAxis);
-    ctx.lineTo(measureLine, POSITION_OF_G3_STAFF_LINE);
+    ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
     styleNStroke();
   });
 }
