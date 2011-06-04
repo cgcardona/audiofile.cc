@@ -36,22 +36,22 @@
       });
     },
     stepUp : function(placeholder, note, distance) {
-      return stepHelper(this, parseInt(distance,10));
+      return stepHelper(this, note, parseInt(distance,10));
     },
     stepDown : function(placeholder, note, distance) {
-      return stepHelper(this, -parseInt(distance,10));
+      return stepHelper(this, note, -parseInt(distance,10));
     },
     stepUpWhole : function(placeholder, note) {
-      return stepHelper(this, 2);
+      return stepHelper(this, note, 2);
     },
     stepDownWhole : function(placeholder, note) {
-      return stepHelper(this, -2);
+      return stepHelper(this, note, -2);
     },
     stepUpHalf : function(placeholder, note) {
-      return stepHelper(this, 1);
+      return stepHelper(this, note, 1);
     },
     stepDownHalf : function(placeholder, note) {
-      return stepHelper(this, -1);
+      return stepHelper(this, note, -1);
     },
     stepUpMaj : function(placeholder, note, distance) {
       var steps = [0,2,4,5,7,9,11];
@@ -97,7 +97,7 @@ function getContext() {
 function stepHelper(that, note, step) {
   return that.each(function() {
     var beforePitch = parseInt($(note).attr('data-pitch'), 10);
-    $note(.attr('data-pitch', beforePitch + step));
+    $(note).attr('data-pitch', beforePitch + step);
   });
 }
 
@@ -551,7 +551,7 @@ function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
     scale.sharps[pitch]   ? sharpNote   :
     scale.naturals[pitch] ? naturalNote :
     scale.flats[pitch]    ? flatNote    : function(){/* Do nothing */};
-  accidentalsDrawingFunc(axis, scale[octave][pitch]);
+  accidentalsDrawingFunc(xaxis, scale[octave][pitch]);
 }
 
 function drawWholeNote(xaxis, position) {
