@@ -1,3 +1,4 @@
+
 /*
 * audiofile.cc JavaScript Library v0.1.10
 * https://audiofile.cc/
@@ -441,6 +442,131 @@ function clefTip() {
   ctx.lineTo(tempXAxis, tempYAxis);
 }
 
+// First level is tonic, second level is octave.
+var scales = {
+  "0": {
+    "3": [310,310,300,300,290,280,280,270,270,260,260,250],
+    "4": [240,240,230,230,220,210,210,200,200,190,190,180],
+    "5": [170,170,160,160,150,140,140,130,130,120,120,110],
+    "sharps": [false,true,false,true,false,false,true,false,true,false,true,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
+  },
+  "1": {
+    "3": [270,270,260,260,250,240,240,230,230,220,210,210],
+    "4": [200,200,190,190,180,170,170,160,160,150,140,140],
+    "5": [130,130,120,120,110,100,100,90,90,80,70,70],
+    "sharps": [false,true,false,true,false,false,true,false,true,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false,false,false,false,false,false,false,false,true,false]
+  },
+  "2": {
+    "3": [300,300,290,280,280,270,270,260,260,250,240,240],
+    "4": [230,230,220,210,210,200,200,190,190,180,170,170],
+    "5": [160,160,150,140,140,130,130,120,120,110,100,100],
+    "sharps": [false,true,false,false,false,false,true,false,true,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false,true,false,false,false,false,false,false,true,false]
+  },
+  "3": {
+    "3": [260,260,250,240,240,230,230,220,210,210,200,200],
+    "4": [190,190,180,170,170,160,160,150,140,140,130,130],
+    "5": [120,120,110,100,100,90,90,80,70,70,60,60],
+    "sharps": [false,true,false,false,false,false,true,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false,true,false,false,false,false,true,false,true,false]
+  },
+  "4": {
+    "3": [290,280,280,270,270,260,260,250,240,240,230,230],
+    "4": [220,210,210,200,200,190,190,180,170,170,160,160],
+    "5": [150,140,140,130,130,120,120,110,100,100,90,90],
+    "sharps": [false,false,false,false,false,false,true,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
+  },
+  "5": {
+    "3": [250,240,240,230,230,220,210,210,200,200,190,190],
+    "4": [180,170,170,160,160,150,140,140,130,130,120,120],
+    "5": [110,100,100,90,90,80,70,70,60,60,50,50],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+  },
+  "6": {
+    "3": [280,270,270,260,260,250,240,240,230,230,220,210],
+    "4": [210,200,200,190,190,180,170,170,160,160,150,140],
+    "5": [140,130,130,120,120,110,100,100,90,90,80,70],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,false,true]
+  },
+  "7": {
+    "3": [310,300,300,290,280,280,270,270,260,260,250,240],
+    "4": [240,230,230,220,210,210,200,200,190,190,180,170],
+    "5": [170,160,160,150,140,140,130,130,120,120,110,100],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,true,false,false,true,false,true,false,true,false,false,true]
+  },
+  "-7": {
+    "3": [310,310,300,300,290,290,280,270,270,260,260,250],
+    "4": [240,240,230,230,220,220,210,200,200,190,190,180],
+    "5": [170,170,160,160,150,150,140,130,130,120,120,110],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
+  },
+  "-6": {
+    "3": [270,270,260,260,250,250,240,230,230,220,220,210],
+    "4": [200,200,190,190,180,180,170,160,160,150,150,140],
+    "5": [130,130,120,120,110,110,100,90,90,80,80,70],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
+  },
+  "-5": {
+    "3": [300,300,290,290,280,270,270,260,260,250,250,240],
+    "4": [230,230,220,220,210,200,200,190,190,180,180,170],
+    "5": [160,160,150,150,140,130,130,120,120,110,110,100],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+  },
+  "-4": {
+    "3": [260,260,250,250,240,230,230,220,220,210,200,200],
+    "4": [190,190,180,180,170,160,160,150,150,140,130,130],
+    "5": [120,120,110,110,100,90,90,80,80,70,60,60],
+    "sharps": [false,false,false,false,false,false,false,false,false,false,true,false],
+    "flats": [false,false,false,false,false,false,false,false,false,false,true,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+  },
+  "-3": {
+    "3": [290,290,280,270,270,260,260,250,250,240,230,230],
+    "4": [220,220,210,200,200,190,190,180,180,170,160,160],
+    "5": [150,150,140,130,130,120,120,110,110,100,90,90],
+    "sharps": [false,false,false,true,false,false,false,false,false,false,true,false],
+    "flats": [false,false,false,true,false,false,false,false,false,false,true,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+  },
+  "-2": {
+    "3": [320,320,310,300,300,290,290,280,270,270,260,260],
+    "4": [250,250,240,230,230,220,220,210,200,200,190,190],
+    "5": [180,180,170,160,160,150,150,140,130,130,120,120],
+    "sharps": [false,false,false,true,false,false,false,false,true,false,true,false],
+    "flats": [false,false,false,true,false,false,false,false,true,false,true,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+  },
+  "-1": {
+    "3": [280,270,270,260,260,250,250,240,230,230,220,220],
+    "4": [210,200,200,190,190,180,180,170,160,160,150,150],
+    "5": [140,130,130,120,120,110,110,100,90,90,80,80],
+    "sharps": [false,true,false,true,false,false,false,false,true,false,true,false],
+    "flats": [false,true,false,true,false,false,false,false,true,false,true,false],
+    "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
+  }
+};
+
+
 function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
   var xaxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 200;
@@ -498,1180 +624,64 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   // var firstNote = $("div[data-measure^='0'] div:nth-child(1)").attr("data-pitch");
 
 function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
-  // First level is tonic, second level is octave.
-  var scales = {
-    "0": {
-      "3": [310,310,300,300,290,280,280,270,270,260,260,250],
-      "4": [240,240,230,230,220,210,210,200,200,190,190,180],
-      "5": [170,170,160,160,150,140,140,130,130,120,120,110],
-      "sharps": [false,true,false,true,false,false,true,false,true,false,true,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
-    },
-    "1": {
-      "3": [270,270,260,260,250,240,240,230,230,220,210,210],
-      "4": [200,200,190,190,180,170,170,160,160,150,140,140],
-      "5": [130,130,120,120,110,100,100,90,90,80,70,70],
-      "sharps": [false,true,false,true,false,false,true,false,true,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,false,false,false,false,false,false,false,false,false,true,false]
-    },
-    "2": {
-      "3": [300,300,290,280,280,270,270,260,260,250,240,240],
-      "4": [230,230,220,210,210,200,200,190,190,180,170,170],
-      "5": [160,160,150,140,140,130,130,120,120,110,100,100],
-      "sharps": [false,true,false,false,false,false,true,false,true,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,false,false,true,false,false,false,false,false,false,true,false]
-    },
-    "3": {
-      "3": [260,260,250,240,240,230,230,220,210,210,200,200],
-      "4": [190,190,180,170,170,160,160,150,140,140,130,130],
-      "5": [120,120,110,100,100,90,90,80,70,70,60,60],
-      "sharps": [false,true,false,false,false,false,true,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,false,false,true,false,false,false,false,true,false,true,false]
-    },
-    "4": {
-      "3": [290,280,280,270,270,260,260,250,240,240,230,230],
-      "4": [220,210,210,200,200,190,190,180,170,170,160,160],
-      "5": [150,140,140,130,130,120,120,110,100,100,90,90],
-      "sharps": [false,false,false,false,false,false,true,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
-    },
-    "5": {
-      "3": [250,240,240,230,230,220,210,210,200,200,190,190],
-      "4": [180,170,170,160,160,150,140,140,130,130,120,120],
-      "5": [110,100,100,90,90,80,70,70,60,60,50,50],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
-    },
-    "6": {
-      "3": [280,270,270,260,260,250,240,240,230,230,220,210],
-      "4": [210,200,200,190,190,180,170,170,160,160,150,140],
-      "5": [140,130,130,120,120,110,100,100,90,90,80,70],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,false,true]
-    },
-    "7": {
-      "3": [310,300,300,290,280,280,270,270,260,260,250,240],
-      "4": [240,230,230,220,210,210,200,200,190,190,180,170],
-      "5": [170,160,160,150,140,140,130,130,120,120,110,100],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,true,false,false,true,false,true,false,true,false,false,true]
-    },
-    "-7": {
-      "3": [310,310,300,300,290,290,280,270,270,260,260,250],
-      "4": [240,240,230,230,220,220,210,200,200,190,190,180],
-      "5": [170,170,160,160,150,150,140,130,130,120,120,110],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
-    },
-    "-6": {
-      "3": [270,270,260,260,250,250,240,230,230,220,220,210],
-      "4": [200,200,190,190,180,180,170,160,160,150,150,140],
-      "5": [130,130,120,120,110,110,100,90,90,80,80,70],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,true,false,true,false,true,false,false,true,false,true,false]
-    },
-    "-5": {
-      "3": [300,300,290,290,280,270,270,260,260,250,250,240],
-      "4": [230,230,220,220,210,200,200,190,190,180,180,170],
-      "5": [160,160,150,150,140,130,130,120,120,110,110,100],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,false,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
-    },
-    "-4": {
-      "3": [260,260,250,250,240,230,230,220,220,210,200,200],
-      "4": [190,190,180,180,170,160,160,150,150,140,130,130],
-      "5": [120,120,110,110,100,90,90,80,80,70,60,60],
-      "sharps": [false,false,false,false,false,false,false,false,false,false,true,false],
-      "flats": [false,false,false,false,false,false,false,false,false,false,true,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
-    },
-    "-3": {
-      "3": [290,290,280,270,270,260,260,250,250,240,230,230],
-      "4": [220,220,210,200,200,190,190,180,180,170,160,160],
-      "5": [150,150,140,130,130,120,120,110,110,100,90,90],
-      "sharps": [false,false,false,true,false,false,false,false,false,false,true,false],
-      "flats": [false,false,false,true,false,false,false,false,false,false,true,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
-    },
-    "-2": {
-      "3": [320,320,310,300,300,290,290,280,270,270,260,260],
-      "4": [250,250,240,230,230,220,220,210,200,200,190,190],
-      "5": [180,180,170,160,160,150,150,140,130,130,120,120],
-      "sharps": [false,false,false,true,false,false,false,false,true,false,true,false],
-      "flats": [false,false,false,true,false,false,false,false,true,false,true,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
-    },
-    "-1": {
-      "3": [280,270,270,260,260,250,250,240,230,230,220,220],
-      "4": [210,200,200,190,190,180,180,170,160,160,150,150],
-      "5": [140,130,130,120,120,110,110,100,90,90,80,80],
-      "sharps": [false,true,false,true,false,false,false,false,true,false,true,false],
-      "flats": [false,true,false,true,false,false,false,false,true,false,true,false],
-      "naturals": [false,true,false,true,false,false,true,false,true,false,true,false]
-    }
-  };
-
+  var scale = scales[tonic];
   var ctx = getContext();
-  if (pitch == 0) {
-    if (noteLength == "whole") {
-      if (typeof(zeroSharp) == "undefined" && typeof(zeroNatural) == "undefined" && typeof(zeroFlat) == "undefined") {
-        drawWholeNote(xaxis, zero);
-      } else if (zeroSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, zero, sharp);
-      } else if (zeroNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, zero, sharp);
-      } else if (zeroFlat == "true" && zeroNatural == "false" && zeroSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, zero, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(zeroSharp) == "undefined" && typeof(zeroNatural) == "undefined" && typeof(zeroFlat) == "undefined") {
-        drawHalfNote(xaxis, zero);
-      } else if (zeroSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, zero, sharp);
-      } else if (zeroNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, zero, sharp);
-      } else if (zeroFlat == "true" && zeroNatural == "false" && zeroSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, zero, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(zeroSharp) == "undefined" && typeof(zeroNatural) == "undefined" && typeof(zeroFlat) == "undefined") {
-        drawQuarterNote(xaxis, zero);
-      } else if (zeroSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, zero, sharp);
-      } else if (zeroNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, zero, sharp);
-      } else if (zeroFlat == "true" && zeroNatural == "false" && zeroSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, zero, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(zeroSharp) == "undefined" && typeof(zeroNatural) == "undefined" && typeof(zeroFlat) == "undefined") {
-        drawEighthNote(xaxis, zero);
-      } else if (zeroSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, zero, sharp);
-      } else if (zeroNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, zero, sharp);
-      } else if (zeroFlat == "true" && zeroNatural == "false" && zeroSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, zero, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(zeroSharp) == "undefined" && typeof(zeroNatural) == "undefined" && typeof(zeroFlat) == "undefined") {
-        drawSixteenthNote(xaxis, zero);
-      } else if (zeroSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, zero, sharp);
-      } else if (zeroNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, zero, sharp);
-      } else if (zeroFlat == "true" && zeroNatural == "false" && zeroSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, zero, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(zeroSharp) == "undefined" && typeof(zeroNatural) == "undefined" && typeof(zeroFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, zero);
-      } else if (zeroSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, zero, sharp);
-      } else if (zeroNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, zero, sharp);
-      } else if (zeroFlat == "true" && zeroNatural == "false" && zeroSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, zero, sharp);
-      }
-    }
-  } else if (pitch == 1) {
-    if (noteLength == "whole") {
-      if (typeof(oneSharp) == "undefined" && typeof(oneNatural) == "undefined" && typeof(oneFlat) == "undefined") {
-        drawWholeNote(xaxis, one);
-      } else if (oneSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, one, sharp);
-      } else if (oneNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, one, sharp);
-      } else if (oneFlat == "true" && oneNatural == "false" && oneSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, one, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(oneSharp) == "undefined" && typeof(oneNatural) == "undefined" && typeof(oneFlat) == "undefined") {
-        drawHalfNote(xaxis, one);
-      } else if (oneSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, one, sharp);
-      } else if (oneNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, one, sharp);
-      } else if (oneFlat == "true" && oneNatural == "false" && oneSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, one, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(oneSharp) == "undefined" && typeof(oneNatural) == "undefined" && typeof(oneFlat) == "undefined") {
-        drawQuarterNote(xaxis, one);
-      } else if (oneSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, one, sharp);
-      } else if (oneNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, one, sharp);
-      } else if (oneFlat == "true" && oneNatural == "false" && oneSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, one, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(oneSharp) == "undefined" && typeof(oneNatural) == "undefined" && typeof(oneFlat) == "undefined") {
-        drawEighthNote(xaxis, one);
-      } else if (oneSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, one, sharp);
-      } else if (oneNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, one, sharp);
-      } else if (oneFlat == "true" && oneNatural == "false" && oneSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, one, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(oneSharp) == "undefined" && typeof(oneNatural) == "undefined" && typeof(oneFlat) == "undefined") {
-        drawSixteenthNote(xaxis, one);
-      } else if (oneSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, one, sharp);
-      } else if (oneNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, one, sharp);
-      } else if (oneFlat == "true" && oneNatural == "false" && oneSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, one, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(oneSharp) == "undefined" && typeof(oneNatural) == "undefined" && typeof(oneFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, one);
-      } else if (oneSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, one, sharp);
-      } else if (oneNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, one, sharp);
-      } else if (oneFlat == "true" && oneNatural == "false" && oneSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, one, sharp);
-      }
-    }
-  } else if (pitch == 2) {
-    if (noteLength == "whole") {
-      if (typeof(twoSharp) == "undefined" && typeof(twoNatural) == "undefined" && typeof(twoFlat) == "undefined") {
-        drawWholeNote(xaxis, two);
-      } else if (twoSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, two, sharp);
-      } else if (twoNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, two, sharp);
-      } else if (twoFlat == "true" && twoNatural == "false" && twoSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, two, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(twoSharp) == "undefined" && typeof(twoNatural) == "undefined" && typeof(twoFlat) == "undefined") {
-        drawHalfNote(xaxis, two);
-      } else if (twoSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, two, sharp);
-      } else if (twoNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, two, sharp);
-      } else if (twoFlat == "true" && twoNatural == "false" && twoSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, two, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(twoSharp) == "undefined" && typeof(twoNatural) == "undefined" && typeof(twoFlat) == "undefined") {
-        drawQuarterNote(xaxis, two);
-      } else if (twoSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, two, sharp);
-      } else if (twoNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, two, sharp);
-      } else if (twoFlat == "true" && twoNatural == "false" && twoSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, two, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(twoSharp) == "undefined" && typeof(twoNatural) == "undefined" && typeof(twoFlat) == "undefined") {
-        drawEighthNote(xaxis, two);
-      } else if (twoSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, two, sharp);
-      } else if (twoNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, two, sharp);
-      } else if (twoFlat == "true" && twoNatural == "false" && twoSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, two, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(twoSharp) == "undefined" && typeof(twoNatural) == "undefined" && typeof(twoFlat) == "undefined") {
-        drawSixteenthNote(xaxis, two);
-      } else if (twoSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, two, sharp);
-      } else if (twoNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, two, sharp);
-      } else if (twoFlat == "true" && twoNatural == "false" && twoSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, two, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(twoSharp) == "undefined" && typeof(twoNatural) == "undefined" && typeof(twoFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, two);
-      } else if (twoSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, two, sharp);
-      } else if (twoNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, two, sharp);
-      } else if (twoFlat == "true" && twoNatural == "false" && twoSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, two, sharp);
-      }
-    }
-  } else if (pitch == 3) {
-    if (noteLength == "whole") {
-      if (typeof(threeSharp) == "undefined" && typeof(threeNatural) == "undefined" && typeof(threeFlat) == "undefined") {
-        drawWholeNote(xaxis, three);
-      } else if (threeSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, three, sharp);
-      } else if (threeNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, three, sharp);
-      } else if (threeFlat == "true" && threeNatural == "false" && threeSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, three, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(threeSharp) == "undefined" && typeof(threeNatural) == "undefined" && typeof(threeFlat) == "undefined") {
-        drawHalfNote(xaxis, three);
-      } else if (threeSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, three, sharp);
-      } else if (threeNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, three, sharp);
-      } else if (threeFlat == "true" && threeNatural == "false" && threeSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, three, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(threeSharp) == "undefined" && typeof(threeNatural) == "undefined" && typeof(threeFlat) == "undefined") {
-        drawQuarterNote(xaxis, three);
-      } else if (threeSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, three, sharp);
-      } else if (threeNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, three, sharp);
-      } else if (threeFlat == "true" && threeNatural == "false" && threeSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, three, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(threeSharp) == "undefined" && typeof(threeNatural) == "undefined" && typeof(threeFlat) == "undefined") {
-        drawEighthNote(xaxis, three);
-      } else if (threeSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, three, sharp);
-      } else if (threeNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, three, sharp);
-      } else if (threeFlat == "true" && threeNatural == "false" && threeSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, three, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(threeSharp) == "undefined" && typeof(threeNatural) == "undefined" && typeof(threeFlat) == "undefined") {
-        drawSixteenthNote(xaxis, three);
-      } else if (threeSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, three, sharp);
-      } else if (threeNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, three, sharp);
-      } else if (threeFlat == "true" && threeNatural == "false" && threeSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, three, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(threeSharp) == "undefined" && typeof(threeNatural) == "undefined" && typeof(threeFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, three);
-      } else if (threeSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, three, sharp);
-      } else if (threeNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, three, sharp);
-      } else if (threeFlat == "true" && threeNatural == "false" && threeSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, three, sharp);
-      }
-    }
-  } else if (pitch == 4) {
-    if (noteLength == "whole") {
-      if (typeof(fourSharp) == "undefined" && typeof(fourNatural) == "undefined" && typeof(fourFlat) == "undefined") {
-        drawWholeNote(xaxis, four);
-      } else if (fourNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, four, sharp);
-      } else if (fourSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, four, sharp);
-      } else if (fourFlat == "true" && fourNatural == "false" && fourSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, four, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(fourSharp) == "undefined" && typeof(fourNatural) == "undefined" && typeof(fourFlat) == "undefined") {
-        drawHalfNote(xaxis, four);
-      } else if (fourNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, four, sharp);
-      } else if (fourSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, four, sharp);
-      } else if (fourFlat == "true" && fourNatural == "false" && fourSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, four, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(fourSharp) == "undefined" && typeof(fourNatural) == "undefined" && typeof(fourFlat) == "undefined") {
-        drawQuarterNote(xaxis, four);
-      } else if (fourNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, four, sharp);
-      } else if (fourSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, four, sharp);
-      } else if (fourFlat == "true" && fourNatural == "false" && fourSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, four, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(fourSharp) == "undefined" && typeof(fourNatural) == "undefined" && typeof(fourFlat) == "undefined") {
-        drawEighthNote(xaxis, four);
-      }  else if (fourNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, four, sharp);
-      } else if (fourSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, four, sharp);
-      } else if (fourFlat == "true" && fourNatural == "false" && fourSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, four, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(fourSharp) == "undefined" && typeof(fourNatural) == "undefined" && typeof(fourFlat) == "undefined") {
-        drawSixteenthNote(xaxis, four);
-      } else if (fourSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, four, sharp);
-      } else if (fourNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, four, sharp);
-      } else if (fourFlat == "true" && fourNatural == "false" && fourSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, four, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(fourSharp) == "undefined" && typeof(fourNatural) == "undefined" && typeof(fourFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, four);
-      } else if (fourSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, four, sharp);
-      } else if (fourNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, four, sharp);
-      } else if (fourFlat == "true" && fourNatural == "false" && fourSharp == "false") {
-        var sharp = "flat";
-        drawThirtyNote(xaxis, four, sharp);
-      }
-    }
-  } else if (pitch == 5) {
-    if (noteLength == "whole") {
-      if (typeof(fiveSharp) == "undefined" && typeof(fiveNatural) == "undefined" && typeof(fiveFlat) == "undefined") {
-        drawWholeNote(xaxis, five);
-      } else if (fiveSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, five, sharp);
-      } else if (fiveNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, five, sharp);
-      } else if (fiveFlat == "true" && fiveNatural == "false" && fiveSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, five, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(fiveSharp) == "undefined" && typeof(fiveNatural) == "undefined" && typeof(fiveFlat) == "undefined") {
-        drawHalfNote(xaxis, five);
-      } else if (fiveSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, five, sharp);
-      } else if (fiveNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, five, sharp);
-      } else if (fiveFlat == "true" && fiveNatural == "false" && fiveSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, five, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(fiveSharp) == "undefined" && typeof(fiveNatural) == "undefined" && typeof(fiveFlat) == "undefined") {
-        drawQuarterNote(xaxis, five);
-      } else if (fiveSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, five, sharp);
-      } else if (fiveNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, five, sharp);
-      } else if (fiveFlat == "true" && fiveNatural == "false" && fiveSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, five, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(fiveSharp) == "undefined" && typeof(fiveNatural) == "undefined" && typeof(fiveFlat) == "undefined") {
-        drawEighthNote(xaxis, five);
-      } else if (fiveSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, five, sharp);
-      } else if (fiveNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, five, sharp);
-      } else if (fiveFlat == "true" && fiveNatural == "false" && fiveSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, five, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(fiveSharp) == "undefined" && typeof(fiveNatural) == "undefined" && typeof(fiveFlat) == "undefined") {
-        drawSixteenthNote(xaxis, five);
-      } else if (fiveSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, five, sharp);
-      } else if (fiveNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, five, sharp);
-      } else if (fiveFlat == "true" && fiveNatural == "false" && fiveSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, five, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(fiveSharp) == "undefined" && typeof(fiveNatural) == "undefined" && typeof(fiveFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, five);
-      } else if (fiveSharp == "true") {
-        var sharp = "true";
-        drawThirtySecondNote(xaxis, five, sharp);
-      } else if (fiveNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, five, sharp);
-      } else if (fiveFlat == "true" && fiveNatural == "false" && fiveSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, five, sharp);
-      }
-    }
-  } else if (pitch == 6) {
-    if (noteLength == "whole") {
-      if (typeof(sixSharp) == "undefined" && typeof(sixNatural) == "undefined" && typeof(sixFlat) == "undefined") {
-        drawWholeNote(xaxis, six);
-      } else if (sixSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, six, sharp);
-      } else if (sixNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, six, sharp);
-      } else if (sixFlat == "true" && sixNatural == "false" && sixSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, six, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(sixSharp) == "undefined" && typeof(sixNatural) == "undefined" && typeof(sixFlat) == "undefined") {
-        drawHalfNote(xaxis, six);
-      } else if (sixSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, six, sharp);
-      } else if (sixNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, six, sharp);
-      } else if (sixFlat == "true" && sixNatural == "false" && sixSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, six, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(sixSharp) == "undefined" && typeof(sixNatural) == "undefined" && typeof(sixFlat) == "undefined") {
-        drawQuarterNote(xaxis, six);
-      } else if (sixSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, six, sharp);
-      } else if (sixNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, six, sharp);
-      } else if (sixFlat == "true" && sixNatural == "false" && sixSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, six, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(sixSharp) == "undefined" && typeof(sixNatural) == "undefined" && typeof(sixFlat) == "undefined") {
-        drawEighthNote(xaxis, six);
-      } else if (sixSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, six, sharp);
-      } else if (sixNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, six, sharp);
-      } else if (sixFlat == "true" && sixNatural == "false" && sixSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, six, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(sixSharp) == "undefined" && typeof(sixNatural) == "undefined" && typeof(sixFlat) == "undefined") {
-        drawSixteenthNote(xaxis, six);
-      } else if (sixSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, six, sharp);
-      } else if (sixNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, six, sharp);
-      } else if (sixFlat == "true" && sixNatural == "false" && sixSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, six, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(sixSharp) == "undefined" && typeof(sixNatural) == "undefined" && typeof(sixFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, six);
-      } else if (sixSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, six, sharp);
-      } else if (sixNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, six, sharp);
-      } else if (sixFlat == "true" && sixNatural == "false" && sixSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, six, sharp);
-      }
-    }
-  } else if (pitch == 7) {
-    if (noteLength == "whole") {
-      if (typeof(sevenSharp) == "undefined" && typeof(sevenNatural) == "undefined" && typeof(sevenFlat) == "undefined") {
-        drawWholeNote(xaxis, seven);
-      } else if (sevenSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, seven, sharp);
-      } else if (sevenNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, seven, sharp);
-      } else if (sevenFlat == "true" && sevenNatural == "false" && sevenSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, seven, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(sevenSharp) == "undefined" && typeof(sevenNatural) == "undefined" && typeof(sevenFlat) == "undefined") {
-        drawHalfNote(xaxis, seven);
-      } else if (sevenSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, seven, sharp);
-      } else if (sevenNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, seven, sharp);
-      } else if (sevenFlat == "true" && sevenNatural == "false" && sevenSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, seven, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(sevenSharp) == "undefined" && typeof(sevenNatural) == "undefined" && typeof(sevenFlat) == "undefined") {
-        drawQuarterNote(xaxis, seven);
-      } else if (sevenSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, seven, sharp);
-      } else if (sevenNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, seven, sharp);
-      } else if (sevenFlat == "true" && sevenNatural == "false" && sevenSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, seven, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(sevenSharp) == "undefined" && typeof(sevenNatural) == "undefined" && typeof(sevenFlat) == "undefined") {
-        drawEighthNote(xaxis, seven);
-      } else if (sevenSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, seven, sharp);
-      } else if (sevenNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, seven, sharp);
-      } else if (sevenFlat == "true" && sevenNatural == "false" && sevenSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, seven, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(sevenSharp) == "undefined" && typeof(sevenNatural) == "undefined" && typeof(sevenFlat) == "undefined") {
-        drawSixteenthNote(xaxis, seven);
-      } else if (sevenSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, seven, sharp);
-      } else if (sevenNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, seven, sharp);
-      } else if (sevenFlat == "true" && sevenNatural == "false" && sevenSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, seven, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(sevenSharp) == "undefined" && typeof(sevenNatural) == "undefined" && typeof(sevenFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, seven);
-      } else if (sevenSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, seven, sharp);
-      } else if (sevenNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, seven, sharp);
-      } else if (sevenFlat == "true" && sevenNatural == "false" && sevenSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, seven, sharp);
-      }
-    }
-  } else if (pitch == 8) {
-    if (noteLength == "whole") {
-      if (typeof(eightSharp) == "undefined" && typeof(eightNatural) == "undefined" && typeof(eightFlat) == "undefined") {
-        drawWholeNote(xaxis, eight);
-      } else if (eightSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, eight, sharp);
-      } else if (eightNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, eight, sharp);
-      } else if (eightFlat == "true" && eightNatural == "false" && eightSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, eight, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(eightSharp) == "undefined" && typeof(eightNatural) == "undefined" && typeof(eightFlat) == "undefined") {
-        drawHalfNote(xaxis, eight);
-      } else if (eightSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, eight, sharp);
-      } else if (eightNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, eight, sharp);
-      } else if (eightFlat == "true" && eightNatural == "false" && eightSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, eight, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(eightSharp) == "undefined" && typeof(eightNatural) == "undefined" && typeof(eightFlat) == "undefined") {
-        drawQuarterNote(xaxis, eight);
-      } else if (eightSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, eight, sharp);
-      } else if (eightNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, eight, sharp);
-      } else if (eightFlat == "true" && eightNatural == "false" && eightSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, eight, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(eightSharp) == "undefined" && typeof(eightNatural) == "undefined" && typeof(eightFlat) == "undefined") {
-        drawEighthNote(xaxis, eight);
-      } else if (eightSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, eight, sharp);
-      } else if (eightNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, eight, sharp);
-      } else if (eightFlat == "true" && eightNatural == "false" && eightSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, eight, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(eightSharp) == "undefined" && typeof(eightNatural) == "undefined" && typeof(eightFlat) == "undefined") {
-        drawSixteenthNote(xaxis, eight);
-      } else if (eightSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, eight, sharp);
-      } else if (eightNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, eight, sharp);
-      } else if (eightFlat == "true" && eightNatural == "false" && eightSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, eight, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(eightSharp) == "undefined" && typeof(eightNatural) == "undefined" && typeof(eightFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, eight);
-      } else if (eightSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, eight, sharp);
-      } else if (eightNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, eight, sharp);
-      } else if (eightFlat == "true" && eightNatural == "false" && eightSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, eight, sharp);
-      }
-    }
-  } else if (pitch == 9) {
-    if (noteLength == "whole") {
-      if (typeof(nineSharp) == "undefined" && typeof(nineNatural) == "undefined" && typeof(nineFlat) == "undefined") {
-        drawWholeNote(xaxis, nine);
-      } else if (nineSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, nine, sharp);
-      } else if (nineNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, nine, sharp);
-      } else if (nineFlat == "true" && nineNatural == "false" && nineSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, nine, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(nineSharp) == "undefined" && typeof(nineNatural) == "undefined" && typeof(nineFlat) == "undefined") {
-        drawHalfNote(xaxis, nine);
-      } else if (nineSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, nine, sharp);
-      } else if (nineNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, nine, sharp);
-      } else if (nineFlat == "true" && nineNatural == "false" && nineSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, nine, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(nineSharp) == "undefined" && typeof(nineNatural) == "undefined" && typeof(nineFlat) == "undefined") {
-        drawQuarterNote(xaxis, nine);
-      } else if (nineSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, nine, sharp);
-      } else if (nineNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, nine, sharp);
-      } else if (nineFlat == "true" && nineNatural == "false" && nineSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, nine, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(nineSharp) == "undefined" && typeof(nineNatural) == "undefined" && typeof(nineFlat) == "undefined") {
-        drawEighthNote(xaxis, nine);
-      } else if (nineSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, nine, sharp);
-      } else if (nineNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, nine, sharp);
-      } else if (nineFlat == "true" && nineNatural == "false" && nineSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, nine, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(nineSharp) == "undefined" && typeof(nineNatural) == "undefined" && typeof(nineFlat) == "undefined") {
-        drawSixteenthNote(xaxis, nine);
-      } else if (nineSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, nine, sharp);
-      } else if (nineNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, nine, sharp);
-      } else if (nineFlat == "true" && nineNatural == "false" && nineSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, nine, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(nineSharp) == "undefined" && typeof(nineNatural) == "undefined" && typeof(nineFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, nine);
-      } else if (nineSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, nine, sharp);
-      } else if (nineNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, nine, sharp);
-      } else if (nineFlat == "true" && nineNatural == "false" && nineSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, nine, sharp);
-      }
-    }
-  } else if (pitch == 10) {
-    if (noteLength == "whole") {
-      if (typeof(tenSharp) == "undefined" && typeof(tenNatural) == "undefined" && typeof(tenFlat) == "undefined") {
-        drawWholeNote(xaxis, ten);
-      } else if (tenSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, ten, sharp);
-      } else if (tenNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, ten, sharp);
-      } else if (tenFlat == "true" && tenNatural == "false" && tenSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, ten, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(tenSharp) == "undefined" && typeof(tenNatural) == "undefined" && typeof(tenFlat) == "undefined") {
-        drawHalfNote(xaxis, ten);
-      } else if (tenSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, ten, sharp);
-      } else if (tenNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, ten, sharp);
-      } else if (tenFlat == "true" && tenNatural == "false" && tenSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, ten, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(tenSharp) == "undefined" && typeof(tenNatural) == "undefined" && typeof(tenFlat) == "undefined") {
-        drawQuarterNote(xaxis, ten);
-      } else if (tenSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, ten, sharp);
-      } else if (tenNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, ten, sharp);
-      } else if (tenFlat == "true" && tenNatural == "false" && tenSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, ten, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(tenSharp) == "undefined" && typeof(tenNatural) == "undefined" && typeof(tenFlat) == "undefined") {
-        drawEighthNote(xaxis, ten);
-      } else if (tenSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, ten, sharp);
-      } else if (tenNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, ten, sharp);
-      } else if (tenFlat == "true" && tenNatural == "false" && tenSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, ten, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(tenSharp) == "undefined" && typeof(tenNatural) == "undefined" && typeof(tenFlat) == "undefined") {
-        drawSixteenthNote(xaxis, ten);
-      } else if (tenSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, ten, sharp);
-      } else if (tenNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, ten, sharp);
-      } else if (tenFlat == "true" && tenNatural == "false" && tenSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, ten, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(tenSharp) == "undefined" && typeof(tenNatural) == "undefined" && typeof(tenFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, ten);
-      } else if (tenSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, ten, sharp);
-      } else if (tenNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, ten, sharp);
-      } else if (tenFlat == "true" && tenNatural == "false" && tenSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, ten, sharp);
-      }
-    }
-  } else if (pitch == 11) {
-    if (noteLength == "whole") {
-      if (typeof(elevenSharp) == "undefined" && typeof(elevenNatural) == "undefined" && typeof(elevenFlat) == "undefined") {
-        drawWholeNote(xaxis, eleven);
-      } else if (elevenNatural == "true") {
-        var sharp = "natural";
-        drawWholeNote(xaxis, eleven, sharp);
-      } else if (elevenSharp == "true") {
-        var sharp = "sharp";
-        drawWholeNote(xaxis, eleven, sharp);
-      } else if (elevenFlat == "true" && elevenNatural == "false" && elevenSharp == "false") {
-        var sharp = "flat";
-        drawWholeNote(xaxis, eleven, sharp);
-      }
-    } else if (noteLength == "half") {
-      if (typeof(elevenSharp) == "undefined" && typeof(elevenNatural) == "undefined" && typeof(elevenFlat) == "undefined") {
-        drawHalfNote(xaxis, eleven);
-      } else if (elevenNatural == "true") {
-        var sharp = "natural";
-        drawHalfNote(xaxis, eleven, sharp);
-      } else if (elevenSharp == "true") {
-        var sharp = "sharp";
-        drawHalfNote(xaxis, eleven, sharp);
-      } else if (elevenFlat == "true" && elevenNatural == "false" && elevenSharp == "false") {
-        var sharp = "flat";
-        drawHalfNote(xaxis, eleven, sharp);
-      }
-    } else if (noteLength == "quarter") {
-      if (typeof(elevenSharp) == "undefined" && typeof(elevenNatural) == "undefined" && typeof(elevenFlat) == "undefined") {
-        drawQuarterNote(xaxis, eleven);
-      } else if (elevenNatural == "true") {
-        var sharp = "natural";
-        drawQuarterNote(xaxis, eleven, sharp);
-      } else if (elevenSharp == "true") {
-        var sharp = "sharp";
-        drawQuarterNote(xaxis, eleven, sharp);
-      } else if (elevenFlat == "true" && elevenNatural == "false" && elevenSharp == "false") {
-        var sharp = "flat";
-        drawQuarterNote(xaxis, eleven, sharp);
-      }
-    } else if (noteLength == "eighth") {
-      if (typeof(elevenSharp) == "undefined" && typeof(elevenNatural) == "undefined" && typeof(elevenFlat) == "undefined") {
-        drawEighthNote(xaxis, eleven);
-      } else if (elevenNatural == "true") {
-        var sharp = "natural";
-        drawEighthNote(xaxis, eleven, sharp);
-      } else if (elevenSharp == "true") {
-        var sharp = "sharp";
-        drawEighthNote(xaxis, eleven, sharp);
-      } else if (elevenFlat == "true" && elevenNatural == "false" && elevenSharp == "false") {
-        var sharp = "flat";
-        drawEighthNote(xaxis, eleven, sharp);
-      }
-    } else if (noteLength == "sixteenth") {
-      if (typeof(elevenSharp) == "undefined" && typeof(elevenNatural) == "undefined" && typeof(elevenFlat) == "undefined") {
-        drawSixteenthNote(xaxis, eleven);
-      } else if (elevenSharp == "true") {
-        var sharp = "sharp";
-        drawSixteenthNote(xaxis, eleven, sharp);
-      } else if (elevenNatural == "true") {
-        var sharp = "natural";
-        drawSixteenthNote(xaxis, eleven, sharp);
-      } else if (elevenFlat == "true" && elevenNatural == "false" && elevenSharp == "false") {
-        var sharp = "flat";
-        drawSixteenthNote(xaxis, eleven, sharp);
-      }
-    } else if (noteLength == "thirtysecond") {
-      if (typeof(elevenSharp) == "undefined" && typeof(elevenNatural) == "undefined" && typeof(elevenFlat) == "undefined") {
-        drawThirtySecondNote(xaxis, eleven);
-      } else if (elevenSharp == "true") {
-        var sharp = "sharp";
-        drawThirtySecondNote(xaxis, eleven, sharp);
-      } else if (elevenNatural == "true") {
-        var sharp = "natural";
-        drawThirtySecondNote(xaxis, eleven, sharp);
-      } else if (elevenFlat == "true" && elevenNatural == "false" && elevenSharp == "false") {
-        var sharp = "flat";
-        drawThirtySecondNote(xaxis, eleven, sharp);
-      }
-    }
-  }
+  var noteDrawingFunc =
+    noteLength == "whole"     ? drawWholeNote     :
+    noteLength == "half"      ? drawHalfNote      :
+    noteLength == "quarter"   ? drawQuarterNote   :
+    noteLength == "eighth"    ? drawEighthNote    :
+    noteLength == "sixteenth" ? drawSixteenthNote : drawThirtySecondNote;
+  noteDrawingFunc(xaxis, scale[octave][pitch]);
+
+  var accidentalsDrawingFunc =
+    /* "Accidentals" is the generic term for the sharp/flat/natural sign */
+    scale.sharps[pitch]   ? sharpNote   :
+    scale.naturals[pitch] ? naturalNote :
+    scale.flats[pitch]    ? flatNote    : function(){/* Do nothing */};
+  accidentalsDrawingFunc(axis, scale[octave][pitch]);
 }
 
-function drawWholeNote(xaxis, position, sharp) {
+function drawWholeNote(xaxis, position) {
   var ctx = getContext();
   ctx.beginPath();
   ctx.arc(xaxis, position, 8, 0, Math.PI*2, true); 
   ctx.closePath();
-  if (sharp == "sharp") {
-    sharpNote(xaxis, position);
-  } else if (sharp == "natural") {
-    naturalNote(xaxis, position);
-  } else if (sharp == "flat") {
-    flatNote(xaxis, position);
-  }
 }
 
-function drawHalfNote(xaxis, position, sharp) {
-  var ctx = getContext();
+function drawHalfNote(xaxis, position) {
   drawWholeNote(xaxis, position)
   drawNoteStaff(xaxis, position);
-  if (sharp == "sharp") {
-    sharpNote(xaxis, position);
-  } else if (sharp == "natural") {
-    naturalNote(xaxis, position);
-  } else if (sharp == "flat") {
-    flatNote(xaxis, position);
-  }
 }
 
-function drawQuarterNote(xaxis, position, sharp) {
+function drawQuarterNote(xaxis, position) {
   var ctx = getContext();
   ctx.beginPath();
   ctx.arc(xaxis, position, 8, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
   drawNoteStaff(xaxis, position);
-  if (sharp == "sharp") {
-    sharpNote(xaxis, position);
-  } else if (sharp == "natural") {
-    naturalNote(xaxis, position);
-  } else if (sharp == "flat") {
-    flatNote(xaxis, position);
-  }
 }
 
-function drawEighthNote(xaxis, position, sharp) {
-  var ctx = getContext();
+function drawEighthNote(xaxis, position) {
   drawQuarterNote(xaxis, position);
   drawNoteStaff(xaxis, position);
   drawOneFlag(xaxis, position);
-  if (sharp == "sharp") {
-    sharpNote(xaxis, position);
-  } else if (sharp == "natural") {
-    naturalNote(xaxis, position);
-  } else if (sharp == "flat") {
-    flatNote(xaxis, position);
-  }
 }
 
-function drawSixteenthNote(xaxis, position, sharp) {
-  var ctx = getContext();
+function drawSixteenthNote(xaxis, position) {
   drawQuarterNote(xaxis, position);
   drawNoteStaff(xaxis, position);
   drawOneFlag(xaxis, position);
   drawTwoFlag(xaxis, position);
-  if (sharp == "sharp") {
-    sharpNote(xaxis, position);
-  } else if (sharp == "natural") {
-    naturalNote(xaxis, position);
-  } else if (sharp == "flat") {
-    flatNote(xaxis, position);
-  }
 }
 
-function drawThirtySecondNote(xaxis, position, sharp) {
-  var ctx = getContext();
+function drawThirtySecondNote(xaxis, position) {
   drawQuarterNote(xaxis, position);
   drawNoteStaff(xaxis, position);
   drawOneFlag(xaxis, position);
   drawTwoFlag(xaxis, position);
   drawThreeFlag(xaxis, position);
-  if (sharp == "sharp") {
-    sharpNote(xaxis, position);
-  } else if (sharp == "natural") {
-    naturalNote(xaxis, position);
-  } else if (sharp == "flat") {
-    flatNote(xaxis, position);
-  }
 }
 
 function drawNoteStaff(xaxis, position) {
