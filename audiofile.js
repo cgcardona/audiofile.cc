@@ -1,4 +1,3 @@
-
 /*
 * audiofile.cc JavaScript Library v0.1.12
 * https://audiofile.cc/
@@ -727,9 +726,7 @@ function flatNote(xaxis, position) {
 }
 
   //Start key signature drawing functions
-  //setTheKey() gets the tonic and then draws the appropriate sharps on the
-  //staffs. Currently only sharps are supported. In the future the plan is to
-  //introduce tonics -1 - -12 which will be flat keys.
+  //setTheKey() gets the tonic and then draws the appropriate sharps on the staffs. 
 function setTheKey(theKey, xaxis, position) {
   if (theKey == -7) {
   // if the key is C flat
