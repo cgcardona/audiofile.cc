@@ -2912,3 +2912,30 @@ function  setTheTimeSignature(bpmeasure, count, songtitle, creator) {
   var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 245;
   ctx.fillText("By: " + creator, tempXAxis, tempYAxis);
 }
+
+//(function() {
+//  var Note, my_note;
+//  
+//  Note = (function() {
+//    function Note(note, pitch, octave) {
+//    this.note = note;
+//    this.pitch = pitch;
+//    this.octave = octave;
+//    }
+//    Note.prototype.play = function() {
+//      return document.write("do stuff");
+//    };
+//    return Note;
+//  })();
+//  
+//  my_note = new Note("half", 0, 4);
+//  
+//  document.write(
+//    "my note... note type: " + 
+//    my_note.note + 
+//    ", pitch: " + 
+//    my_note.pitch + 
+//    ", octave: " + 
+//    my_note.octave
+//  ); // you can also call my_note.play() to write "do stuff"
+//}).call(this);
