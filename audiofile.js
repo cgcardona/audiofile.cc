@@ -1,13 +1,13 @@
 
 /*
-* audiofile.cc JavaScript Library v0.1.10
+* audiofile.cc JavaScript Library v0.1.12
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Wed. June 1 2011 
+* Date: Sat. June 4 2011 
 */
 (function( $ ){
   var methods = {
