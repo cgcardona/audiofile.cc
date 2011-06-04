@@ -806,153 +806,88 @@ function setTheKey(theKey, xaxis, position) {
     bSharp(xaxis, position);
   } 
 
+  function drawStaffFlatHelper(x1,y1,x2,y2) {
+    var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
+    var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+    flatNote(x+x1,y+y1);
+    flatNote(x+x2,y+y2);
+  }
+
+  function drawStaffSharpHelper(x1,y1,x2,y2) {
+    var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
+    var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+    sharpNote(x+x1,y+y1);
+    sharpNote(x+x2,y+y2);
+  }
+
   // draws a bass note in the appropriate place in both octaves on the staff.
   function fNatural(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 85;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 85;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 180;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(85,40,85,180);
   }
 
   // draws a bass note in the appropriate place in both octaves on the staff.
   function bFlat(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 90;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 10;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 90;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 150;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(90,10,90,150);
   }
 
   // draws a bass note in the appropriate place in both octaves on the staff.
   function eFlat(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 100;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 50;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 100;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 190;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(100,50,100,190);
   }
 
   // draws a bass note in the appropriate place in both octaves on the staff.
   function aFlat(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 110;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 20;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 110;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 160;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(110,20,110,160);
   }
 
   // draws a bass note in the appropriate place in both octaves on the staff.
   function dFlat(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 120;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 60;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 120;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(120,60,120,200);
   }
 
   // draws a bass note in the appropriate place in both octaves on the staff.
   function gFlat(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 130;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 30;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 130;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 170;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(130,30,130,170);
   }
   
   // draws a bass note in the appropriate place in both octaves on the staff.
   function cFlat(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 140;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 70;
-    flatNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 140;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 210;
-    flatNote(tempXAxis, tempYAxis);
+    drawStaffFlatHelper(140,70,140,210);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function fSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 85;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE);
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 85;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 140;
-    sharpNote(tempXAxis, tempYAxis);
-  }
-  // draws a sharp note in the appropriate place in both octaves on the staff.
-  function fSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 85;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE);
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 85;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 140;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(85,0,85,140);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function cSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 95;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 30;
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 95;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 170;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(95,30,95,170);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function gSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 100;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) - 10;
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 100;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 130;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(100,-10,100,130);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function dSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 115;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 20;
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 115;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 160;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(115,20,115,160);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function aSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 125;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 50;
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 125;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 190;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(125,50,125,190);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function eSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 135;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 10;
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 135;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 150;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(135,10,135,150);
   }
 
   // draws a sharp note in the appropriate place in both octaves on the staff.
   function bSharp(tempXAxis, tempYAxis) {
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 145;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 40;
-    sharpNote(tempXAxis, tempYAxis);
-    var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 145;
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 180;
-    sharpNote(tempXAxis, tempYAxis);
+    drawStaffSharpHelper(145,40,145,180);
   }
 //End key signature drawing functions
 }
