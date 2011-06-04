@@ -35,84 +35,38 @@
       });
     },
     stepUp : function(placeholder, note, distance) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         var afterPitch = parseInt(beforePitch) + parseInt(distance);
-         $(note).attr('data-pitch', afterPitch);
-      });
+      return stepHelper(this, parseInt(distance,10));
     },
     stepDown : function(placeholder, note, distance) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         var afterPitch = parseInt(beforePitch) - parseInt(distance);
-         $(note).attr('data-pitch', afterPitch);
-      });
+      return stepHelper(this, -parseInt(distance,10));
     },
     stepUpWhole : function(placeholder, note) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         var afterPitch = parseInt(beforePitch) + 2;
-         $(note).attr('data-pitch', afterPitch);
-      });
+      return stepHelper(this, 2);
     },
     stepDownWhole : function(placeholder, note) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         var afterPitch = parseInt(beforePitch) - 2;
-         $(note).attr('data-pitch', afterPitch);
-      });
+      return stepHelper(this, -2);
     },
     stepUpHalf : function(placeholder, note) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         var afterPitch = parseInt(beforePitch) + 1;
-         $(note).attr('data-pitch', afterPitch)
-      });
+      return stepHelper(this, 1);
     },
     stepDownHalf : function(placeholder, note) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-         var beforePitch = $(note).attr('data-pitch');
-         var afterPitch = parseInt(beforePitch) - 1;
-         $(note).attr('data-pitch', afterPitch);
-      });
+      return stepHelper(this, -1);
     },
     stepUpMaj : function(placeholder, note, distance) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
-        var distanceMods = [0,2,4,5,7,9,11];
-        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
-      });
+      var steps = [0,2,4,5,7,9,11];
+      return stepHelper(this, note, steps[distance]);
     },
     stepDownMaj : function(placeholder, note, distance) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
-        var distanceMods = [0,-2,-4,-5,-7,-9,-11];
-        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
-      });
+      var steps = [0,-2,-4,-5,-7,-9,-11];
+      return stepHelper(this, note, steps[distance]);
     },
     stepUpMin : function(placeholder, note, distance) {
-      return this.each(function() { 
-        // code goes here to maintain chainability.
-        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
-        var distanceMods = [0,2,3,5,7,8,10];
-        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
-      });
+      var steps = [0,2,3,5,7,8,10];
+      return stepHelper(this, note, steps[distance]);
     },
     stepDownMin : function(placeholder, note, distance) {
-      return this.each(function() { 
-       // code goes here to maintain chainability.
-        var beforePitch = parseInt($(note).attr('data-pitch'), 10);
-        var distanceMods = [0,-2,-3,-5,-7,-8,-10];
-        $(note).attr('data-pitch', beforePitch + distanceMods[distance]);
-      });
+      var steps = [0,-2,-3,-5,-7,-8,-10];
+      return stepHelper(this, note, steps[distance]);
     }
   };
   $.fn.audiofile = function(options, method) {
@@ -137,6 +91,13 @@ function getContext() {
   var canvas = document.getElementById("example");
   var ctx = canvas.getContext("2d");
   return ctx;
+}
+
+function stepHelper(that, note, step) {
+  return that.each(function() {
+    var beforePitch = parseInt($(note).attr('data-pitch'), 10);
+    $note(.attr('data-pitch', beforePitch + step));
+  });
 }
 
 function drawStaffLines(width) {
