@@ -399,7 +399,7 @@ var scales = {
     "5":        [  150,  140,  140,  130,  130,  120,  120,  110,  100,  100,   90,   90],
     "sharps":   [false,false,false,false,false,false, true,false,false,false,false,false],
     "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
+    "naturals": [false,true,false,true,false,false,false,false,false,false,true,false]
   },
   "5": {
     "3":        [  250,  240,  240,  230,  230,  220,  210,  210,  200,  200,  190,  190],
