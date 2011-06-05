@@ -1,12 +1,12 @@
 /*
-* audiofile.cc JavaScript Library v0.1.12
+* audiofile.cc JavaScript Library v0.1.13
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Sat. June 4 2011 
+* Date: Sun. June 5 2011 
 */
 (function( $ ){
   var methods = {
@@ -497,21 +497,16 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
     // value to be assigned to the note object.
     //
       var tempNote = {
-        'noteLength': $(this).attr("data-note"),
+        'noteLength': $(this).attr("data-note"), 
         'pitch'     : $(this).attr("data-pitch"),
         'octave'    : $(this).attr("data-octave")
       }
+
     // Also need to create the note drawing methods on the object that will be
     // called right here I think.  ex: tempNote.drawQuarterNote();
       var lstnt = $(this).attr("data-lastnote");
       // console.log(tempNote);
-      // I don't think this code is being used any more but I'm going to keep it here in case I need to bring back the functionality
-      if ($(this).hasClass("sharp")) {
-        var isSharp = "true";
-        drawNote(tonic, tempNote.pitch, tempNote.noteLength, tempNote.octave, xaxis, isSharp);
-      } else {
-        drawNote(tonic, tempNote.pitch, tempNote.noteLength, tempNote.octave, xaxis);
-      }
+      drawNote(tonic, tempNote.pitch, tempNote.noteLength, tempNote.octave, xaxis);
       // console.log("pitch: " + pitch);
       // console.log("length: " + noteLength); 
       // console.log("octave: " + octave); 
@@ -544,6 +539,12 @@ function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
   var scale = scales[tonic];
   var ctx = getContext();
   var noteDrawingFunc =
+    noteLength == "wholerest"     ? drawWholeRest     :
+    noteLength == "halfrest"     ? drawHalfRest     :
+    noteLength == "quarterrest"     ? drawQuarterRest     :
+    noteLength == "eighthrest"     ? drawEighthRest     :
+    noteLength == "sixteenthrest"     ? drawSixteenthRest     :
+    noteLength == "thirtysecondrest"     ? drawThirtySecondRest     :
     noteLength == "whole"     ? drawWholeNote     :
     noteLength == "half"      ? drawHalfNote      :
     noteLength == "quarter"   ? drawQuarterNote   :
@@ -556,9 +557,117 @@ function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
     scale.sharps[pitch]   ? sharpNote   :
     scale.naturals[pitch] ? naturalNote :
     scale.flats[pitch]    ? flatNote    : function(){/* Do nothing */};
-  accidentalsDrawingFunc(xaxis, scale[octave][pitch]);
+
+    if (noteLength == "wholerest" || noteLength == "halfrest" || noteLength == "quarterrest" || noteLength == "eighthrest" || noteLength == "sixteenthrest" || noteLength == "thirtysecondrest") {
+      // Don't paint an accidental
+    } else {
+      accidentalsDrawingFunc(xaxis, scale[octave][pitch]);
+    }
 }
 
+function drawWholeRest(xaxis, position) {
+  var ctx = getContext();
+  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 40,15,5);
+  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 160,15,5);
+}
+
+function drawHalfRest(xaxis, position) {
+  var ctx = getContext();
+  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 35,15,5);
+  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 155,15,5);
+}
+
+function drawQuarterRest(xaxis, position) {
+  var ctx = getContext();
+  ctx.moveTo(xaxis -2, position - 8);
+  var controlX = parseInt(xaxis, 10) + 2;
+  var controlY = parseInt(position, 10) - 2;
+  var endX = parseInt(xaxis, 10) + 5;
+  var endY = parseInt(position, 10) - 2;
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+
+  ctx.moveTo(endX, endY);
+  var controlX = parseInt(endX, 10);
+  var controlY = parseInt(position, 10);
+  var endX = parseInt(xaxis, 10) - 5;
+  var endY = parseInt(position, 10) + 1;
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+
+  ctx.moveTo(endX, endY);
+  var controlX = parseInt(endX, 10);
+  var controlY = parseInt(position, 10) + 2;
+  var endX = parseInt(xaxis, 10) + 5;
+  var endY = parseInt(position, 10) + 5;
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+
+  ctx.moveTo(endX, endY);
+  var controlX = parseInt(endX, 10) - 15;
+  var controlY = parseInt(position, 10) + 10;
+  var endX = parseInt(xaxis, 10) + 5;
+  var endY = parseInt(endY, 10) + 7;
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  styleNStroke();
+}
+
+function restStaff(xaxis, position) {
+  var ctx = getContext();
+  var overX = parseInt(xaxis) + 3;
+  var underY = parseInt(position) - 15;
+  var overX2 = parseInt(xaxis) - 1;
+  ctx.moveTo(overX, underY);
+  ctx.lineTo(overX2, position + 10);
+}
+
+function drawEighthRest(xaxis, position) {
+  var ctx = getContext();
+  ctx.beginPath();
+  ctx.arc(xaxis - 3, position - 13, 3, 0, Math.PI*2, true); 
+  ctx.closePath();
+  ctx.fill();
+  ctx.moveTo(xaxis - 5, position - 10);
+  var controlX = parseInt(xaxis, 10) - 5;
+  var controlY = parseInt(position, 10) - 10;
+  var endX = parseInt(xaxis, 10) + 5;
+  var endY = parseInt(position, 10) - 15;
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  styleNStroke();
+  restStaff(xaxis, position);
+}
+
+function drawSixteenthRest(xaxis, position) {
+  drawEighthRest(xaxis, position)
+  var ctx = getContext();
+  ctx.beginPath();
+  ctx.arc(xaxis - 4, position - 6, 3, 0, Math.PI*2, true); 
+  ctx.closePath();
+  ctx.fill();
+  ctx.moveTo(xaxis - 5, position - 10);
+  var controlX = parseInt(xaxis, 10) - 5;
+  var controlY = parseInt(position, 10) - 10;
+  var endX = parseInt(xaxis, 10);
+  var endY = parseInt(position, 10) - 5;
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  styleNStroke();
+  restStaff(xaxis, position);
+}
+
+function drawThirtySecondRest(xaxis, position) {
+  drawEighthRest(xaxis, position)
+  drawSixteenthRest(xaxis, position)
+  var ctx = getContext();
+  ctx.beginPath();
+  ctx.arc(xaxis - 5, position, 3, 0, Math.PI*2, true); 
+  ctx.closePath();
+  ctx.fill();
+  ctx.moveTo(xaxis - 5, position - 10);
+  var controlX = parseInt(xaxis, 10) - 5;
+  var controlY = parseInt(position, 10) - 10;
+  var endX = parseInt(xaxis, 10);
+  var endY = parseInt(position, 10);
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  styleNStroke();
+  restStaff(xaxis, position);
+}
 function drawWholeNote(xaxis, position) {
   var ctx = getContext();
   ctx.beginPath();
