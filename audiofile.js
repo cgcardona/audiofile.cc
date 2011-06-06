@@ -1,12 +1,12 @@
 /*
-* audiofile.cc JavaScript Library v0.1.13
+* audiofile.cc JavaScript Library v0.1.14
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Sun. June 5 2011 
+* Date: Mon. June 5 2011 
 */
 (function( $ ){
   var methods = {
@@ -33,7 +33,6 @@
         setTheKey(settings.tonic);
         setTheTimeSignature(settings.bpmeasure, settings.count, settings.title, settings.creator);
         drawNotes(settings.tonic, settings.bpmeasure, settings.count);
-        drawStaffLines(canvasWidth);
       });
     },
     stepUp : function(placeholder, note, distance) {
@@ -104,10 +103,10 @@ function stepHelper(that, note, step) {
   });
 }
 
-function drawStaffLines(width) {
+function drawStaffLines(width, xaxis, loop) {
   var ctx = getContext();
-  // console.log("lines");
   // draw staff lines
+  if (loop == "1") {
     for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
@@ -116,6 +115,229 @@ function drawStaffLines(width) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
+  } else if (loop == "2") {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+  } else if (loop == "3") {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+  } else if (loop == "4") {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+  } else if (loop == "5") {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+  } else if (loop == "6") {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    } 
+  } else if (loop == "7") {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1800; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1800; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1800; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1800; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+  }
   styleNStroke();
 }
 
@@ -524,7 +746,91 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
     // called right here I think.  ex: tempNote.drawQuarterNote();
       var lstnt = $(this).attr("data-lastnote");
       // console.log(tempNote);
-      drawNote(tonic, tempNote.pitch, tempNote.noteLength, tempNote.octave, xaxis);
+      var canvasWidth = $("canvas").attr("width");
+      var scale = scales[tonic];
+      var ctx = getContext();
+      var noteDrawingFunc =
+      tempNote.noteLength == "wholerest"        ? drawWholeRest           :
+      tempNote.noteLength == "halfrest"         ? drawHalfRest            :
+      tempNote.noteLength == "quarterrest"      ? drawQuarterRest         :
+      tempNote.noteLength == "eighthrest"       ? drawEighthRest          :
+      tempNote.noteLength == "sixteenthrest"    ? drawSixteenthRest       :
+      tempNote.noteLength == "thirtysecondrest" ? drawThirtySecondRest    :
+      tempNote.noteLength == "whole"            ? drawWholeNote           :
+      tempNote.noteLength == "half"             ? drawHalfNote            :
+      tempNote.noteLength == "quarter"          ? drawQuarterNote         :
+      tempNote.noteLength == "eighth"           ? drawEighthNote          :
+      tempNote.noteLength == "sixteenth"        ? drawSixteenthNote       : drawThirtySecondNote;
+      if (xaxis > canvasWidth) {
+        xaxis = (xaxis - canvasWidth) + 5;
+        scale[3][0]  = scale[3][0]  + 300;
+        scale[3][1]  = scale[3][1]  + 300;
+        scale[3][2]  = scale[3][2]  + 300;
+        scale[3][3]  = scale[3][3]  + 300;
+        scale[3][4]  = scale[3][4]  + 300;
+        scale[3][5]  = scale[3][5]  + 300;
+        scale[3][6]  = scale[3][6]  + 300;
+        scale[3][7]  = scale[3][7]  + 300;
+        scale[3][8]  = scale[3][8]  + 300;
+        scale[3][9]  = scale[3][9]  + 300;
+        scale[3][10] = scale[3][10] + 300;
+        scale[3][11] = scale[3][11] + 300;
+
+        scale[4][0]  = scale[4][0]  + 300;
+        scale[4][1]  = scale[4][1]  + 300;
+        scale[4][2]  = scale[4][2]  + 300;
+        scale[4][3]  = scale[4][3]  + 300;
+        scale[4][4]  = scale[4][4]  + 300;
+        scale[4][5]  = scale[4][5]  + 300;
+        scale[4][6]  = scale[4][6]  + 300;
+        scale[4][7]  = scale[4][7]  + 300;
+        scale[4][8]  = scale[4][8]  + 300;
+        scale[4][9]  = scale[4][9]  + 300;
+        scale[4][10] = scale[4][10] + 300;
+        scale[4][11] = scale[4][11] + 300;
+
+        scale[5][0]  = scale[5][0]  + 300;
+        scale[5][1]  = scale[5][1]  + 300;
+        scale[5][2]  = scale[5][2]  + 300;
+        scale[5][3]  = scale[5][3]  + 300;
+        scale[5][4]  = scale[5][4]  + 300;
+        scale[5][5]  = scale[5][5]  + 300;
+        scale[5][6]  = scale[5][6]  + 300;
+        scale[5][7]  = scale[5][7]  + 300;
+        scale[5][8]  = scale[5][8]  + 300;
+        scale[5][9]  = scale[5][9]  + 300;
+        scale[5][10] = scale[5][10] + 300;
+        scale[5][11] = scale[5][11] + 300;
+      }
+      if (scale[tempNote.octave][tempNote.pitch] > 400 && scale[tempNote.octave][tempNote.pitch] < 700) {
+        loop = "2";
+      } else if (scale[tempNote.octave][tempNote.pitch] > 700 && scale[tempNote.octave][tempNote.pitch] < 1000) {
+        loop = "3";
+      } else if (scale[tempNote.octave][tempNote.pitch] > 1000 && scale[tempNote.octave][tempNote.pitch] < 1300) {
+        loop = "4";
+      } else if (scale[tempNote.octave][tempNote.pitch] > 1300 && scale[tempNote.octave][tempNote.pitch] < 1600) {
+        loop = "5";
+      } else if (scale[tempNote.octave][tempNote.pitch] > 1600 && scale[tempNote.octave][tempNote.pitch] < 1900) {
+        loop = "6";
+      } else if (scale[tempNote.octave][tempNote.pitch] > 1900 && scale[tempNote.octave][tempNote.pitch] < 2200) {
+        loop = "7";
+      } else {
+        loop = "1";
+      }
+      noteDrawingFunc(xaxis, scale[tempNote.octave][tempNote.pitch]);
+      drawStaffLines(canvasWidth, xaxis, loop);
+      var accidentalsDrawingFunc =
+      /* "Accidentals" is the generic term for the sharp/flat/natural sign */
+      scale.sharps[tempNote.pitch]   ? sharpNote   :
+      scale.naturals[tempNote.pitch] ? naturalNote :
+      scale.flats[tempNote.pitch]    ? flatNote    : function(){/* Do nothing */};
+
+      if (tempNote.noteLength == "wholerest" || tempNote.noteLength == "halfrest" || tempNote.noteLength == "quarterrest" || tempNote.noteLength == "eighthrest" || tempNote.noteLength == "sixteenthrest" || tempNote.noteLength == "thirtysecondrest") {
+        // Don't paint an accidental
+      } else {
+        accidentalsDrawingFunc(xaxis, scale[tempNote.octave][tempNote.pitch]);
+      }
+      //drawNote(tonic, tempNote.pitch, tempNote.noteLength, tempNote.octave, xaxis);
       // console.log("pitch: " + pitch);
       // console.log("length: " + noteLength); 
       // console.log("octave: " + octave); 
@@ -540,12 +846,56 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       }
     });
     var measureLine = parseInt(xaxis) - 25;
-    ctx.moveTo(measureLine, POSITION_OF_F5_STAFF_LINE);
-    var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 80;
-    ctx.lineTo(measureLine, tempYAxis);
-    var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 120;
-    ctx.moveTo(measureLine, tempYAxis);
-    ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
+    if (loop == 1) {
+      ctx.moveTo(measureLine, POSITION_OF_F5_STAFF_LINE);
+      var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 80;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 120;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
+    } else if (loop == 2) {
+      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 300;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 300;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300);
+    } else if (loop == 3) {
+      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 600;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 600;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600);
+    } else if (loop == 4) {
+      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 900;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 900;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900);
+    } else if (loop == 5) {
+      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 1200;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 1200;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200);
+    } else if (loop == 6) {
+      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1500);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 1500;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 1500;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1500);
+    } else if (loop == 7) {
+      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1800);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 1800;
+      ctx.lineTo(measureLine, tempYAxis);
+      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 1800;
+      ctx.moveTo(measureLine, tempYAxis);
+      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1800);
+    }
     styleNStroke();
   });
 }
@@ -554,33 +904,7 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   // var firstNote = $("div[data-measure^='0'] div:nth-child(1)").attr("data-pitch");
 
 function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
-  var scale = scales[tonic];
-  var ctx = getContext();
-  var noteDrawingFunc =
-    noteLength == "wholerest"     ? drawWholeRest     :
-    noteLength == "halfrest"     ? drawHalfRest     :
-    noteLength == "quarterrest"     ? drawQuarterRest     :
-    noteLength == "eighthrest"     ? drawEighthRest     :
-    noteLength == "sixteenthrest"     ? drawSixteenthRest     :
-    noteLength == "thirtysecondrest"     ? drawThirtySecondRest     :
-    noteLength == "whole"     ? drawWholeNote     :
-    noteLength == "half"      ? drawHalfNote      :
-    noteLength == "quarter"   ? drawQuarterNote   :
-    noteLength == "eighth"    ? drawEighthNote    :
-    noteLength == "sixteenth" ? drawSixteenthNote : drawThirtySecondNote;
-  noteDrawingFunc(xaxis, scale[octave][pitch]);
 
-  var accidentalsDrawingFunc =
-    /* "Accidentals" is the generic term for the sharp/flat/natural sign */
-    scale.sharps[pitch]   ? sharpNote   :
-    scale.naturals[pitch] ? naturalNote :
-    scale.flats[pitch]    ? flatNote    : function(){/* Do nothing */};
-
-    if (noteLength == "wholerest" || noteLength == "halfrest" || noteLength == "quarterrest" || noteLength == "eighthrest" || noteLength == "sixteenthrest" || noteLength == "thirtysecondrest") {
-      // Don't paint an accidental
-    } else {
-      accidentalsDrawingFunc(xaxis, scale[octave][pitch]);
-    }
 }
 
 function drawWholeRest(xaxis, position) {
