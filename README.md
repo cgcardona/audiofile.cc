@@ -12,7 +12,7 @@ The audiofile.cc wishlist
 =========================
 
 If you've made it this far you're actually interested in the project. For that I
-salute you. Below is a list of things the most important things that could help
+salute you. Below is a list of the most important things that could help
 move Audiofile forward. If you see something that inspires you to act please do.
 
 ### Intelligent wrapping notes
