@@ -30,4 +30,14 @@ consistently across all browsers and OS's (surprise :p ).
 
 We should add the functionality to detect a browser/OS's font support and serve
 them the Unicode characters if they support it and fallback to the hand drawn
-elements if not.
+elements if not. I've been considering using @font-face but we need a good open
+source musical font. Which brings me to...
+
+### Open source Musical Font
+
+Music as markup is a movement that is only just beginning. As we grow we are
+going to need a good quality font that we know is licensed appropriately. That is
+why I propose that we build our own! ;-)
+
+Ideally it would be a font that can be used via @font-face to deliver the fonts
+to as many browser/OS combos as possible.
