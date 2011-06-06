@@ -1,12 +1,12 @@
 /*
-* audiofile.cc JavaScript Library v0.1.12
+* audiofile.cc JavaScript Library v0.1.13
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Sat. June 4 2011 
+* Date: Sun. June 5 2011 
 */
 (function( $ ){
   var methods = {
@@ -27,6 +27,8 @@
         // code goes here to maintain chainability.
         var canvasWidth = $(this).attr("width");
         drawClefs();
+        //drawTrebleClef();
+        //drawBassClef();
         clefTip();
         setTheKey(settings.tonic);
         setTheTimeSignature(settings.bpmeasure, settings.count, settings.title, settings.creator);
@@ -81,10 +83,10 @@
 })( jQuery );
 
 // Start of "CONSTANTS"
-var POSITION_OF_E5_STAFF_LINE = 140;
-var POSITION_OF_E4_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
-var POSITION_OF_A3_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
-var POSITION_OF_G2_STAFF_LINE = parseInt(POSITION_OF_E5_STAFF_LINE) + 200;
+var POSITION_OF_F5_STAFF_LINE = 140;
+var POSITION_OF_E4_STAFF_LINE = parseInt(POSITION_OF_F5_STAFF_LINE) + 80;
+var POSITION_OF_A3_STAFF_LINE = parseInt(POSITION_OF_F5_STAFF_LINE) + 120;
+var POSITION_OF_G2_STAFF_LINE = parseInt(POSITION_OF_F5_STAFF_LINE) + 200;
 var INTERMEDIATE_LINE_DISTANCE = 20;
 var X_AXIS_START_OF_STAFF_LINES = 30;
 // End of "CONSTANTS"
@@ -106,7 +108,7 @@ function drawStaffLines(width) {
   var ctx = getContext();
   // console.log("lines");
   // draw staff lines
-    for (var y = POSITION_OF_E5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -126,7 +128,7 @@ function drawClefs() {
 
   var ctx = getContext();
   var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-  var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+  var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
 
   var centerXAxis = x + 10;
   var centerYAxis = y + 140;
@@ -310,10 +312,26 @@ function drawClefs() {
 
 }
 
+function drawTrebleClef() {
+  var ctx = getContext();
+  ctx.font = "8.5em Helvetica-Light";
+  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES,10) + 10;
+  var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 90;
+  ctx.fillText("𝄞" , tempXAxis, tempYAxis);
+}
+
+function drawBassClef() {
+  var ctx = getContext();
+  ctx.font = "5.5em Helvetica-Light";
+  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES,10) + 10;
+  var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 180;
+  ctx.fillText("𝄢" , tempXAxis, tempYAxis);
+}
+
 function clefTip() {
   var ctx = getContext();
   var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-  var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+  var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
 
   var tempXAxis = x - 30;
   var tempYAxis = y + 100;
@@ -522,10 +540,10 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       }
     });
     var measureLine = parseInt(xaxis) - 25;
-    ctx.moveTo(measureLine, POSITION_OF_E5_STAFF_LINE);
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 80;
+    ctx.moveTo(measureLine, POSITION_OF_F5_STAFF_LINE);
+    var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 80;
     ctx.lineTo(measureLine, tempYAxis);
-    var tempYAxis = parseInt(POSITION_OF_E5_STAFF_LINE) + 120;
+    var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 120;
     ctx.moveTo(measureLine, tempYAxis);
     ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
     styleNStroke();
@@ -567,14 +585,14 @@ function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
 
 function drawWholeRest(xaxis, position) {
   var ctx = getContext();
-  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 40,15,5);
-  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 160,15,5);
+  ctx.fillRect(xaxis - 8,POSITION_OF_F5_STAFF_LINE + 40,15,5);
+  ctx.fillRect(xaxis - 8,POSITION_OF_F5_STAFF_LINE + 160,15,5);
 }
 
 function drawHalfRest(xaxis, position) {
   var ctx = getContext();
-  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 35,15,5);
-  ctx.fillRect(xaxis - 8,POSITION_OF_E5_STAFF_LINE + 155,15,5);
+  ctx.fillRect(xaxis - 8,POSITION_OF_F5_STAFF_LINE + 35,15,5);
+  ctx.fillRect(xaxis - 8,POSITION_OF_F5_STAFF_LINE + 155,15,5);
 }
 
 function drawQuarterRest(xaxis, position) {
@@ -681,6 +699,12 @@ function drawHalfNote(xaxis, position) {
 }
 
 function drawQuarterNote(xaxis, position) {
+  //var ctx = getContext();
+  //ctx.font = "3.5em Helvetica-Light";
+  //var tempXAxis = parseInt(xaxis,10) - 25;
+  //var tempYAxis = parseInt(position,10) + 3;
+  //ctx.fillText("♩ " , tempXAxis, tempYAxis);
+
   var ctx = getContext();
   ctx.beginPath();
   ctx.arc(xaxis, position, 8, 0, Math.PI*2, true); 
@@ -690,6 +714,12 @@ function drawQuarterNote(xaxis, position) {
 }
 
 function drawEighthNote(xaxis, position) {
+  //var ctx = getContext();
+  //ctx.font = "3.5em Helvetica-Light";
+  //var tempXAxis = parseInt(xaxis,10) - 25;
+  //var tempYAxis = parseInt(position,10) + 3;
+  //ctx.fillText("♪" , tempXAxis, tempYAxis);
+
   drawQuarterNote(xaxis, position);
   drawNoteStaff(xaxis, position);
   drawOneFlag(xaxis, position);
@@ -755,6 +785,12 @@ function styleNStroke() {
 }
 
 function sharpNote(xaxis, position) {
+  //var ctx = getContext();
+  //ctx.font = "1.25em Helvetica-Light";
+  //var tempXAxis = parseInt(xaxis,10) - 15;
+  //var tempYAxis = parseInt(position,10) + 8;
+  //ctx.fillText("♯" , tempXAxis, tempYAxis);
+
   var ctx = getContext();
   var xCoord1a = parseInt(xaxis) - 17;
   var yCoord1a = parseInt(position) - 8;
@@ -785,6 +821,12 @@ function sharpNote(xaxis, position) {
 }
 
 function naturalNote(xaxis, position) {
+  //var ctx = getContext();
+  //ctx.font = "1.25em Helvetica-Light";
+  //var tempXAxis = parseInt(xaxis,10) - 25;
+  //var tempYAxis = parseInt(position,10) + 8;
+  //ctx.fillText("♮", tempXAxis, tempYAxis);
+
   var ctx = getContext();
   var xCoord1a = parseInt(xaxis) - 17;
   var yCoord1a = parseInt(position) - 8;
@@ -815,6 +857,12 @@ function naturalNote(xaxis, position) {
 }
 
 function flatNote(xaxis, position) {
+  //var ctx = getContext();
+  //ctx.font = "1.25em Helvetica-Light";
+  //var tempXAxis = parseInt(xaxis,10) - 15;
+  //var tempYAxis = parseInt(position,10) + 5;
+  //ctx.fillText("♭", tempXAxis, tempYAxis);
+
   var ctx = getContext();
   var xCoord1a = parseInt(xaxis) - 18;
   var xCoord1b = parseInt(xaxis) - 16;
@@ -928,14 +976,14 @@ function setTheKey(theKey, xaxis, position) {
 
   function drawStaffFlatHelper(x1,y1,x2,y2) {
     var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-    var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+    var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
     flatNote(x+x1,y+y1);
     flatNote(x+x2,y+y2);
   }
 
   function drawStaffSharpHelper(x1,y1,x2,y2) {
     var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-    var y = parseInt(POSITION_OF_E5_STAFF_LINE,10);
+    var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
     sharpNote(x+x1,y+y1);
     sharpNote(x+x2,y+y2);
   }
@@ -1016,7 +1064,7 @@ function  setTheTimeSignature(bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
   ctx.font = "30pt Helvetica-Light";
   var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-  var y = parseInt(POSITION_OF_E5_STAFF_LINE);
+  var y = parseInt(POSITION_OF_F5_STAFF_LINE);
 
   var tempXAxis = x + 150;
   var tempYAxis = y + 35;
