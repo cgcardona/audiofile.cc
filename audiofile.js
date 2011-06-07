@@ -602,6 +602,7 @@ function clefTip() {
 // First level is tonic, second level is octave.
 var scales = {
   "0": {
+    "2":        [  380,  380,  370,  370,  360,  350,  350,  340,  340,  330,  330,  320],
     "3":        [  310,  310,  300,  300,  290,  280,  280,  270,  270,  260,  260,  250],
     "4":        [  240,  240,  230,  230,  220,  210,  210,  200,  200,  190,  190,  180],
     "5":        [  170,  170,  160,  160,  150,  140,  140,  130,  130,  120,  120,  110],
@@ -610,6 +611,7 @@ var scales = {
     "naturals": [false,false,false,false,false,false,false,false,false,false,false,false]
   },
   "1": {
+    "2":        [  340,  340,  330,  330,  320,  310,  310,  300,  300,  290,  280,  280],
     "3":        [  270,  270,  260,  260,  250,  240,  240,  230,  230,  220,  210,  210],
     "4":        [  200,  200,  190,  190,  180,  170,  170,  160,  160,  150,  140,  140],
     "5":        [  130,  130,  120,  120,  110,  100,  100,   90,   90,   80,   70,  70],
@@ -618,6 +620,7 @@ var scales = {
     "naturals": [false,false,false,false,false,false,false,false,false,false, true,false]
   },
   "2": {
+    "2":        [  370,  370,  360,  350,  350,  340,  340,  330,  330,  320,  310,  310],
     "3":        [  300,  300,  290,  280,  280,  270,  270,  260,  260,  250,  240,  240],
     "4":        [  230,  230,  220,  210,  210,  200,  200,  190,  190,  180,  170,  170],
     "5":        [  160,  160,  150,  140,  140,  130,  130,  120,  120,  110,  100,  100],
@@ -626,6 +629,7 @@ var scales = {
     "naturals": [false,false,false, true,false,false,false,false,false,false, true,false]
   },
   "3": {
+    "2":        [  330,  330,  320,  310,  310,  300,  300,  290,  280,  280,  270,  270],
     "3":        [  260,  260,  250,  240,  240,  230,  230,  220,  210,  210,  200,  200],
     "4":        [  190,  190,  180,  170,  170,  160,  160,  150,  140,  140,  130,  130],
     "5":        [  120,  120,  110,  100,  100,   90,   90,   80,   70,   70,   60,   60],
@@ -634,14 +638,16 @@ var scales = {
     "naturals": [false,false,false, true,false,false,false,false, true,false, true,false]
   },
   "4": {
+    "2":        [  360,  350,  350,  340,  340,  330,  330,  320,  310,  310,  300,  300],
     "3":        [  290,  280,  280,  270,  270,  260,  260,  250,  240,  240,  230,  230],
     "4":        [  220,  210,  210,  200,  200,  190,  190,  180,  170,  170,  160,  160],
     "5":        [  150,  140,  140,  130,  130,  120,  120,  110,  100,  100,   90,   90],
     "sharps":   [false,false,false,false,false,false, true,false,false,false,false,false],
     "flats":    [false,false,false,false,false,false,false,false,false,false,false,false],
-    "naturals": [false,true,false,true,false,false,false,false,false,false,true,false]
+    "naturals": [false,true,false,true,false,false,false,false,true,false,true,false]
   },
   "5": {
+    "2":        [  320,  310,  310,  300,  300,  290,  280,  280,  270,  270,  260,  260],
     "3":        [  250,  240,  240,  230,  230,  220,  210,  210,  200,  200,  190,  190],
     "4":        [  180,  170,  170,  160,  160,  150,  140,  140,  130,  130,  120,  120],
     "5":        [  110,  100,  100,   90,   90,   80,   70,   70,   60,   60,   50,   50],
@@ -650,6 +656,7 @@ var scales = {
     "naturals": [false, true,false, true,false,false, true,false, true,false, true,false]
   },
   "6": {
+    "2":        [  350,  340,  340,  330,  330,  320,  310,  310,  300,  300,  290,  280],
     "3":        [  280,  270,  270,  260,  260,  250,  240,  240,  230,  230,  220,  210],
     "4":        [  210,  200,  200,  190,  190,  180,  170,  170,  160,  160,  150,  140],
     "5":        [  140,  130,  130,  120,  120,  110,  100,  100,   90,   90,   80,   70],
@@ -763,6 +770,19 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       tempNote.noteLength == "sixteenth"        ? drawSixteenthNote       : drawThirtySecondNote;
       if (xaxis > canvasWidth) {
         xaxis = (xaxis - canvasWidth) + 5;
+        scale[2][0]  = scale[2][0]  + 300;
+        scale[2][1]  = scale[2][1]  + 300;
+        scale[2][2]  = scale[2][2]  + 300;
+        scale[2][3]  = scale[2][3]  + 300;
+        scale[2][4]  = scale[2][4]  + 300;
+        scale[2][5]  = scale[2][5]  + 300;
+        scale[2][6]  = scale[2][6]  + 300;
+        scale[2][7]  = scale[2][7]  + 300;
+        scale[2][8]  = scale[2][8]  + 300;
+        scale[2][9]  = scale[2][9]  + 300;
+        scale[2][10] = scale[2][10] + 300;
+        scale[2][11] = scale[2][11] + 300;
+
         scale[3][0]  = scale[3][0]  + 300;
         scale[3][1]  = scale[3][1]  + 300;
         scale[3][2]  = scale[3][2]  + 300;
