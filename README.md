@@ -15,12 +15,6 @@ If you've made it this far you're actually interested in the project. For that I
 salute you. Below is a list of the most important things that could help
 move Audiofile forward. If you see something that inspires you to act please do.
 
-### Intelligent wrapping notes
-
-Currently the notes only paint on the xaxis as wide as the canvas. They need to
-intelligently wrap to a new line as many times as it takes to paint the entire
-piece.
-
 ### Browser font detection
 
 The elements being painted to the canvas (clefs, notes, rests, accidentals) were
