@@ -36,7 +36,7 @@
       });
     },
     stepUp : function(placeholder, note, distance) {
-      return stepHelper(this, note, +(distance));
+      return stepHelper(this, note, (+distance));
     },
     stepDown : function(placeholder, note, distance) {
       return stepHelper(this, note, -parseInt(distance,10));
@@ -84,9 +84,9 @@
 
 // Start of "CONSTANTS"
 var POSITION_OF_F5_STAFF_LINE = 140,
-    POSITION_OF_E4_STAFF_LINE = +(POSITION_OF_F5_STAFF_LINE) + 80,
-    POSITION_OF_A3_STAFF_LINE = +(POSITION_OF_F5_STAFF_LINE) + 120,
-    POSITION_OF_G2_STAFF_LINE = +(POSITION_OF_F5_STAFF_LINE) + 200,
+    POSITION_OF_E4_STAFF_LINE = (+POSITION_OF_F5_STAFF_LINE) + 80,
+    POSITION_OF_A3_STAFF_LINE = (+POSITION_OF_F5_STAFF_LINE) + 120,
+    POSITION_OF_G2_STAFF_LINE = (+POSITION_OF_F5_STAFF_LINE) + 200,
     INTERMEDIATE_LINE_DISTANCE = 20,
     X_AXIS_START_OF_STAFF_LINES = 30;
 // End of "CONSTANTS"
@@ -99,7 +99,7 @@ function getContext() {
 
 function stepHelper(that, note, step) {
   return that.each(function() {
-    var beforePitch = +($(note).attr('data-pitch'));
+    var beforePitch = (+$(note).attr('data-pitch'));
     $(note).attr('data-pitch', beforePitch + step);
   });
 }
@@ -125,11 +125,11 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -142,19 +142,19 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 600; y <= +(POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 600; y <= (+POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 600; y <= +(POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 600; y <= (+POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -167,27 +167,27 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 600; y <= +(POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 600; y <= (+POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 600; y <= +(POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 600; y <= (+POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 900; y <= +(POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 900; y <= (+POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 900; y <= +(POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 900; y <= (+POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -200,35 +200,35 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 600; y <= +(POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 600; y <= (+POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 600; y <= +(POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 600; y <= (+POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 900; y <= +(POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 900; y <= (+POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 900; y <= +(POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 900; y <= (+POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 1200; y <= +(POSITION_OF_E4_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 1200; y <= (+POSITION_OF_E4_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 1200; y <= +(POSITION_OF_G2_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 1200; y <= (+POSITION_OF_G2_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -241,7 +241,7 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -351,8 +351,8 @@ function drawClefs() {
 
   var tempClef = {};
   var ctx = getContext();
-  tempClef.x = +(X_AXIS_START_OF_STAFF_LINES);
-  tempClef.y = +(POSITION_OF_F5_STAFF_LINE);
+  tempClef.x = (+X_AXIS_START_OF_STAFF_LINES);
+  tempClef.y = (+POSITION_OF_F5_STAFF_LINE);
 
   tempClef.centerXAxis = tempClef.x + 10;
   tempClef.centerYAxis = tempClef.y + 140;
@@ -539,24 +539,24 @@ function drawClefs() {
 function drawTrebleClef() {
   var ctx = getContext();
   ctx.font = "8.5em Helvetica-Light";
-  var tempXAxis = +(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 90;
+  var tempXAxis = (+X_AXIS_START_OF_STAFF_LINES) + 10;
+  var tempYAxis = (+POSITION_OF_F5_STAFF_LINE) + 90;
   ctx.fillText("𝄞" , tempXAxis, tempYAxis);
 }
 
 function drawBassClef() {
   var ctx = getContext();
   ctx.font = "5.5em Helvetica-Light";
-  var tempXAxis = +(X_AXIS_START_OF_STAFF_LINES) + 10;
-  var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 180;
+  var tempXAxis = (+X_AXIS_START_OF_STAFF_LINES) + 10;
+  var tempYAxis = (+POSITION_OF_F5_STAFF_LINE) + 180;
   ctx.fillText("𝄢" , tempXAxis, tempYAxis);
 }
 
 function clefTip() {
   var ctx = getContext();
   var tempClefTip = {};
-  tempClefTip.x = +(X_AXIS_START_OF_STAFF_LINES);
-  tempClefTip.y = +(POSITION_OF_F5_STAFF_LINE);
+  tempClefTip.x = (+X_AXIS_START_OF_STAFF_LINES);
+  tempClefTip.y = (+POSITION_OF_F5_STAFF_LINE);
 
   tempClefTip.tempXAxis = tempClefTip.x - 30;
   tempClefTip.tempYAxis = tempClefTip.y + 100;
@@ -744,7 +744,7 @@ var scales = {
 
 function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
-  var xaxis = +(X_AXIS_START_OF_STAFF_LINES) + 200;
+  var xaxis = (+X_AXIS_START_OF_STAFF_LINES) + 200;
   $("div[data-measure]").each(function(index) {
     // console.log("measure: " + index);
 
@@ -875,40 +875,40 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
         xaxis += 50;
       }
     });
-    var measureLine = +(xaxis) - 25;
+    var measureLine = (+xaxis) - 25;
     if (loop == 1) {
       ctx.moveTo(measureLine, POSITION_OF_F5_STAFF_LINE);
-      var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 80;
+      var tempYAxis = (+POSITION_OF_F5_STAFF_LINE) + 80;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 120;
+      var tempYAxis = (+POSITION_OF_F5_STAFF_LINE) + 120;
       ctx.moveTo(measureLine, tempYAxis);
       ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
     } else if (loop == 2) {
-      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 300);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 300;
+      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 300);
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 300;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 300;
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 300;
       ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, +(POSITION_OF_G2_STAFF_LINE) + 300);
+      ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + 300);
     } else if (loop == 3) {
-      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 600);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 600;
+      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 600);
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 600;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 600;
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 600;
       ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, +(POSITION_OF_G2_STAFF_LINE) + 600);
+      ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + 600);
     } else if (loop == 4) {
-      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 900);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 900;
+      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 900);
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 900;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 900;
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 900;
       ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, +(POSITION_OF_G2_STAFF_LINE) + 900);
+      ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + 900);
     } else if (loop == 5) {
-      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 1200);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 1200;
+      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 1200);
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 1200;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 1200;
+      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 1200;
       ctx.moveTo(measureLine, tempYAxis);
       ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200);
     } else if (loop == 6) {
@@ -953,31 +953,31 @@ function drawQuarterRest(xaxis, position) {
   var ctx = getContext();
   var tempQuart = {};
   ctx.moveTo(xaxis -2, position - 8);
-  tempQuart.controlX = +(xaxis) + 2;
-  tempQuart.controlY = +(position) - 2;
-  tempQuart.endX = +(xaxis) + 5;
-  tempQuart.endY = +(position) - 2;
+  tempQuart.controlX = (+xaxis) + 2;
+  tempQuart.controlY = (+position) - 2;
+  tempQuart.endX = (+xaxis) + 5;
+  tempQuart.endY = (+position) - 2;
   ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
 
   ctx.moveTo(tempQuart.endX, tempQuart.endY);
-  tempQuart.controlX = +(tempQuart.endX);
-  tempQuart.controlY = +(position);
-  tempQuart.endX = +(xaxis) - 5;
-  tempQuart.endY = +(position) + 1;
+  tempQuart.controlX = (+tempQuart.endX);
+  tempQuart.controlY = (+position);
+  tempQuart.endX = (+xaxis) - 5;
+  tempQuart.endY = (+position) + 1;
   ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
 
   ctx.moveTo(tempQuart.endX, tempQuart.endY);
-  tempQuart.controlX = +(tempQuart.endX);
-  tempQuart.controlY = +(position) + 2;
-  tempQuart.endX = +(xaxis) + 5;
-  tempQuart.endY = +(position) + 5;
+  tempQuart.controlX = (+tempQuart.endX);
+  tempQuart.controlY = (+position) + 2;
+  tempQuart.endX = (+xaxis) + 5;
+  tempQuart.endY = (+position) + 5;
   ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
 
   ctx.moveTo(tempQuart.endX, tempQuart.endY);
-  tempQuart.controlX = +(tempQuart.endX) - 15;
-  tempQuart.controlY = +(position) + 10;
-  tempQuart.endX = +(xaxis) + 5;
-  tempQuart.endY = +(tempQuart.endY) + 7;
+  tempQuart.controlX = (+tempQuart.endX) - 15;
+  tempQuart.controlY = (+position) + 10;
+  tempQuart.endX = (+xaxis) + 5;
+  tempQuart.endY = (+tempQuart.endY) + 7;
   ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
   styleNStroke();
 }
@@ -985,9 +985,9 @@ function drawQuarterRest(xaxis, position) {
 function restStaff(xaxis, position) {
   var ctx = getContext();
   var tempRestStaff = {};
-  tempRestStaff.overX = +(xaxis) + 3;
-  tempRestStaff.underY = +(position) - 15;
-  tempRestStaff.overX2 = +(xaxis) - 1;
+  tempRestStaff.overX = (+xaxis) + 3;
+  tempRestStaff.underY = (+position) - 15;
+  tempRestStaff.overX2 = (+xaxis) - 1;
   ctx.moveTo(tempRestStaff.overX, tempRestStaff.underY);
   ctx.lineTo(tempRestStaff.overX2, position + 10);
 }
@@ -1000,10 +1000,10 @@ function drawEighthRest(xaxis, position) {
   ctx.closePath();
   ctx.fill();
   ctx.moveTo(xaxis - 5, position - 10);
-  tempEighthRest.controlX = +(xaxis) - 5;
-  tempEighthRest.controlY = +(position) - 10;
-  tempEighthRest.endX = +(xaxis) + 5;
-  tempEighthRest.endY = +(position) - 15;
+  tempEighthRest.controlX = (+xaxis) - 5;
+  tempEighthRest.controlY = (+position) - 10;
+  tempEighthRest.endX = (+xaxis) + 5;
+  tempEighthRest.endY = (+position) - 15;
   ctx.quadraticCurveTo(tempEighthRest.controlX, tempEighthRest.controlY, tempEighthRest.endX, tempEighthRest.endY);
   styleNStroke();
   restStaff(xaxis, position);
@@ -1018,10 +1018,10 @@ function drawSixteenthRest(xaxis, position) {
   ctx.closePath();
   ctx.fill();
   ctx.moveTo(xaxis - 5, position - 10);
-  tempSixteenth.controlX = +(xaxis) - 5;
-  tempSixteenth.controlY = +(position) - 10;
-  tempSixteenth.endX = +(xaxis);
-  tempSixteenth.endY = +(position) - 5;
+  tempSixteenth.controlX = (+xaxis) - 5;
+  tempSixteenth.controlY = (+position) - 10;
+  tempSixteenth.endX = (+xaxis);
+  tempSixteenth.endY = (+position) - 5;
   ctx.quadraticCurveTo(tempSixteenth.controlX, tempSixteenth.controlY, tempSixteenth.endX, tempSixteenth.endY);
   styleNStroke();
   restStaff(xaxis, position);
@@ -1037,10 +1037,10 @@ function drawThirtySecondRest(xaxis, position) {
   ctx.closePath();
   ctx.fill();
   ctx.moveTo(xaxis - 5, position - 10);
-  tempThirtySecond.controlX = +(xaxis) - 5;
-  tempThirtySecond.controlY = +(position) - 10;
-  tempThirtySecond.endX = +(xaxis);
-  tempThirtySecond.endY = +(position);
+  tempThirtySecond.controlX = (+xaxis) - 5;
+  tempThirtySecond.controlY = (+position) - 10;
+  tempThirtySecond.endX = (+xaxis);
+  tempThirtySecond.endY = (+position);
   ctx.quadraticCurveTo(tempThirtySecond.controlX, tempThirtySecond.controlY, tempThirtySecond.endX, tempThirtySecond.endY);
   styleNStroke();
   restStaff(xaxis, position);
@@ -1101,8 +1101,8 @@ function drawThirtySecondNote(xaxis, position) {
 
 function drawNoteStaff(xaxis, position) {
   var ctx = getContext();
-  var overX = +(xaxis) + 8;
-  var underY = +(position) - 25;
+  var overX = (+xaxis) + 8;
+  var underY = (+position) - 25;
   ctx.moveTo(overX, underY);
   ctx.lineTo(overX, position);
 }
@@ -1110,10 +1110,10 @@ function drawNoteStaff(xaxis, position) {
 function drawOneFlag(xaxis, position) {
   var ctx = getContext();
   var tempOneFlag = {};
-  tempOneFlag.overX = +(xaxis) + 8;
-  tempOneFlag.underY = +(position) - 25;
-  tempOneFlag.secondOverX = +(tempOneFlag.overX) + 15;
-  tempOneFlag.secondUnderY = +(tempOneFlag.underY) + 3;
+  tempOneFlag.overX = (+xaxis) + 8;
+  tempOneFlag.underY = (+position) - 25;
+  tempOneFlag.secondOverX = (+tempOneFlag.overX) + 15;
+  tempOneFlag.secondUnderY = (+tempOneFlag.underY) + 3;
   ctx.moveTo(tempOneFlag.overX, tempOneFlag.underY);
   ctx.lineTo(tempOneFlag.secondOverX, tempOneFlag.secondUnderY);
 }
@@ -1121,10 +1121,10 @@ function drawOneFlag(xaxis, position) {
 function drawTwoFlag(xaxis, position) {
   var ctx = getContext();
   var tempTwoFlag = {};
-  tempTwoFlag.overX = +(xaxis) + 8;
-  tempTwoFlag.underY = +(position) - 20;
-  tempTwoFlag.secondOverX = +(tempTwoFlag.overX) + 15;
-  tempTwoFlag.secondUnderY = +(tempTwoFlag.underY) + 3;
+  tempTwoFlag.overX = (+xaxis) + 8;
+  tempTwoFlag.underY = (+position) - 20;
+  tempTwoFlag.secondOverX = (+tempTwoFlag.overX) + 15;
+  tempTwoFlag.secondUnderY = (+tempTwoFlag.underY) + 3;
   ctx.moveTo(tempTwoFlag.overX, tempTwoFlag.underY);
   ctx.lineTo(tempTwoFlag.secondOverX, tempTwoFlag.secondUnderY);
 }
@@ -1132,10 +1132,10 @@ function drawTwoFlag(xaxis, position) {
 function drawThreeFlag(xaxis, position) {
   var ctx = getContext();
   var tempThreeFlag = {};
-  tempThreeFlag.overX = +(xaxis) + 8;
-  tempThreeFlag.underY = +(position) - 15;
-  tempThreeFlag.secondOverX = +(tempThreeFlag.overX) + 15;
-  tempThreeFlag.secondUnderY = +(tempThreeFlag.underY) + 3;
+  tempThreeFlag.overX = (+xaxis) + 8;
+  tempThreeFlag.underY = (+position) - 15;
+  tempThreeFlag.secondOverX = (+tempThreeFlag.overX) + 15;
+  tempThreeFlag.secondUnderY = (+tempThreeFlag.underY) + 3;
   ctx.moveTo(tempThreeFlag.overX, tempThreeFlag.underY);
   ctx.lineTo(tempThreeFlag.secondOverX, tempThreeFlag.secondUnderY);
 }
@@ -1155,29 +1155,29 @@ function sharpNote(xaxis, position) {
 
   var ctx = getContext();
   var tempSharpNote = {};
-  tempSharpNote.xCoord1a = +(xaxis) - 17;
-  tempSharpNote.yCoord1a = +(position) - 8;
-  tempSharpNote.yCoord2a = +(tempSharpNote.yCoord1a) + 15;
+  tempSharpNote.xCoord1a = (+xaxis) - 17;
+  tempSharpNote.yCoord1a = (+position) - 8;
+  tempSharpNote.yCoord2a = (+tempSharpNote.yCoord1a) + 15;
   ctx.moveTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord1a);
   ctx.lineTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord2a);
 
-  tempSharpNote.xCoord1b = +(tempSharpNote.xCoord1a) + 5;
-  tempSharpNote.yCoord1b = +(tempSharpNote.yCoord2a) - 18;
-  tempSharpNote.yCoord2b = +(tempSharpNote.yCoord1b) + 15;
+  tempSharpNote.xCoord1b = (+tempSharpNote.xCoord1a) + 5;
+  tempSharpNote.yCoord1b = (+tempSharpNote.yCoord2a) - 18;
+  tempSharpNote.yCoord2b = (+tempSharpNote.yCoord1b) + 15;
   ctx.moveTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord1b);
   ctx.lineTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord2b);
 
-  tempSharpNote.xCoord1c = +(tempSharpNote.xCoord1b) - 10;
-  tempSharpNote.yCoord1c = +(tempSharpNote.yCoord2b) - 7;
-  tempSharpNote.xCoord2c = +(tempSharpNote.xCoord1c) + 15;
-  tempSharpNote.yCoord2c = +(tempSharpNote.yCoord2b) - 10;
+  tempSharpNote.xCoord1c = (+tempSharpNote.xCoord1b) - 10;
+  tempSharpNote.yCoord1c = (+tempSharpNote.yCoord2b) - 7;
+  tempSharpNote.xCoord2c = (+tempSharpNote.xCoord1c) + 15;
+  tempSharpNote.yCoord2c = (+tempSharpNote.yCoord2b) - 10;
   ctx.moveTo(tempSharpNote.xCoord1c, tempSharpNote.yCoord1c);
   ctx.lineTo(tempSharpNote.xCoord2c, tempSharpNote.yCoord2c);
 
-  tempSharpNote.xCoord1d = +(tempSharpNote.xCoord1c);
-  tempSharpNote.yCoord1d = +(tempSharpNote.yCoord1c) + 6;
-  tempSharpNote.xCoord2d = +(tempSharpNote.xCoord1d) + 15;
-  tempSharpNote.yCoord2d = +(tempSharpNote.yCoord2c) + 6;
+  tempSharpNote.xCoord1d = (+tempSharpNote.xCoord1c);
+  tempSharpNote.yCoord1d = (+tempSharpNote.yCoord1c) + 6;
+  tempSharpNote.xCoord2d = (+tempSharpNote.xCoord1d) + 15;
+  tempSharpNote.yCoord2d = (+tempSharpNote.yCoord2c) + 6;
   ctx.moveTo(tempSharpNote.xCoord1d, tempSharpNote.yCoord1d);
   ctx.lineTo(tempSharpNote.xCoord2d, tempSharpNote.yCoord2d);
   styleNStroke();
@@ -1192,29 +1192,29 @@ function naturalNote(xaxis, position) {
 
   var ctx = getContext();
   var tempNatural = {};
-  tempNatural.xCoord1a = +(xaxis) - 17;
-  tempNatural.yCoord1a = +(position) - 8;
-  tempNatural.yCoord2a = +(tempNatural.yCoord1a) + 15;
+  tempNatural.xCoord1a = (+xaxis) - 17;
+  tempNatural.yCoord1a = (+position) - 8;
+  tempNatural.yCoord2a = (+tempNatural.yCoord1a) + 15;
   ctx.moveTo(tempNatural.xCoord1a, tempNatural.yCoord1a);
   ctx.lineTo(tempNatural.xCoord1a, tempNatural.yCoord2a);
 
-  tempNatural.xCoord1b = +(tempNatural.xCoord1a) + 5;
-  tempNatural.yCoord1b = +(tempNatural.yCoord2a) - 12;
-  tempNatural.yCoord2b = +(tempNatural.yCoord1b) + 15;
+  tempNatural.xCoord1b = (+tempNatural.xCoord1a) + 5;
+  tempNatural.yCoord1b = (+tempNatural.yCoord2a) - 12;
+  tempNatural.yCoord2b = (+tempNatural.yCoord1b) + 15;
   ctx.moveTo(tempNatural.xCoord1b, tempNatural.yCoord1b);
   ctx.lineTo(tempNatural.xCoord1b, tempNatural.yCoord2b);
 
-  tempNatural.xCoord1c = +(tempNatural.xCoord1b) - 6;
-  tempNatural.yCoord1c = +(tempNatural.yCoord2b) - 12;
-  tempNatural.xCoord2c = +(tempNatural.xCoord1c) + 5;
-  tempNatural.yCoord2c = +(tempNatural.yCoord2b) - 14;
+  tempNatural.xCoord1c = (+tempNatural.xCoord1b) - 6;
+  tempNatural.yCoord1c = (+tempNatural.yCoord2b) - 12;
+  tempNatural.xCoord2c = (+tempNatural.xCoord1c) + 5;
+  tempNatural.yCoord2c = (+tempNatural.yCoord2b) - 14;
   ctx.moveTo(tempNatural.xCoord1c, tempNatural.yCoord1c);
   ctx.lineTo(tempNatural.xCoord2c, tempNatural.yCoord2c);
 
-  tempNatural.xCoord1d = +(tempNatural.xCoord1c);
-  tempNatural.yCoord1d = +(tempNatural.yCoord2c) + 12;
-  tempNatural.xCoord2d = +(tempNatural.xCoord1c) + 5;
-  tempNatural.yCoord2d = +(tempNatural.yCoord2c) + 8;
+  tempNatural.xCoord1d = (+tempNatural.xCoord1c);
+  tempNatural.yCoord1d = (+tempNatural.yCoord2c) + 12;
+  tempNatural.xCoord2d = (+tempNatural.xCoord1c) + 5;
+  tempNatural.yCoord2d = (+tempNatural.yCoord2c) + 8;
   ctx.moveTo(tempNatural.xCoord1d, tempNatural.yCoord1d);
   ctx.lineTo(tempNatural.xCoord2d, tempNatural.yCoord2d);
   styleNStroke();
@@ -1229,20 +1229,20 @@ function flatNote(xaxis, position) {
 
   var ctx = getContext();
   var tempFlat = {};
-  tempFlat.xCoord1a = +(xaxis) - 18;
-  tempFlat.xCoord1b = +(xaxis) - 16;
-  tempFlat.yCoord1a = +(position) - 8;
-  tempFlat.yCoord2a = +(tempFlat.yCoord1a) + 15;
+  tempFlat.xCoord1a = (+xaxis) - 18;
+  tempFlat.xCoord1b = (+xaxis) - 16;
+  tempFlat.yCoord1a = (+position) - 8;
+  tempFlat.yCoord2a = (+tempFlat.yCoord1a) + 15;
   ctx.moveTo(tempFlat.xCoord1a, tempFlat.yCoord1a);
   ctx.lineTo(tempFlat.xCoord1b, tempFlat.yCoord2a);
 
-  tempFlat.tempXAxis = +(tempFlat.xCoord1b);
-  tempFlat.tempYAxis = +(tempFlat.yCoord2a);
+  tempFlat.tempXAxis = (+tempFlat.xCoord1b);
+  tempFlat.tempYAxis = (+tempFlat.yCoord2a);
   ctx.moveTo(tempFlat.tempXAxis, tempFlat.tempYAxis);
-  tempFlat.controlX = +(tempFlat.tempXAxis) + 10;
-  tempFlat.controlY = +(tempFlat.yCoord1a) + 8;
-  tempFlat.endX = +(tempFlat.tempXAxis);
-  tempFlat.endY = +(tempFlat.yCoord1a) + 7;
+  tempFlat.controlX = (+tempFlat.tempXAxis) + 10;
+  tempFlat.controlY = (+tempFlat.yCoord1a) + 8;
+  tempFlat.endX = (+tempFlat.tempXAxis);
+  tempFlat.endY = (+tempFlat.yCoord1a) + 7;
   ctx.quadraticCurveTo(tempFlat.controlX, tempFlat.controlY, tempFlat.endX, tempFlat.endY);
   styleNStroke();
 }
@@ -1341,16 +1341,16 @@ function setTheKey(theKey, xaxis, position) {
 
   function drawStaffFlatHelper(x1,y1,x2,y2) {
     var tempDrawStaffFlat = {};
-    tempDrawStaffFlat.x = +(X_AXIS_START_OF_STAFF_LINES);
-    tempDrawStaffFlat.y = +(POSITION_OF_F5_STAFF_LINE);
+    tempDrawStaffFlat.x = (+X_AXIS_START_OF_STAFF_LINES);
+    tempDrawStaffFlat.y = (+POSITION_OF_F5_STAFF_LINE);
     flatNote(tempDrawStaffFlat.x+x1,tempDrawStaffFlat.y+y1);
     flatNote(tempDrawStaffFlat.x+x2,tempDrawStaffFlat.y+y2);
   }
 
   function drawStaffSharpHelper(x1,y1,x2,y2) {
     var tempDrawStaffSharp = {};
-    tempDrawStaffSharp.x = +(X_AXIS_START_OF_STAFF_LINES);
-    tempDrawStaffSharp.y = +(POSITION_OF_F5_STAFF_LINE);
+    tempDrawStaffSharp.x = (+X_AXIS_START_OF_STAFF_LINES);
+    tempDrawStaffSharp.y = (+POSITION_OF_F5_STAFF_LINE);
     sharpNote(tempDrawStaffSharp.x+x1,tempDrawStaffSharp.y+y1);
     sharpNote(tempDrawStaffSharp.x+x2,tempDrawStaffSharp.y+y2);
   }
@@ -1431,8 +1431,8 @@ function  setTheTimeSignature(bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
   var tempSetTheTime = {};
   ctx.font = "30pt Helvetica-Light";
-  tempSetTheTime.x = +(X_AXIS_START_OF_STAFF_LINES);
-  tempSetTheTime.y = +(POSITION_OF_F5_STAFF_LINE);
+  tempSetTheTime.x = (+X_AXIS_START_OF_STAFF_LINES);
+  tempSetTheTime.y = (+POSITION_OF_F5_STAFF_LINE);
 
   tempSetTheTime.tempXAxis = tempSetTheTime.x + 150;
   tempSetTheTime.tempYAxis = tempSetTheTime.y + 35;
