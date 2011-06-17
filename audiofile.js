@@ -1,12 +1,12 @@
 /*
-* audiofile.cc JavaScript Library v0.1.15
+* audiofile.cc JavaScript Library v0.1.16
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Tue. June 7 2011 
+* Date: Thur. June 16 2011 
 */
 (function( $ ){
   var methods = {
@@ -25,7 +25,7 @@
         }
         //console.log(settings.tonic);
         // code goes here to maintain chainability.
-        var canvasWidth = $(this).attr("width");
+        var canvasWidth = this.getAttribute("width");
         drawClefs();
         //drawTrebleClef();
         //drawBassClef();
@@ -36,7 +36,7 @@
       });
     },
     stepUp : function(placeholder, note, distance) {
-      return stepHelper(this, note, parseInt(distance,10));
+      return stepHelper(this, note, +(distance));
     },
     stepDown : function(placeholder, note, distance) {
       return stepHelper(this, note, -parseInt(distance,10));
@@ -78,16 +78,17 @@
     } else {
     $.error( 'Method ' +  method + ' does not exist on jQuery.audiofile' );
     }   
+    return true;
   };
 })( jQuery );
 
 // Start of "CONSTANTS"
-var POSITION_OF_F5_STAFF_LINE = 140;
-var POSITION_OF_E4_STAFF_LINE = parseInt(POSITION_OF_F5_STAFF_LINE) + 80;
-var POSITION_OF_A3_STAFF_LINE = parseInt(POSITION_OF_F5_STAFF_LINE) + 120;
-var POSITION_OF_G2_STAFF_LINE = parseInt(POSITION_OF_F5_STAFF_LINE) + 200;
-var INTERMEDIATE_LINE_DISTANCE = 20;
-var X_AXIS_START_OF_STAFF_LINES = 30;
+var POSITION_OF_F5_STAFF_LINE = 140,
+    POSITION_OF_E4_STAFF_LINE = +(POSITION_OF_F5_STAFF_LINE) + 80,
+    POSITION_OF_A3_STAFF_LINE = +(POSITION_OF_F5_STAFF_LINE) + 120,
+    POSITION_OF_G2_STAFF_LINE = +(POSITION_OF_F5_STAFF_LINE) + 200,
+    INTERMEDIATE_LINE_DISTANCE = 20,
+    X_AXIS_START_OF_STAFF_LINES = 30;
 // End of "CONSTANTS"
 
 function getContext() {
@@ -98,7 +99,7 @@ function getContext() {
 
 function stepHelper(that, note, step) {
   return that.each(function() {
-    var beforePitch = parseInt($(note).attr('data-pitch'), 10);
+    var beforePitch = +($(note).attr('data-pitch'));
     $(note).attr('data-pitch', beforePitch + step);
   });
 }
@@ -124,11 +125,11 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -141,19 +142,19 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 600; y <= +(POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 600; y <= +(POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -166,27 +167,27 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 600; y <= +(POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 600; y <= +(POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 900; y <= +(POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 900; y <= +(POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -199,35 +200,35 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 300; y <= +(POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 600; y <= +(POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 600; y <= +(POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 900; y <= +(POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 900; y <= +(POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 1200; y <= +(POSITION_OF_E4_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_A3_STAFF_LINE) + 1200; y <= +(POSITION_OF_G2_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -240,7 +241,7 @@ function drawStaffLines(width, xaxis, loop) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = +(POSITION_OF_F5_STAFF_LINE) + 300; y <= +(POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -348,255 +349,257 @@ function drawClefs() {
 // and separate this out into two functions called bassClef() and trebleClef()
 // 3 circles for bass clef
 
+  var tempClef = {};
   var ctx = getContext();
-  var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-  var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
+  tempClef.x = +(X_AXIS_START_OF_STAFF_LINES);
+  tempClef.y = +(POSITION_OF_F5_STAFF_LINE);
 
-  var centerXAxis = x + 10;
-  var centerYAxis = y + 140;
-  var radius = 5;
+  tempClef.centerXAxis = tempClef.x + 10;
+  tempClef.centerYAxis = tempClef.y + 140;
+  tempClef.radius = 5;
   ctx.beginPath();
-  ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
+  ctx.arc(tempClef.centerXAxis, tempClef.centerYAxis, tempClef.radius, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
 
-  var centerXAxis = x + 50;
-  var centerYAxis = y + 133;
-  var radius = 3;
+  tempClef.centerXAxis = tempClef.x + 50;
+  tempClef.centerYAxis = tempClef.y + 133;
+  tempClef.radius = 3;
   ctx.beginPath();
-  ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
+  ctx.arc(tempClef.centerXAxis, tempClef.centerYAxis, tempClef.radius, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
 
-  var centerXAxis = x + 50;
-  var centerYAxis = y + 147;
-  var radius = 3;
+  tempClef.centerXAxis = tempClef.x + 50;
+  tempClef.centerYAxis = tempClef.y + 147;
+  tempClef.radius = 3;
   ctx.beginPath();
-  ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
+  ctx.arc(tempClef.centerXAxis, tempClef.centerYAxis, tempClef.radius, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
 
   // circle for treble clef
   var ctx = getContext();
-  var centerXAxis = x + 20;
-  var centerYAxis = y + 100;
-  var radius = 3;
+  tempClef.centerXAxis = tempClef.x + 20;
+  tempClef.centerYAxis = tempClef.y + 100;
+  tempClef.radius = 3;
   ctx.beginPath();
-  ctx.arc(centerXAxis, centerYAxis, radius, 0, Math.PI*2, true); 
+  ctx.arc(tempClef.centerXAxis, tempClef.centerYAxis, tempClef.radius, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
   
   // 2 curves for bass clef
-  var tempXAxis = x + 10;
-  var tempYAxis = y + 140;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 15;
-  var controlY = y + 120;
-  var endX = x + 25;
-  var endY = y + 120;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 10;
+  tempClef.tempYAxis = tempClef.y + 140;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 15;
+  tempClef.controlY = tempClef.y + 120;
+  tempClef.endX = tempClef.x + 25;
+  tempClef.endY = tempClef.y + 120;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 40;
-  var tempYAxis = y + 140;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 35;
-  var controlY = y + 120;
-  var endX = x + 25;
-  var endY = y + 120;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 40;
+  tempClef.tempYAxis = tempClef.y + 140;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 35;
+  tempClef.controlY = tempClef.y + 120;
+  tempClef.endX = tempClef.x + 25;
+  tempClef.endY = tempClef.y + 120;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 10;
-  var tempYAxis = y + 180;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 45;
-  var controlY = y + 160;
-  var endX = x + 40;
-  var endY = y + 140;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 10;
+  tempClef.tempYAxis = tempClef.y + 180;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 45;
+  tempClef.controlY = tempClef.y + 160;
+  tempClef.endX = tempClef.x + 40;
+  tempClef.endY = tempClef.y + 140;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
   // 11 curves for bass clef
-  var tempXAxis = x + 30;
-  var tempYAxis = y + 70;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 20;
-  var controlY = y + 70;
-  var endX = x + 20;
-  var endY = y + 60;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 30;
+  tempClef.tempYAxis = tempClef.y + 70;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 20;
+  tempClef.controlY = tempClef.y + 70;
+  tempClef.endX = tempClef.x + 20;
+  tempClef.endY = tempClef.y + 60;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 20;
-  var tempYAxis = y + 60;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 20;
-  var controlY = y + 40;
-  var endX = x + 30;
-  var endY = y + 40;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 20;
+  tempClef.tempYAxis = tempClef.y + 60;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 20;
+  tempClef.controlY = tempClef.y + 40;
+  tempClef.endX = tempClef.x + 30;
+  tempClef.endY = tempClef.y + 40;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 40;
-  var tempYAxis = y + 60;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 40;
-  var controlY = y + 40;
-  var endX = x + 30;
-  var endY = y + 40;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 40;
+  tempClef.tempYAxis = tempClef.y + 60;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 40;
+  tempClef.controlY = tempClef.y + 40;
+  tempClef.endX = tempClef.x + 30;
+  tempClef.endY = tempClef.y + 40;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 30;
-  var tempYAxis = y + 80;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 40;
-  var controlY = y + 80;
-  var endX = x + 40;
-  var endY = y + 60;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 30;
+  tempClef.tempYAxis = tempClef.y + 80;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 40;
+  tempClef.controlY = tempClef.y + 80;
+  tempClef.endX = tempClef.x + 40;
+  tempClef.endY = tempClef.y + 60;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 30;
-  var tempYAxis = y + 80;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 10;
-  var controlY = y + 80;
-  var endX = x + 10;
-  var endY = y + 60;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 30;
+  tempClef.tempYAxis = tempClef.y + 80;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 10;
+  tempClef.controlY = tempClef.y + 80;
+  tempClef.endX = tempClef.x + 10;
+  tempClef.endY = tempClef.y + 60;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 10;
-  var tempYAxis = y + 60;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 13;
-  var controlY = y + 45;
-  var endX = x + 20;
-  var endY = y + 40;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 10;
+  tempClef.tempYAxis = tempClef.y + 60;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 13;
+  tempClef.controlY = tempClef.y + 45;
+  tempClef.endX = tempClef.x + 20;
+  tempClef.endY = tempClef.y + 40;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 20;
-  var tempYAxis = y + 40;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 35;
-  var controlY = y + 20;
-  var endX = x + 35;
-  var endY = y + 20;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 20;
+  tempClef.tempYAxis = tempClef.y + 40;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 35;
+  tempClef.controlY = tempClef.y + 20;
+  tempClef.endX = tempClef.x + 35;
+  tempClef.endY = tempClef.y + 20;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 35;
-  var tempYAxis = y + 20;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 40;
-  var controlY = y;
-  var endX = x + 35;
-  var endY = y;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 35;
+  tempClef.tempYAxis = tempClef.y + 20;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 40;
+  tempClef.controlY = tempClef.y;
+  tempClef.endX = tempClef.x + 35;
+  tempClef.endY = tempClef.y;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 38;
-  var tempYAxis = y;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 35;
-  var controlY = y - 15;
-  var endX = x + 30;
-  var endY = y - 20;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 38;
+  tempClef.tempYAxis = tempClef.y;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 35;
+  tempClef.controlY = tempClef.y - 15;
+  tempClef.endX = tempClef.x + 30;
+  tempClef.endY = tempClef.y - 20;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 18;
-  var tempYAxis = y;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 23;
-  var controlY = y - 15;
-  var endX = x + 30;
-  var endY = y - 20;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 18;
+  tempClef.tempYAxis = tempClef.y;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 23;
+  tempClef.controlY = tempClef.y - 15;
+  tempClef.endX = tempClef.x + 30;
+  tempClef.endY = tempClef.y - 20;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 18;
-  var tempYAxis = y;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 40;
-  var controlY = y + 100;
-  var endX = x + 40;
-  var endY = y + 100;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 18;
+  tempClef.tempYAxis = tempClef.y;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 40;
+  tempClef.controlY = tempClef.y + 100;
+  tempClef.endX = tempClef.x + 40;
+  tempClef.endY = tempClef.y + 100;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 40;
-  var tempYAxis = y + 100;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 35;
-  var controlY = y + 110;
-  var endX = x + 30;
-  var endY = y + 110;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 40;
+  tempClef.tempYAxis = tempClef.y + 100;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 35;
+  tempClef.controlY = tempClef.y + 110;
+  tempClef.endX = tempClef.x + 30;
+  tempClef.endY = tempClef.y + 110;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
-  var tempXAxis = x + 20;
-  var tempYAxis = y + 100;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x + 25;
-  var controlY = y + 110;
-  var endX = x + 30;
-  var endY = y + 110;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClef.tempXAxis = tempClef.x + 20;
+  tempClef.tempYAxis = tempClef.y + 100;
+  ctx.moveTo(tempClef.tempXAxis, tempClef.tempYAxis);
+  tempClef.controlX = tempClef.x + 25;
+  tempClef.controlY = tempClef.y + 110;
+  tempClef.endX = tempClef.x + 30;
+  tempClef.endY = tempClef.y + 110;
+  ctx.quadraticCurveTo(tempClef.controlX, tempClef.controlY, tempClef.endX, tempClef.endY);
 
 }
 
 function drawTrebleClef() {
   var ctx = getContext();
   ctx.font = "8.5em Helvetica-Light";
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES,10) + 10;
-  var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 90;
+  var tempXAxis = +(X_AXIS_START_OF_STAFF_LINES) + 10;
+  var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 90;
   ctx.fillText("𝄞" , tempXAxis, tempYAxis);
 }
 
 function drawBassClef() {
   var ctx = getContext();
   ctx.font = "5.5em Helvetica-Light";
-  var tempXAxis = parseInt(X_AXIS_START_OF_STAFF_LINES,10) + 10;
-  var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 180;
+  var tempXAxis = +(X_AXIS_START_OF_STAFF_LINES) + 10;
+  var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 180;
   ctx.fillText("𝄢" , tempXAxis, tempYAxis);
 }
 
 function clefTip() {
   var ctx = getContext();
-  var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-  var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
+  var tempClefTip = {};
+  tempClefTip.x = +(X_AXIS_START_OF_STAFF_LINES);
+  tempClefTip.y = +(POSITION_OF_F5_STAFF_LINE);
 
-  var tempXAxis = x - 30;
-  var tempYAxis = y + 100;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x - 5;
-  var controlY = y + 60;
-  var endX = x - 20;
-  var endY = y + 30;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClefTip.tempXAxis = tempClefTip.x - 30;
+  tempClefTip.tempYAxis = tempClefTip.y + 100;
+  ctx.moveTo(tempClefTip.tempXAxis, tempClefTip.tempYAxis);
+  tempClefTip.controlX = tempClefTip.x - 5;
+  tempClefTip.controlY = tempClefTip.y + 60;
+  tempClefTip.endX = tempClefTip.x - 20;
+  tempClefTip.endY = tempClefTip.y + 30;
+  ctx.quadraticCurveTo(tempClefTip.controlX, tempClefTip.controlY, tempClefTip.endX, tempClefTip.endY);
 
-  var tempXAxis = x - 20;
-  var tempYAxis = y + 30;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x - 35;
-  var controlY = y;
-  var endX = x;
-  var endY = y;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClefTip.tempXAxis = tempClefTip.x - 20;
+  tempClefTip.tempYAxis = tempClefTip.y + 30;
+  ctx.moveTo(tempClefTip.tempXAxis, tempClefTip.tempYAxis);
+  tempClefTip.controlX = tempClefTip.x - 35;
+  tempClefTip.controlY = tempClefTip.y;
+  tempClefTip.endX = tempClefTip.x;
+  tempClefTip.endY = tempClefTip.y;
+  ctx.quadraticCurveTo(tempClefTip.controlX, tempClefTip.controlY, tempClefTip.endX, tempClefTip.endY);
 
-  var tempXAxis = x - 30;
-  var tempYAxis = y + 100;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x - 5;
-  var controlY = y + 130;
-  var endX = x - 20;
-  var endY = y + 170;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClefTip.tempXAxis = tempClefTip.x - 30;
+  tempClefTip.tempYAxis = tempClefTip.y + 100;
+  ctx.moveTo(tempClefTip.tempXAxis, tempClefTip.tempYAxis);
+  tempClefTip.controlX = tempClefTip.x - 5;
+  tempClefTip.controlY = tempClefTip.y + 130;
+  tempClefTip.endX = tempClefTip.x - 20;
+  tempClefTip.endY = tempClefTip.y + 170;
+  ctx.quadraticCurveTo(tempClefTip.controlX, tempClefTip.controlY, tempClefTip.endX, tempClefTip.endY);
 
-  var tempXAxis = x - 20;
-  var tempYAxis = y + 170;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = x - 35;
-  var controlY = y + 200;
-  var endX = x;
-  var endY = y + 200;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempClefTip.tempXAxis = tempClefTip.x - 20;
+  tempClefTip.tempYAxis = tempClefTip.y + 170;
+  ctx.moveTo(tempClefTip.tempXAxis, tempClefTip.tempYAxis);
+  tempClefTip.controlX = tempClefTip.x - 35;
+  tempClefTip.controlY = tempClefTip.y + 200;
+  tempClefTip.endX = tempClefTip.x;
+  tempClefTip.endY = tempClefTip.y + 200;
+  ctx.quadraticCurveTo(tempClefTip.controlX, tempClefTip.controlY, tempClefTip.endX, tempClefTip.endY);
 
-  var tempXAxis = x;
-  var tempYAxis = y;
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var tempXAxis = x;
-  var tempYAxis = y + 200;
-  ctx.lineTo(tempXAxis, tempYAxis);
+  tempClefTip.tempXAxis = tempClefTip.x;
+  tempClefTip.tempYAxis = tempClefTip.y;
+  ctx.moveTo(tempClefTip.tempXAxis, tempClefTip.tempYAxis);
+  tempClefTip.tempXAxis = tempClefTip.x;
+  tempClefTip.tempYAxis = tempClefTip.y + 200;
+  ctx.lineTo(tempClefTip.tempXAxis, tempClefTip.tempYAxis);
 }
 
 // First level is tonic, second level is octave.
@@ -741,7 +744,7 @@ var scales = {
 
 function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
-  var xaxis = parseInt(X_AXIS_START_OF_STAFF_LINES) + 200;
+  var xaxis = +(X_AXIS_START_OF_STAFF_LINES) + 200;
   $("div[data-measure]").each(function(index) {
     // console.log("measure: " + index);
 
@@ -755,7 +758,7 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
         'noteLength': $(this).attr("data-note"), 
         'pitch'     : $(this).attr("data-pitch"),
         'octave'    : $(this).attr("data-octave")
-      }
+      };
 
     // Also need to create the note drawing methods on the object that will be
     // called right here I think.  ex: tempNote.drawQuarterNote();
@@ -866,47 +869,46 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       // This if/else statement figures out if this is the last note of a chord
       // or note. There must be a more elegant way to do this
       if ($(this).parent("div[data-chord]").length && !lstnt) {
-        xaxis = xaxis;
       } else if ($(this).parent("div[data-chord]").length && lstnt == "true") {
         xaxis += 50;
       } else {
         xaxis += 50;
       }
     });
-    var measureLine = parseInt(xaxis) - 25;
+    var measureLine = +(xaxis) - 25;
     if (loop == 1) {
       ctx.moveTo(measureLine, POSITION_OF_F5_STAFF_LINE);
-      var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 80;
+      var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 80;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = parseInt(POSITION_OF_F5_STAFF_LINE) + 120;
+      var tempYAxis = +(POSITION_OF_F5_STAFF_LINE) + 120;
       ctx.moveTo(measureLine, tempYAxis);
       ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
     } else if (loop == 2) {
-      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 300;
+      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 300);
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 300;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 300;
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 300;
       ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300);
+      ctx.lineTo(measureLine, +(POSITION_OF_G2_STAFF_LINE) + 300);
     } else if (loop == 3) {
-      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 600;
+      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 600);
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 600;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 600;
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 600;
       ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600);
+      ctx.lineTo(measureLine, +(POSITION_OF_G2_STAFF_LINE) + 600);
     } else if (loop == 4) {
-      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 900;
+      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 900);
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 900;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 900;
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 900;
       ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900);
+      ctx.lineTo(measureLine, +(POSITION_OF_G2_STAFF_LINE) + 900);
     } else if (loop == 5) {
-      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 1200;
+      ctx.moveTo(measureLine, +(POSITION_OF_F5_STAFF_LINE) + 1200);
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 80) + 1200;
       ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 1200;
+      var tempYAxis = (+(POSITION_OF_F5_STAFF_LINE) + 120) + 1200;
       ctx.moveTo(measureLine, tempYAxis);
       ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200);
     } else if (loop == 6) {
@@ -949,92 +951,97 @@ function drawHalfRest(xaxis, position) {
 
 function drawQuarterRest(xaxis, position) {
   var ctx = getContext();
+  var tempQuart = {};
   ctx.moveTo(xaxis -2, position - 8);
-  var controlX = parseInt(xaxis, 10) + 2;
-  var controlY = parseInt(position, 10) - 2;
-  var endX = parseInt(xaxis, 10) + 5;
-  var endY = parseInt(position, 10) - 2;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempQuart.controlX = +(xaxis) + 2;
+  tempQuart.controlY = +(position) - 2;
+  tempQuart.endX = +(xaxis) + 5;
+  tempQuart.endY = +(position) - 2;
+  ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
 
-  ctx.moveTo(endX, endY);
-  var controlX = parseInt(endX, 10);
-  var controlY = parseInt(position, 10);
-  var endX = parseInt(xaxis, 10) - 5;
-  var endY = parseInt(position, 10) + 1;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  ctx.moveTo(tempQuart.endX, tempQuart.endY);
+  tempQuart.controlX = +(tempQuart.endX);
+  tempQuart.controlY = +(position);
+  tempQuart.endX = +(xaxis) - 5;
+  tempQuart.endY = +(position) + 1;
+  ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
 
-  ctx.moveTo(endX, endY);
-  var controlX = parseInt(endX, 10);
-  var controlY = parseInt(position, 10) + 2;
-  var endX = parseInt(xaxis, 10) + 5;
-  var endY = parseInt(position, 10) + 5;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  ctx.moveTo(tempQuart.endX, tempQuart.endY);
+  tempQuart.controlX = +(tempQuart.endX);
+  tempQuart.controlY = +(position) + 2;
+  tempQuart.endX = +(xaxis) + 5;
+  tempQuart.endY = +(position) + 5;
+  ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
 
-  ctx.moveTo(endX, endY);
-  var controlX = parseInt(endX, 10) - 15;
-  var controlY = parseInt(position, 10) + 10;
-  var endX = parseInt(xaxis, 10) + 5;
-  var endY = parseInt(endY, 10) + 7;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  ctx.moveTo(tempQuart.endX, tempQuart.endY);
+  tempQuart.controlX = +(tempQuart.endX) - 15;
+  tempQuart.controlY = +(position) + 10;
+  tempQuart.endX = +(xaxis) + 5;
+  tempQuart.endY = +(tempQuart.endY) + 7;
+  ctx.quadraticCurveTo(tempQuart.controlX, tempQuart.controlY, tempQuart.endX, tempQuart.endY);
   styleNStroke();
 }
 
 function restStaff(xaxis, position) {
   var ctx = getContext();
-  var overX = parseInt(xaxis) + 3;
-  var underY = parseInt(position) - 15;
-  var overX2 = parseInt(xaxis) - 1;
-  ctx.moveTo(overX, underY);
-  ctx.lineTo(overX2, position + 10);
+  var tempRestStaff = {};
+  tempRestStaff.overX = +(xaxis) + 3;
+  tempRestStaff.underY = +(position) - 15;
+  tempRestStaff.overX2 = +(xaxis) - 1;
+  ctx.moveTo(tempRestStaff.overX, tempRestStaff.underY);
+  ctx.lineTo(tempRestStaff.overX2, position + 10);
 }
 
 function drawEighthRest(xaxis, position) {
   var ctx = getContext();
+  var tempEighthRest = {};
   ctx.beginPath();
   ctx.arc(xaxis - 3, position - 13, 3, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
   ctx.moveTo(xaxis - 5, position - 10);
-  var controlX = parseInt(xaxis, 10) - 5;
-  var controlY = parseInt(position, 10) - 10;
-  var endX = parseInt(xaxis, 10) + 5;
-  var endY = parseInt(position, 10) - 15;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempEighthRest.controlX = +(xaxis) - 5;
+  tempEighthRest.controlY = +(position) - 10;
+  tempEighthRest.endX = +(xaxis) + 5;
+  tempEighthRest.endY = +(position) - 15;
+  ctx.quadraticCurveTo(tempEighthRest.controlX, tempEighthRest.controlY, tempEighthRest.endX, tempEighthRest.endY);
   styleNStroke();
   restStaff(xaxis, position);
 }
 
 function drawSixteenthRest(xaxis, position) {
-  drawEighthRest(xaxis, position)
+  drawEighthRest(xaxis, position);
+  var tempSixteenth ={};
   var ctx = getContext();
   ctx.beginPath();
   ctx.arc(xaxis - 4, position - 6, 3, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
   ctx.moveTo(xaxis - 5, position - 10);
-  var controlX = parseInt(xaxis, 10) - 5;
-  var controlY = parseInt(position, 10) - 10;
-  var endX = parseInt(xaxis, 10);
-  var endY = parseInt(position, 10) - 5;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempSixteenth.controlX = +(xaxis) - 5;
+  tempSixteenth.controlY = +(position) - 10;
+  tempSixteenth.endX = +(xaxis);
+  tempSixteenth.endY = +(position) - 5;
+  ctx.quadraticCurveTo(tempSixteenth.controlX, tempSixteenth.controlY, tempSixteenth.endX, tempSixteenth.endY);
   styleNStroke();
   restStaff(xaxis, position);
 }
 
 function drawThirtySecondRest(xaxis, position) {
-  drawEighthRest(xaxis, position)
-  drawSixteenthRest(xaxis, position)
+  drawEighthRest(xaxis, position);
+  drawSixteenthRest(xaxis, position);
+  var tempThirtySecond = {};
   var ctx = getContext();
   ctx.beginPath();
   ctx.arc(xaxis - 5, position, 3, 0, Math.PI*2, true); 
   ctx.closePath();
   ctx.fill();
   ctx.moveTo(xaxis - 5, position - 10);
-  var controlX = parseInt(xaxis, 10) - 5;
-  var controlY = parseInt(position, 10) - 10;
-  var endX = parseInt(xaxis, 10);
-  var endY = parseInt(position, 10);
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempThirtySecond.controlX = +(xaxis) - 5;
+  tempThirtySecond.controlY = +(position) - 10;
+  tempThirtySecond.endX = +(xaxis);
+  tempThirtySecond.endY = +(position);
+  ctx.quadraticCurveTo(tempThirtySecond.controlX, tempThirtySecond.controlY, tempThirtySecond.endX, tempThirtySecond.endY);
   styleNStroke();
   restStaff(xaxis, position);
 }
@@ -1046,7 +1053,7 @@ function drawWholeNote(xaxis, position) {
 }
 
 function drawHalfNote(xaxis, position) {
-  drawWholeNote(xaxis, position)
+  drawWholeNote(xaxis, position);
   drawNoteStaff(xaxis, position);
 }
 
@@ -1094,40 +1101,43 @@ function drawThirtySecondNote(xaxis, position) {
 
 function drawNoteStaff(xaxis, position) {
   var ctx = getContext();
-  var overX = parseInt(xaxis) + 8;
-  var underY = parseInt(position) - 25;
+  var overX = +(xaxis) + 8;
+  var underY = +(position) - 25;
   ctx.moveTo(overX, underY);
   ctx.lineTo(overX, position);
 }
 
 function drawOneFlag(xaxis, position) {
   var ctx = getContext();
-  var overX = parseInt(xaxis) + 8;
-  var underY = parseInt(position) - 25;
-  var secondOverX = parseInt(overX) + 15;
-  var secondUnderY = parseInt(underY) + 3;
-  ctx.moveTo(overX, underY);
-  ctx.lineTo(secondOverX, secondUnderY);
+  var tempOneFlag = {};
+  tempOneFlag.overX = +(xaxis) + 8;
+  tempOneFlag.underY = +(position) - 25;
+  tempOneFlag.secondOverX = +(tempOneFlag.overX) + 15;
+  tempOneFlag.secondUnderY = +(tempOneFlag.underY) + 3;
+  ctx.moveTo(tempOneFlag.overX, tempOneFlag.underY);
+  ctx.lineTo(tempOneFlag.secondOverX, tempOneFlag.secondUnderY);
 }
 
 function drawTwoFlag(xaxis, position) {
   var ctx = getContext();
-  var overX = parseInt(xaxis) + 8;
-  var underY = parseInt(position) - 20;
-  var secondOverX = parseInt(overX) + 15;
-  var secondUnderY = parseInt(underY) + 3;
-  ctx.moveTo(overX, underY);
-  ctx.lineTo(secondOverX, secondUnderY);
+  var tempTwoFlag = {};
+  tempTwoFlag.overX = +(xaxis) + 8;
+  tempTwoFlag.underY = +(position) - 20;
+  tempTwoFlag.secondOverX = +(tempTwoFlag.overX) + 15;
+  tempTwoFlag.secondUnderY = +(tempTwoFlag.underY) + 3;
+  ctx.moveTo(tempTwoFlag.overX, tempTwoFlag.underY);
+  ctx.lineTo(tempTwoFlag.secondOverX, tempTwoFlag.secondUnderY);
 }
 
 function drawThreeFlag(xaxis, position) {
   var ctx = getContext();
-  var overX = parseInt(xaxis) + 8;
-  var underY = parseInt(position) - 15;
-  var secondOverX = parseInt(overX) + 15;
-  var secondUnderY = parseInt(underY) + 3;
-  ctx.moveTo(overX, underY);
-  ctx.lineTo(secondOverX, secondUnderY);
+  var tempThreeFlag = {};
+  tempThreeFlag.overX = +(xaxis) + 8;
+  tempThreeFlag.underY = +(position) - 15;
+  tempThreeFlag.secondOverX = +(tempThreeFlag.overX) + 15;
+  tempThreeFlag.secondUnderY = +(tempThreeFlag.underY) + 3;
+  ctx.moveTo(tempThreeFlag.overX, tempThreeFlag.underY);
+  ctx.lineTo(tempThreeFlag.secondOverX, tempThreeFlag.secondUnderY);
 }
 
 function styleNStroke() {
@@ -1144,31 +1154,32 @@ function sharpNote(xaxis, position) {
   //ctx.fillText("♯" , tempXAxis, tempYAxis);
 
   var ctx = getContext();
-  var xCoord1a = parseInt(xaxis) - 17;
-  var yCoord1a = parseInt(position) - 8;
-  var yCoord2a = parseInt(yCoord1a) + 15;
-  ctx.moveTo(xCoord1a, yCoord1a);
-  ctx.lineTo(xCoord1a, yCoord2a);
+  var tempSharpNote = {};
+  tempSharpNote.xCoord1a = +(xaxis) - 17;
+  tempSharpNote.yCoord1a = +(position) - 8;
+  tempSharpNote.yCoord2a = +(tempSharpNote.yCoord1a) + 15;
+  ctx.moveTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord1a);
+  ctx.lineTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord2a);
 
-  var xCoord1b = parseInt(xCoord1a) + 5;
-  var yCoord1b = parseInt(yCoord2a) - 18;
-  var yCoord2b = parseInt(yCoord1b) + 15;
-  ctx.moveTo(xCoord1b, yCoord1b);
-  ctx.lineTo(xCoord1b, yCoord2b);
+  tempSharpNote.xCoord1b = +(tempSharpNote.xCoord1a) + 5;
+  tempSharpNote.yCoord1b = +(tempSharpNote.yCoord2a) - 18;
+  tempSharpNote.yCoord2b = +(tempSharpNote.yCoord1b) + 15;
+  ctx.moveTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord1b);
+  ctx.lineTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord2b);
 
-  var xCoord1c = parseInt(xCoord1b) - 10;
-  var yCoord1c = parseInt(yCoord2b) - 7;
-  var xCoord2c = parseInt(xCoord1c) + 15;
-  var yCoord2c = parseInt(yCoord2b) - 10;
-  ctx.moveTo(xCoord1c, yCoord1c);
-  ctx.lineTo(xCoord2c, yCoord2c);
+  tempSharpNote.xCoord1c = +(tempSharpNote.xCoord1b) - 10;
+  tempSharpNote.yCoord1c = +(tempSharpNote.yCoord2b) - 7;
+  tempSharpNote.xCoord2c = +(tempSharpNote.xCoord1c) + 15;
+  tempSharpNote.yCoord2c = +(tempSharpNote.yCoord2b) - 10;
+  ctx.moveTo(tempSharpNote.xCoord1c, tempSharpNote.yCoord1c);
+  ctx.lineTo(tempSharpNote.xCoord2c, tempSharpNote.yCoord2c);
 
-  var xCoord1d = parseInt(xCoord1c);
-  var yCoord1d = parseInt(yCoord1c) + 6;
-  var xCoord2d = parseInt(xCoord1d) + 15;
-  var yCoord2d = parseInt(yCoord2c) + 6;
-  ctx.moveTo(xCoord1d, yCoord1d);
-  ctx.lineTo(xCoord2d, yCoord2d);
+  tempSharpNote.xCoord1d = +(tempSharpNote.xCoord1c);
+  tempSharpNote.yCoord1d = +(tempSharpNote.yCoord1c) + 6;
+  tempSharpNote.xCoord2d = +(tempSharpNote.xCoord1d) + 15;
+  tempSharpNote.yCoord2d = +(tempSharpNote.yCoord2c) + 6;
+  ctx.moveTo(tempSharpNote.xCoord1d, tempSharpNote.yCoord1d);
+  ctx.lineTo(tempSharpNote.xCoord2d, tempSharpNote.yCoord2d);
   styleNStroke();
 }
 
@@ -1180,31 +1191,32 @@ function naturalNote(xaxis, position) {
   //ctx.fillText("♮", tempXAxis, tempYAxis);
 
   var ctx = getContext();
-  var xCoord1a = parseInt(xaxis) - 17;
-  var yCoord1a = parseInt(position) - 8;
-  var yCoord2a = parseInt(yCoord1a) + 15;
-  ctx.moveTo(xCoord1a, yCoord1a);
-  ctx.lineTo(xCoord1a, yCoord2a);
+  var tempNatural = {};
+  tempNatural.xCoord1a = +(xaxis) - 17;
+  tempNatural.yCoord1a = +(position) - 8;
+  tempNatural.yCoord2a = +(tempNatural.yCoord1a) + 15;
+  ctx.moveTo(tempNatural.xCoord1a, tempNatural.yCoord1a);
+  ctx.lineTo(tempNatural.xCoord1a, tempNatural.yCoord2a);
 
-  var xCoord1b = parseInt(xCoord1a) + 5;
-  var yCoord1b = parseInt(yCoord2a) - 12;
-  var yCoord2b = parseInt(yCoord1b) + 15;
-  ctx.moveTo(xCoord1b, yCoord1b);
-  ctx.lineTo(xCoord1b, yCoord2b);
+  tempNatural.xCoord1b = +(tempNatural.xCoord1a) + 5;
+  tempNatural.yCoord1b = +(tempNatural.yCoord2a) - 12;
+  tempNatural.yCoord2b = +(tempNatural.yCoord1b) + 15;
+  ctx.moveTo(tempNatural.xCoord1b, tempNatural.yCoord1b);
+  ctx.lineTo(tempNatural.xCoord1b, tempNatural.yCoord2b);
 
-  var xCoord1c = parseInt(xCoord1b) - 6;
-  var yCoord1c = parseInt(yCoord2b) - 12;
-  var xCoord2c = parseInt(xCoord1c) + 5;
-  var yCoord2c = parseInt(yCoord2b) - 14;
-  ctx.moveTo(xCoord1c, yCoord1c);
-  ctx.lineTo(xCoord2c, yCoord2c);
+  tempNatural.xCoord1c = +(tempNatural.xCoord1b) - 6;
+  tempNatural.yCoord1c = +(tempNatural.yCoord2b) - 12;
+  tempNatural.xCoord2c = +(tempNatural.xCoord1c) + 5;
+  tempNatural.yCoord2c = +(tempNatural.yCoord2b) - 14;
+  ctx.moveTo(tempNatural.xCoord1c, tempNatural.yCoord1c);
+  ctx.lineTo(tempNatural.xCoord2c, tempNatural.yCoord2c);
 
-  var xCoord1d = parseInt(xCoord1c);
-  var yCoord1d = parseInt(yCoord2c) + 12;
-  var xCoord2d = parseInt(xCoord1c) + 5;
-  var yCoord2d = parseInt(yCoord2c) + 8;
-  ctx.moveTo(xCoord1d, yCoord1d);
-  ctx.lineTo(xCoord2d, yCoord2d);
+  tempNatural.xCoord1d = +(tempNatural.xCoord1c);
+  tempNatural.yCoord1d = +(tempNatural.yCoord2c) + 12;
+  tempNatural.xCoord2d = +(tempNatural.xCoord1c) + 5;
+  tempNatural.yCoord2d = +(tempNatural.yCoord2c) + 8;
+  ctx.moveTo(tempNatural.xCoord1d, tempNatural.yCoord1d);
+  ctx.lineTo(tempNatural.xCoord2d, tempNatural.yCoord2d);
   styleNStroke();
 }
 
@@ -1216,21 +1228,22 @@ function flatNote(xaxis, position) {
   //ctx.fillText("♭", tempXAxis, tempYAxis);
 
   var ctx = getContext();
-  var xCoord1a = parseInt(xaxis) - 18;
-  var xCoord1b = parseInt(xaxis) - 16;
-  var yCoord1a = parseInt(position) - 8;
-  var yCoord2a = parseInt(yCoord1a) + 15;
-  ctx.moveTo(xCoord1a, yCoord1a);
-  ctx.lineTo(xCoord1b, yCoord2a);
+  var tempFlat = {};
+  tempFlat.xCoord1a = +(xaxis) - 18;
+  tempFlat.xCoord1b = +(xaxis) - 16;
+  tempFlat.yCoord1a = +(position) - 8;
+  tempFlat.yCoord2a = +(tempFlat.yCoord1a) + 15;
+  ctx.moveTo(tempFlat.xCoord1a, tempFlat.yCoord1a);
+  ctx.lineTo(tempFlat.xCoord1b, tempFlat.yCoord2a);
 
-  var tempXAxis = parseInt(xCoord1b);
-  var tempYAxis = parseInt(yCoord2a);
-  ctx.moveTo(tempXAxis, tempYAxis);
-  var controlX = parseInt(tempXAxis) + 10;
-  var controlY = parseInt(yCoord1a) + 8;
-  var endX = parseInt(tempXAxis);
-  var endY = parseInt(yCoord1a) + 7;
-  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  tempFlat.tempXAxis = +(tempFlat.xCoord1b);
+  tempFlat.tempYAxis = +(tempFlat.yCoord2a);
+  ctx.moveTo(tempFlat.tempXAxis, tempFlat.tempYAxis);
+  tempFlat.controlX = +(tempFlat.tempXAxis) + 10;
+  tempFlat.controlY = +(tempFlat.yCoord1a) + 8;
+  tempFlat.endX = +(tempFlat.tempXAxis);
+  tempFlat.endY = +(tempFlat.yCoord1a) + 7;
+  ctx.quadraticCurveTo(tempFlat.controlX, tempFlat.controlY, tempFlat.endX, tempFlat.endY);
   styleNStroke();
 }
 
@@ -1279,7 +1292,7 @@ function setTheKey(theKey, xaxis, position) {
   } else if (theKey == -1) {
   // if the key is F
     fNatural(xaxis, position);
-  } else if (theKey == 0) {
+  } else if (theKey === 0) {
   // if the key is C
     sharpNote(xaxis, position);
   } else if (theKey == 1) {
@@ -1327,17 +1340,19 @@ function setTheKey(theKey, xaxis, position) {
   } 
 
   function drawStaffFlatHelper(x1,y1,x2,y2) {
-    var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-    var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
-    flatNote(x+x1,y+y1);
-    flatNote(x+x2,y+y2);
+    var tempDrawStaffFlat = {};
+    tempDrawStaffFlat.x = +(X_AXIS_START_OF_STAFF_LINES);
+    tempDrawStaffFlat.y = +(POSITION_OF_F5_STAFF_LINE);
+    flatNote(tempDrawStaffFlat.x+x1,tempDrawStaffFlat.y+y1);
+    flatNote(tempDrawStaffFlat.x+x2,tempDrawStaffFlat.y+y2);
   }
 
   function drawStaffSharpHelper(x1,y1,x2,y2) {
-    var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-    var y = parseInt(POSITION_OF_F5_STAFF_LINE,10);
-    sharpNote(x+x1,y+y1);
-    sharpNote(x+x2,y+y2);
+    var tempDrawStaffSharp = {};
+    tempDrawStaffSharp.x = +(X_AXIS_START_OF_STAFF_LINES);
+    tempDrawStaffSharp.y = +(POSITION_OF_F5_STAFF_LINE);
+    sharpNote(tempDrawStaffSharp.x+x1,tempDrawStaffSharp.y+y1);
+    sharpNote(tempDrawStaffSharp.x+x2,tempDrawStaffSharp.y+y2);
   }
 
   // draws a bass note in the appropriate place in both octaves on the staff.
@@ -1414,34 +1429,35 @@ function setTheKey(theKey, xaxis, position) {
 
 function  setTheTimeSignature(bpmeasure, count, songtitle, creator) {
   var ctx = getContext();
+  var tempSetTheTime = {};
   ctx.font = "30pt Helvetica-Light";
-  var x = parseInt(X_AXIS_START_OF_STAFF_LINES,10);
-  var y = parseInt(POSITION_OF_F5_STAFF_LINE);
+  tempSetTheTime.x = +(X_AXIS_START_OF_STAFF_LINES);
+  tempSetTheTime.y = +(POSITION_OF_F5_STAFF_LINE);
 
-  var tempXAxis = x + 150;
-  var tempYAxis = y + 35;
-  ctx.fillText(bpmeasure, tempXAxis, tempYAxis);
+  tempSetTheTime.tempXAxis = tempSetTheTime.x + 150;
+  tempSetTheTime.tempYAxis = tempSetTheTime.y + 35;
+  ctx.fillText(bpmeasure, tempSetTheTime.tempXAxis, tempSetTheTime.tempYAxis);
   
-  var tempXAxis = x + 150;
-  var tempYAxis = y + 155;
-  ctx.fillText(bpmeasure, tempXAxis, tempYAxis);
+  tempSetTheTime.tempXAxis = tempSetTheTime.x + 150;
+  tempSetTheTime.tempYAxis = tempSetTheTime.y + 155;
+  ctx.fillText(bpmeasure, tempSetTheTime.tempXAxis, tempSetTheTime.tempYAxis);
   
-  var tempXAxis = x + 150;
-  var tempYAxis = y + 75;
-  ctx.fillText(count, tempXAxis, tempYAxis);
+  tempSetTheTime.tempXAxis = tempSetTheTime.x + 150;
+  tempSetTheTime.tempYAxis = tempSetTheTime.y + 75;
+  ctx.fillText(count, tempSetTheTime.tempXAxis, tempSetTheTime.tempYAxis);
 
-  var tempXAxis = x + 150;
-  var tempYAxis = y + 195;
-  ctx.fillText(count, tempXAxis, tempYAxis);
+  tempSetTheTime.tempXAxis = tempSetTheTime.x + 150;
+  tempSetTheTime.tempYAxis = tempSetTheTime.y + 195;
+  ctx.fillText(count, tempSetTheTime.tempXAxis, tempSetTheTime.tempYAxis);
 
-  var tempXAxis = x + 10;
-  var tempYAxis = y + 225;
+  tempSetTheTime.tempXAxis = tempSetTheTime.x + 10;
+  tempSetTheTime.tempYAxis = tempSetTheTime.y + 225;
   ctx.font = "15pt Helvetica-Light";
-  ctx.fillText("Title: " + songtitle, tempXAxis, tempYAxis);
+  ctx.fillText("Title: " + songtitle, tempSetTheTime.tempXAxis, tempSetTheTime.tempYAxis);
 
-  var tempXAxis = x + 10;
-  var tempYAxis = y + 245;
-  ctx.fillText("By: " + creator, tempXAxis, tempYAxis);
+  tempSetTheTime.tempXAxis = tempSetTheTime.x + 10;
+  tempSetTheTime.tempYAxis = tempSetTheTime.y + 245;
+  ctx.fillText("By: " + creator, tempSetTheTime.tempXAxis, tempSetTheTime.tempYAxis);
 }
 
 //(function() {
