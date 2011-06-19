@@ -1,12 +1,12 @@
 /*
-* audiofile.cc JavaScript Library v0.1.16
+* audiofile.cc JavaScript Library v0.1.17
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Thur. June 16 2011 
+* Date: Sat. June 18 2011 
 */
 (function( $ ){
   var methods = {
@@ -106,235 +106,22 @@ function stepHelper(that, note, step) {
 
 function drawStaffLines(width, xaxis, loop) {
   var ctx = getContext();
+    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
+      ctx.lineTo(width, y);
+    }
+    var moveOnDown = loop * 300;
   // draw staff lines
-  if (loop == "1") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
+  for (var g = 0; g < loop; g += 1) {
+    for (var y = POSITION_OF_F5_STAFF_LINE + moveOnDown; y <= POSITION_OF_E4_STAFF_LINE + moveOnDown; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-  } else if (loop == "2") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-  } else if (loop == "3") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 600; y <= (+POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 600; y <= (+POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-  } else if (loop == "4") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 600; y <= (+POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 600; y <= (+POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 900; y <= (+POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 900; y <= (+POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-  } else if (loop == "5") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 300; y <= (+POSITION_OF_G2_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 600; y <= (+POSITION_OF_E4_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 600; y <= (+POSITION_OF_G2_STAFF_LINE) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 900; y <= (+POSITION_OF_E4_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 900; y <= (+POSITION_OF_G2_STAFF_LINE) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 1200; y <= (+POSITION_OF_E4_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_A3_STAFF_LINE) + 1200; y <= (+POSITION_OF_G2_STAFF_LINE) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-  } else if (loop == "6") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = (+POSITION_OF_F5_STAFF_LINE) + 300; y <= (+POSITION_OF_E4_STAFF_LINE) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    } 
-  } else if (loop == "7") {
-    for (var y = POSITION_OF_F5_STAFF_LINE; y <= POSITION_OF_E4_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = POSITION_OF_A3_STAFF_LINE; y <= POSITION_OF_G2_STAFF_LINE; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 300; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 300; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 600; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 600; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 900; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 900; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1200; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1500; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1500; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1800; y <= parseInt(POSITION_OF_E4_STAFF_LINE,10) + 1800; y += INTERMEDIATE_LINE_DISTANCE) {
-      ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
-      ctx.lineTo(width, y);
-    }
-    for (var y = parseInt(POSITION_OF_A3_STAFF_LINE,10) + 1800; y <= parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1800; y += INTERMEDIATE_LINE_DISTANCE) {
+    for (var y = POSITION_OF_A3_STAFF_LINE + moveOnDown; y <= POSITION_OF_G2_STAFF_LINE + moveOnDown; y += INTERMEDIATE_LINE_DISTANCE) {
       ctx.moveTo(X_AXIS_START_OF_STAFF_LINES, y);
       ctx.lineTo(width, y);
     }
@@ -779,75 +566,20 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       tempNote.noteLength == "quarter"          ? drawQuarterNote         :
       tempNote.noteLength == "eighth"           ? drawEighthNote          :
       tempNote.noteLength == "sixteenth"        ? drawSixteenthNote       : drawThirtySecondNote;
+      // If the xaxis is wider than the canvas width it means it's time to wrap the notes
       if (xaxis > canvasWidth) {
         xaxis = (xaxis - canvasWidth) + 5;
-        scale[2][0]  = scale[2][0]  + 300;
-        scale[2][1]  = scale[2][1]  + 300;
-        scale[2][2]  = scale[2][2]  + 300;
-        scale[2][3]  = scale[2][3]  + 300;
-        scale[2][4]  = scale[2][4]  + 300;
-        scale[2][5]  = scale[2][5]  + 300;
-        scale[2][6]  = scale[2][6]  + 300;
-        scale[2][7]  = scale[2][7]  + 300;
-        scale[2][8]  = scale[2][8]  + 300;
-        scale[2][9]  = scale[2][9]  + 300;
-        scale[2][10] = scale[2][10] + 300;
-        scale[2][11] = scale[2][11] + 300;
-
-        scale[3][0]  = scale[3][0]  + 300;
-        scale[3][1]  = scale[3][1]  + 300;
-        scale[3][2]  = scale[3][2]  + 300;
-        scale[3][3]  = scale[3][3]  + 300;
-        scale[3][4]  = scale[3][4]  + 300;
-        scale[3][5]  = scale[3][5]  + 300;
-        scale[3][6]  = scale[3][6]  + 300;
-        scale[3][7]  = scale[3][7]  + 300;
-        scale[3][8]  = scale[3][8]  + 300;
-        scale[3][9]  = scale[3][9]  + 300;
-        scale[3][10] = scale[3][10] + 300;
-        scale[3][11] = scale[3][11] + 300;
-
-        scale[4][0]  = scale[4][0]  + 300;
-        scale[4][1]  = scale[4][1]  + 300;
-        scale[4][2]  = scale[4][2]  + 300;
-        scale[4][3]  = scale[4][3]  + 300;
-        scale[4][4]  = scale[4][4]  + 300;
-        scale[4][5]  = scale[4][5]  + 300;
-        scale[4][6]  = scale[4][6]  + 300;
-        scale[4][7]  = scale[4][7]  + 300;
-        scale[4][8]  = scale[4][8]  + 300;
-        scale[4][9]  = scale[4][9]  + 300;
-        scale[4][10] = scale[4][10] + 300;
-        scale[4][11] = scale[4][11] + 300;
-
-        scale[5][0]  = scale[5][0]  + 300;
-        scale[5][1]  = scale[5][1]  + 300;
-        scale[5][2]  = scale[5][2]  + 300;
-        scale[5][3]  = scale[5][3]  + 300;
-        scale[5][4]  = scale[5][4]  + 300;
-        scale[5][5]  = scale[5][5]  + 300;
-        scale[5][6]  = scale[5][6]  + 300;
-        scale[5][7]  = scale[5][7]  + 300;
-        scale[5][8]  = scale[5][8]  + 300;
-        scale[5][9]  = scale[5][9]  + 300;
-        scale[5][10] = scale[5][10] + 300;
-        scale[5][11] = scale[5][11] + 300;
+        // Loop through each note in all 4 octaves and add 300 pixels to the y axis
+        for (var h = 2; h < 5; h += 1) {
+          for (var i = 0; i < 12; i += 1) {
+            // I couldn't resist myself. How often do you get to use [h][i] in a project?
+            scale[h][i]  = scale[h][i]  + 300;
+          }
+        }
       }
-      if (scale[tempNote.octave][tempNote.pitch] > 400 && scale[tempNote.octave][tempNote.pitch] < 700) {
-        loop = "2";
-      } else if (scale[tempNote.octave][tempNote.pitch] > 700 && scale[tempNote.octave][tempNote.pitch] < 1000) {
-        loop = "3";
-      } else if (scale[tempNote.octave][tempNote.pitch] > 1000 && scale[tempNote.octave][tempNote.pitch] < 1300) {
-        loop = "4";
-      } else if (scale[tempNote.octave][tempNote.pitch] > 1300 && scale[tempNote.octave][tempNote.pitch] < 1600) {
-        loop = "5";
-      } else if (scale[tempNote.octave][tempNote.pitch] > 1600 && scale[tempNote.octave][tempNote.pitch] < 1900) {
-        loop = "6";
-      } else if (scale[tempNote.octave][tempNote.pitch] > 1900 && scale[tempNote.octave][tempNote.pitch] < 2200) {
-        loop = "7";
-      } else {
-        loop = "1";
-      }
+      var theHeight = scale[tempNote.octave][tempNote.pitch] / 300;
+      loop = Math.round(theHeight);
+      console.log(loop);
       noteDrawingFunc(xaxis, scale[tempNote.octave][tempNote.pitch]);
       drawStaffLines(canvasWidth, xaxis, loop);
       var accidentalsDrawingFunc =
@@ -861,7 +593,6 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       } else {
         accidentalsDrawingFunc(xaxis, scale[tempNote.octave][tempNote.pitch]);
       }
-      //drawNote(tonic, tempNote.pitch, tempNote.noteLength, tempNote.octave, xaxis);
       // console.log("pitch: " + pitch);
       // console.log("length: " + noteLength); 
       // console.log("octave: " + octave); 
@@ -876,66 +607,19 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       }
     });
     var measureLine = (+xaxis) - 25;
-    if (loop == 1) {
-      ctx.moveTo(measureLine, POSITION_OF_F5_STAFF_LINE);
-      var tempYAxis = (+POSITION_OF_F5_STAFF_LINE) + 80;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (+POSITION_OF_F5_STAFF_LINE) + 120;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, POSITION_OF_G2_STAFF_LINE);
-    } else if (loop == 2) {
-      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 300);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 300;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 300;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + 300);
-    } else if (loop == 3) {
-      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 600);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 600;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 600;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + 600);
-    } else if (loop == 4) {
-      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 900);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 900;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 900;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + 900);
-    } else if (loop == 5) {
-      ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + 1200);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + 1200;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + 1200;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1200);
-    } else if (loop == 6) {
-      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1500);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 1500;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 1500;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1500);
-    } else if (loop == 7) {
-      ctx.moveTo(measureLine, parseInt(POSITION_OF_F5_STAFF_LINE,10) + 1800);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 80) + 1800;
-      ctx.lineTo(measureLine, tempYAxis);
-      var tempYAxis = (parseInt(POSITION_OF_F5_STAFF_LINE,10) + 120) + 1800;
-      ctx.moveTo(measureLine, tempYAxis);
-      ctx.lineTo(measureLine, parseInt(POSITION_OF_G2_STAFF_LINE,10) + 1800);
-    }
+    var moveOnTheY = (loop - 1) * 300;
+    ctx.moveTo(measureLine, (+POSITION_OF_F5_STAFF_LINE) + moveOnTheY);
+    var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 80) + moveOnTheY;
+    ctx.lineTo(measureLine, tempYAxis);
+    var tempYAxis = ((+POSITION_OF_F5_STAFF_LINE) + 120) + moveOnTheY;
+    ctx.moveTo(measureLine, tempYAxis);
+    ctx.lineTo(measureLine, (+POSITION_OF_G2_STAFF_LINE) + moveOnTheY);
     styleNStroke();
   });
 }
 
   // Not using this. I just liked the selector and didn't want to toss it just yet :P
   // var firstNote = $("div[data-measure^='0'] div:nth-child(1)").attr("data-pitch");
-
-function drawNote(tonic, pitch, noteLength, octave, xaxis, sharp) {
-
-}
 
 function drawWholeRest(xaxis, position) {
   var ctx = getContext();
