@@ -579,7 +579,6 @@ function drawNotes(tonic, bpmeasure, count, songtitle, creator) {
       }
       var theHeight = scale[tempNote.octave][tempNote.pitch] / 300;
       loop = Math.round(theHeight);
-      console.log(loop);
       noteDrawingFunc(xaxis, scale[tempNote.octave][tempNote.pitch]);
       drawStaffLines(canvasWidth, xaxis, loop);
       var accidentalsDrawingFunc =
