@@ -861,7 +861,7 @@ function sharpNote(xaxis, position) {
     ctx.lineTo(tempSharpNote.xCoord2d, tempSharpNote.yCoord2d);
   } else if (unicodeCharToTest) {
     ctx.font = "1.5em Helvetica-Light";
-    var tempXAxis = parseInt(xaxis,10) - 15;
+    var tempXAxis = parseInt(xaxis,10) - 28;
     var tempYAxis = parseInt(position,10) + 8;
     ctx.fillText("\u266F" , tempXAxis, tempYAxis);
   }
