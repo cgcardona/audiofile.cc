@@ -1,12 +1,12 @@
 /*
-* audiofile.cc JavaScript Library v0.1.17
+* audiofile.cc JavaScript Library v0.1.18
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Sat. June 18 2011 
+* Date: Sat. June 25 2011 
 */
 (function( $ ){
   var methods = {
@@ -830,103 +830,109 @@ function styleNStroke() {
 }
 
 function sharpNote(xaxis, position) {
-  //var ctx = getContext();
-  //ctx.font = "1.25em Helvetica-Light";
-  //var tempXAxis = parseInt(xaxis,10) - 15;
-  //var tempYAxis = parseInt(position,10) + 8;
-  //ctx.fillText("♯" , tempXAxis, tempYAxis);
-
+  var unicodeCharToTest = "\u266F";
   var ctx = getContext();
-  var tempSharpNote = {};
-  tempSharpNote.xCoord1a = (+xaxis) - 17;
-  tempSharpNote.yCoord1a = (+position) - 8;
-  tempSharpNote.yCoord2a = (+tempSharpNote.yCoord1a) + 15;
-  ctx.moveTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord1a);
-  ctx.lineTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord2a);
+  if (!unicodeCharToTest) {
+    var tempSharpNote = {};
+    tempSharpNote.xCoord1a = (+xaxis) - 17;
+    tempSharpNote.yCoord1a = (+position) - 8;
+    tempSharpNote.yCoord2a = (+tempSharpNote.yCoord1a) + 15;
+    ctx.moveTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord1a);
+    ctx.lineTo(tempSharpNote.xCoord1a, tempSharpNote.yCoord2a);
 
-  tempSharpNote.xCoord1b = (+tempSharpNote.xCoord1a) + 5;
-  tempSharpNote.yCoord1b = (+tempSharpNote.yCoord2a) - 18;
-  tempSharpNote.yCoord2b = (+tempSharpNote.yCoord1b) + 15;
-  ctx.moveTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord1b);
-  ctx.lineTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord2b);
+    tempSharpNote.xCoord1b = (+tempSharpNote.xCoord1a) + 5;
+    tempSharpNote.yCoord1b = (+tempSharpNote.yCoord2a) - 18;
+    tempSharpNote.yCoord2b = (+tempSharpNote.yCoord1b) + 15;
+    ctx.moveTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord1b);
+    ctx.lineTo(tempSharpNote.xCoord1b, tempSharpNote.yCoord2b);
 
-  tempSharpNote.xCoord1c = (+tempSharpNote.xCoord1b) - 10;
-  tempSharpNote.yCoord1c = (+tempSharpNote.yCoord2b) - 7;
-  tempSharpNote.xCoord2c = (+tempSharpNote.xCoord1c) + 15;
-  tempSharpNote.yCoord2c = (+tempSharpNote.yCoord2b) - 10;
-  ctx.moveTo(tempSharpNote.xCoord1c, tempSharpNote.yCoord1c);
-  ctx.lineTo(tempSharpNote.xCoord2c, tempSharpNote.yCoord2c);
+    tempSharpNote.xCoord1c = (+tempSharpNote.xCoord1b) - 10;
+    tempSharpNote.yCoord1c = (+tempSharpNote.yCoord2b) - 7;
+    tempSharpNote.xCoord2c = (+tempSharpNote.xCoord1c) + 15;
+    tempSharpNote.yCoord2c = (+tempSharpNote.yCoord2b) - 10;
+    ctx.moveTo(tempSharpNote.xCoord1c, tempSharpNote.yCoord1c);
+    ctx.lineTo(tempSharpNote.xCoord2c, tempSharpNote.yCoord2c);
 
-  tempSharpNote.xCoord1d = (+tempSharpNote.xCoord1c);
-  tempSharpNote.yCoord1d = (+tempSharpNote.yCoord1c) + 6;
-  tempSharpNote.xCoord2d = (+tempSharpNote.xCoord1d) + 15;
-  tempSharpNote.yCoord2d = (+tempSharpNote.yCoord2c) + 6;
-  ctx.moveTo(tempSharpNote.xCoord1d, tempSharpNote.yCoord1d);
-  ctx.lineTo(tempSharpNote.xCoord2d, tempSharpNote.yCoord2d);
+    tempSharpNote.xCoord1d = (+tempSharpNote.xCoord1c);
+    tempSharpNote.yCoord1d = (+tempSharpNote.yCoord1c) + 6;
+    tempSharpNote.xCoord2d = (+tempSharpNote.xCoord1d) + 15;
+    tempSharpNote.yCoord2d = (+tempSharpNote.yCoord2c) + 6;
+    ctx.moveTo(tempSharpNote.xCoord1d, tempSharpNote.yCoord1d);
+    ctx.lineTo(tempSharpNote.xCoord2d, tempSharpNote.yCoord2d);
+  } else if (unicodeCharToTest) {
+    ctx.font = "1.5em Helvetica-Light";
+    var tempXAxis = parseInt(xaxis,10) - 15;
+    var tempYAxis = parseInt(position,10) + 8;
+    ctx.fillText("\u266F" , tempXAxis, tempYAxis);
+  }
   styleNStroke();
 }
 
 function naturalNote(xaxis, position) {
-  //var ctx = getContext();
-  //ctx.font = "1.25em Helvetica-Light";
-  //var tempXAxis = parseInt(xaxis,10) - 25;
-  //var tempYAxis = parseInt(position,10) + 8;
-  //ctx.fillText("♮", tempXAxis, tempYAxis);
-
+  var unicodeCharToTest = "\u266E";
   var ctx = getContext();
-  var tempNatural = {};
-  tempNatural.xCoord1a = (+xaxis) - 17;
-  tempNatural.yCoord1a = (+position) - 8;
-  tempNatural.yCoord2a = (+tempNatural.yCoord1a) + 15;
-  ctx.moveTo(tempNatural.xCoord1a, tempNatural.yCoord1a);
-  ctx.lineTo(tempNatural.xCoord1a, tempNatural.yCoord2a);
+  if (!unicodeCharToTest) {
+    var tempNatural = {};
+    tempNatural.xCoord1a = (+xaxis) - 17;
+    tempNatural.yCoord1a = (+position) - 8;
+    tempNatural.yCoord2a = (+tempNatural.yCoord1a) + 15;
+    ctx.moveTo(tempNatural.xCoord1a, tempNatural.yCoord1a);
+    ctx.lineTo(tempNatural.xCoord1a, tempNatural.yCoord2a);
 
-  tempNatural.xCoord1b = (+tempNatural.xCoord1a) + 5;
-  tempNatural.yCoord1b = (+tempNatural.yCoord2a) - 12;
-  tempNatural.yCoord2b = (+tempNatural.yCoord1b) + 15;
-  ctx.moveTo(tempNatural.xCoord1b, tempNatural.yCoord1b);
-  ctx.lineTo(tempNatural.xCoord1b, tempNatural.yCoord2b);
+    tempNatural.xCoord1b = (+tempNatural.xCoord1a) + 5;
+    tempNatural.yCoord1b = (+tempNatural.yCoord2a) - 12;
+    tempNatural.yCoord2b = (+tempNatural.yCoord1b) + 15;
+    ctx.moveTo(tempNatural.xCoord1b, tempNatural.yCoord1b);
+    ctx.lineTo(tempNatural.xCoord1b, tempNatural.yCoord2b);
 
-  tempNatural.xCoord1c = (+tempNatural.xCoord1b) - 6;
-  tempNatural.yCoord1c = (+tempNatural.yCoord2b) - 12;
-  tempNatural.xCoord2c = (+tempNatural.xCoord1c) + 5;
-  tempNatural.yCoord2c = (+tempNatural.yCoord2b) - 14;
-  ctx.moveTo(tempNatural.xCoord1c, tempNatural.yCoord1c);
-  ctx.lineTo(tempNatural.xCoord2c, tempNatural.yCoord2c);
+    tempNatural.xCoord1c = (+tempNatural.xCoord1b) - 6;
+    tempNatural.yCoord1c = (+tempNatural.yCoord2b) - 12;
+    tempNatural.xCoord2c = (+tempNatural.xCoord1c) + 5;
+    tempNatural.yCoord2c = (+tempNatural.yCoord2b) - 14;
+    ctx.moveTo(tempNatural.xCoord1c, tempNatural.yCoord1c);
+    ctx.lineTo(tempNatural.xCoord2c, tempNatural.yCoord2c);
 
-  tempNatural.xCoord1d = (+tempNatural.xCoord1c);
-  tempNatural.yCoord1d = (+tempNatural.yCoord2c) + 12;
-  tempNatural.xCoord2d = (+tempNatural.xCoord1c) + 5;
-  tempNatural.yCoord2d = (+tempNatural.yCoord2c) + 8;
-  ctx.moveTo(tempNatural.xCoord1d, tempNatural.yCoord1d);
-  ctx.lineTo(tempNatural.xCoord2d, tempNatural.yCoord2d);
+    tempNatural.xCoord1d = (+tempNatural.xCoord1c);
+    tempNatural.yCoord1d = (+tempNatural.yCoord2c) + 12;
+    tempNatural.xCoord2d = (+tempNatural.xCoord1c) + 5;
+    tempNatural.yCoord2d = (+tempNatural.yCoord2c) + 8;
+    ctx.moveTo(tempNatural.xCoord1d, tempNatural.yCoord1d);
+    ctx.lineTo(tempNatural.xCoord2d, tempNatural.yCoord2d);
+  } else if (unicodeCharToTest) {
+    ctx.font = "1.5em Helvetica-Light";
+    var tempXAxis = parseInt(xaxis,10) - 28;
+    var tempYAxis = parseInt(position,10) + 8;
+    ctx.fillText("\u266E", tempXAxis, tempYAxis);
+  }
   styleNStroke();
 }
 
 function flatNote(xaxis, position) {
-  //var ctx = getContext();
-  //ctx.font = "1.25em Helvetica-Light";
-  //var tempXAxis = parseInt(xaxis,10) - 15;
-  //var tempYAxis = parseInt(position,10) + 5;
-  //ctx.fillText("♭", tempXAxis, tempYAxis);
-
   var ctx = getContext();
-  var tempFlat = {};
-  tempFlat.xCoord1a = (+xaxis) - 18;
-  tempFlat.xCoord1b = (+xaxis) - 16;
-  tempFlat.yCoord1a = (+position) - 8;
-  tempFlat.yCoord2a = (+tempFlat.yCoord1a) + 15;
-  ctx.moveTo(tempFlat.xCoord1a, tempFlat.yCoord1a);
-  ctx.lineTo(tempFlat.xCoord1b, tempFlat.yCoord2a);
+  var unicodeCharToTest = "\u266E";
+  if (!unicodeCharToTest) {
+    var tempFlat = {};
+    tempFlat.xCoord1a = (+xaxis) - 18;
+    tempFlat.xCoord1b = (+xaxis) - 16;
+    tempFlat.yCoord1a = (+position) - 8;
+    tempFlat.yCoord2a = (+tempFlat.yCoord1a) + 15;
+    ctx.moveTo(tempFlat.xCoord1a, tempFlat.yCoord1a);
+    ctx.lineTo(tempFlat.xCoord1b, tempFlat.yCoord2a);
 
-  tempFlat.tempXAxis = (+tempFlat.xCoord1b);
-  tempFlat.tempYAxis = (+tempFlat.yCoord2a);
-  ctx.moveTo(tempFlat.tempXAxis, tempFlat.tempYAxis);
-  tempFlat.controlX = (+tempFlat.tempXAxis) + 10;
-  tempFlat.controlY = (+tempFlat.yCoord1a) + 8;
-  tempFlat.endX = (+tempFlat.tempXAxis);
-  tempFlat.endY = (+tempFlat.yCoord1a) + 7;
-  ctx.quadraticCurveTo(tempFlat.controlX, tempFlat.controlY, tempFlat.endX, tempFlat.endY);
+    tempFlat.tempXAxis = (+tempFlat.xCoord1b);
+    tempFlat.tempYAxis = (+tempFlat.yCoord2a);
+    ctx.moveTo(tempFlat.tempXAxis, tempFlat.tempYAxis);
+    tempFlat.controlX = (+tempFlat.tempXAxis) + 10;
+    tempFlat.controlY = (+tempFlat.yCoord1a) + 8;
+    tempFlat.endX = (+tempFlat.tempXAxis);
+    tempFlat.endY = (+tempFlat.yCoord1a) + 7;
+    ctx.quadraticCurveTo(tempFlat.controlX, tempFlat.controlY, tempFlat.endX, tempFlat.endY);
+  } else if (unicodeCharToTest) {
+    ctx.font = "1.5em Helvetica-Light";
+    var tempXAxis = parseInt(xaxis,10) - 28;
+    var tempYAxis = parseInt(position,10) + 5;
+    ctx.fillText("\u266D", tempXAxis, tempYAxis);
+  }
   styleNStroke();
 }
 
