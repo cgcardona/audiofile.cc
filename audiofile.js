@@ -1,12 +1,19 @@
 /*
-* audiofile.cc JavaScript Library v0.1.18
+* audiofile.cc JavaScript Library v0.1.19
 * https://audiofile.cc/
 * 
 * Copyright 2011, Carlos Cardona 
 * Released under the MIT License.
 * http://www.opensource.org/licenses/mit-license.php
 * 
-* Date: Sat. June 25 2011 
+* Date: Sun. June 26 2011 
+*_______________________________________________________________________________
+*    __                                     _                                   
+*    / |                 /    ,           /  `    ,    /                        
+*---/__|-------------__-/----------__---_/__----------/-----__--------__-----__-
+*  /   |   /   /   /   /    /    /   )  /       /    /    /___)     /   '  /   '
+*_/____|__(___(___(___/____/____(___/__/_______/____/____(___ __o__(___ __(___ _
+* ASCII art by http://patorjk.com/software/taag/
 */
 (function( $ ){
   var methods = {
